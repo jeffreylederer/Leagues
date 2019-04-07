@@ -51,8 +51,22 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.TuesdaySchedules.Add(tuesdaySchedule);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Insert failed");
+                }
             }
 
             return View(tuesdaySchedule);
@@ -83,8 +97,22 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(tuesdaySchedule).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Edit failed");
+                }
             }
             return View(tuesdaySchedule);
         }
@@ -111,8 +139,23 @@ namespace Leagues.Controllers
         {
             TuesdaySchedule tuesdaySchedule = db.TuesdaySchedules.Find(id);
             db.TuesdaySchedules.Remove(tuesdaySchedule);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                Exception ex = e;
+                while (ex.InnerException != null)
+                    ex = ex.InnerException;
+                ViewBag.Error = ex.Message;
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Delete failed";
+            }
+            return View(tuesdaySchedule);
         }
 
         protected override void Dispose(bool disposing)

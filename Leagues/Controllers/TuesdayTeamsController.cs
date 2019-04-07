@@ -69,7 +69,7 @@ namespace Leagues.Controllers
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError(string.Empty, "Edit failed");
+                    ModelState.AddModelError(string.Empty, "Insert failed");
                 }
                 
             }
@@ -151,8 +151,23 @@ namespace Leagues.Controllers
         {
             TuesdayTeam tuesdayTeam = db.TuesdayTeams.Find(id);
             db.TuesdayTeams.Remove(tuesdayTeam);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                Exception ex = e;
+                while (ex.InnerException != null)
+                    ex = ex.InnerException;
+                ViewBag.Error = ex.Message;
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Delete failed";
+            }
+            return View(tuesdayTeam);
         }
 
         protected override void Dispose(bool disposing)

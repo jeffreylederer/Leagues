@@ -51,8 +51,22 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.Players.Add(player);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Insert failed");
+                }
             }
 
             return View(player);
@@ -83,8 +97,22 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(player).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Edit failed");
+                }
             }
             return View(player);
         }
@@ -111,8 +139,23 @@ namespace Leagues.Controllers
         {
             Player player = db.Players.Find(id);
             db.Players.Remove(player);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                Exception ex = e;
+                while (ex.InnerException != null)
+                    ex = ex.InnerException;
+                ViewBag.Error =  ex.Message;
+            }
+            catch (Exception)
+            {
+                ViewBag.Error= "Delete failed";
+            }
+            return View(player);
         }
 
         protected override void Dispose(bool disposing)

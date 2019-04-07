@@ -58,8 +58,22 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.TuesdayMatches.Add(tuesdayMatch);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Insert failed");
+                }
             }
 
             ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", tuesdayMatch.GameDate);
@@ -96,8 +110,22 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(tuesdayMatch).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Edit failed");
+                }
             }
             ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", tuesdayMatch.GameDate);
             ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id", tuesdayMatch.Team1);
@@ -127,8 +155,23 @@ namespace Leagues.Controllers
         {
             TuesdayMatch tuesdayMatch = db.TuesdayMatches.Find(id);
             db.TuesdayMatches.Remove(tuesdayMatch);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                Exception ex = e;
+                while (ex.InnerException != null)
+                    ex = ex.InnerException;
+                ViewBag.Error = ex.Message;
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Delete failed";
+            }
+            return View(tuesdayMatch);
         }
 
         protected override void Dispose(bool disposing)

@@ -55,8 +55,23 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.WednesdayTeams.Add(wednesdayTeam);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Insert failed");
+                }
             }
 
             ViewBag.Skip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Skip);
@@ -93,8 +108,23 @@ namespace Leagues.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(wednesdayTeam).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Edit failed");
+                }
             }
             ViewBag.Skip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Skip);
             ViewBag.ViceSkip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.ViceSkip);
@@ -124,8 +154,23 @@ namespace Leagues.Controllers
         {
             WednesdayTeam wednesdayTeam = db.WednesdayTeams.Find(id);
             db.WednesdayTeams.Remove(wednesdayTeam);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                Exception ex = e;
+                while (ex.InnerException != null)
+                    ex = ex.InnerException;
+                ViewBag.Error = ex.Message;
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Delete failed";
+            }
+            return View(wednesdayTeam);
         }
 
         protected override void Dispose(bool disposing)
