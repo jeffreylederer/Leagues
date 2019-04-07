@@ -1,4 +1,4 @@
-# Project Title
+# Leagues
 
 This is a web application for setting up the Tuesday and Wednesday leagues at 
 the Frick Park Lawn Bowling Club in Pittsburgh.
