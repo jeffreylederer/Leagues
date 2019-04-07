@@ -10,13 +10,13 @@ This progam is an ASP.NET MVC progam using Entity Framework accessing an MS SQL 
 
 ### Prerequisites
 
-You will need Visual Studio to make changes and MS SQL Management Studio to make changes to the database. You will also need
+You will need Visual Studio to make changes to the code and MS SQL Management Studio to make changes to the database. You will also need a
 running versions of MS SQL 2014+ or MS SQL Express. To run publicly, you will need IIS Web Server.
 
 ### Installing
 
 To work on the program, download the solution file and its associated files. Also download the database schema and install on
-a MS SQL database server. You will need to the change the connection string in the web.config file to point towards your
+an MS SQL database server. You will need to the change the connection string in the web.config file to point to your
 database server and database catalog.
 
 
@@ -46,9 +46,7 @@ We use [SemVer] GitHub for versioning. For the versions available, see the [tags
 
 ## Authors
 
-* **Jeffrey Lederer** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* Jeffrey Lederer
 
 ## License
 
