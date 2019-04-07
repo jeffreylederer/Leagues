@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Leagues.Models.WednesdayMatch>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Wednesday Matches</h2>
+@using (Html.BeginForm("Index", "WednesdayMatches", FormMethod.Post))
+{
+    <div>
+        @Html.DropDownList("ScheduleID", (SelectList) ViewBag.ScheduleID, "Select Week", new {@class = "form-control"})
+        <input type="submit" value="Select Week" class="btn btn-primary"/>
+    </div>
+}
+    <br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Rink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WednesdaySchedule.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WednesdayTeam.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WednesdayTeam1.id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WednesdaySchedule.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WednesdayTeam.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WednesdayTeam1.id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

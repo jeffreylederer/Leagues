@@ -1,0 +1,50 @@
+﻿@model Leagues.Models.TuesdayMatch
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tuesday Match</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TuesdaySchedule.GameDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TuesdaySchedule.GameDate)
+        </dd>
+
+        <dt>
+            Team 1
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TuesdayTeam.id)
+        </dd>
+
+        <dt>
+            Team 2
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TuesdayTeam1.id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
