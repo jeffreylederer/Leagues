@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Leagues.Models.TuesdayMatch>
+﻿@using System.Web.UI.WebControls
+@model IEnumerable<Leagues.Models.TuesdayMatch>
 
 @{
     ViewBag.Title = "Index";
@@ -7,17 +8,17 @@
 <h2>Tuesday Matches</h2>
 @using (Html.BeginForm("Index", "TuesdayMatches", FormMethod.Post))
 {
-<div>
-    
-    @Html.DropDownList("ScheduleID", (SelectList)ViewBag.ScheduleID, "Select Week", new { @class = "form-control" })
-    <input type="submit" value="Select Week" class="btn btn-primary" />
-</div>
-}
-<br/>
+    <div>
 
+        @Html.DropDownList("ScheduleID", (SelectList)ViewBag.ScheduleID, "Select Week", new { @class = "form-control" })
+        <input type="submit" value="Select Week" class="btn btn-primary" />
+    </div>
+}
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="Create" id="Create">Create</a>
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -59,3 +60,22 @@
     }
 
 </table>
+
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#ScheduleID").change(function(){
+
+                var selected = $("#ScheduleID option:selected").val();
+                $("#Create").attr('href',"TuesdayMatches/Create/" + selected);
+
+            });
+
+        });
+
+    </script>
+}

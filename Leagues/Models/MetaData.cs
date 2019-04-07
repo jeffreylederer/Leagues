@@ -33,6 +33,9 @@ namespace Leagues.Models
     }
     public partial class TuesdayMatchMetaData
     {
+        [Display(Name = "Week")]
+        public int GameDate { get; set; }
+
         [Display(Name = "Team 1")]
         public int Team1 { get; set; }
 
@@ -46,7 +49,9 @@ namespace Leagues.Models
     }
     public partial class WednesdayMatchMetaData
     {
-        
+        [Display(Name = "Week")]
+        public int GameDate { get; set; }
+
         [Display(Name = "Team 1")]
         public int Team1 { get; set; }
 

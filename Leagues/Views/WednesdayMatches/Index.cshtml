@@ -14,7 +14,7 @@
 }
     <br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="WednesdayMatches/Create" id="Create">Create</a>
 </p>
 <table class="table">
     <tr>
@@ -54,5 +54,20 @@
         </td>
     </tr>
 }
+    @section Scripts {
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $("#ScheduleID").change(function(){
+
+                    var selected = $("#ScheduleID option:selected").val();
+                    $("#Create").attr('href',"WednesdayMatches/Create/" + selected);
+
+                });
+
+            });
+
+        </script>
+    }
 
 </table>

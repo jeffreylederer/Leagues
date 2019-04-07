@@ -20,9 +20,11 @@ namespace Leagues.Controllers
             var tuesdayMatches = db.TuesdayMatches.Include(t => t.TuesdaySchedule).Include(t => t.TuesdayTeam).Include(t => t.TuesdayTeam1);
             if (ScheduleID.HasValue)
                 tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == ScheduleID.Value);
-            ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", " ");
+            ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", ScheduleID.HasValue? ScheduleID.Value.ToString(): "");
             return View(tuesdayMatches.ToList());
         }
+
+        
 
         // GET: TuesdayMatches/Details/5
         public ActionResult Details(int? id)
@@ -40,9 +42,9 @@ namespace Leagues.Controllers
         }
 
         // GET: TuesdayMatches/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id");
+            ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", id.HasValue? id.Value.ToString():"");
             ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id");
             ViewBag.Team2 = new SelectList(db.TuesdayTeams, "id", "id");
             return View();
@@ -61,7 +63,7 @@ namespace Leagues.Controllers
                 try
                 {
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { ScheduleID = tuesdayMatch.GameDate});
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException e)
                 {
@@ -73,7 +75,10 @@ namespace Leagues.Controllers
                 catch (Exception)
                 {
                     ModelState.AddModelError(string.Empty, "Insert failed");
+
                 }
+
+
             }
 
             ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", tuesdayMatch.GameDate);

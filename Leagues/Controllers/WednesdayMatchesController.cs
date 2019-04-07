@@ -20,6 +20,7 @@ namespace Leagues.Controllers
             var wednesdayMatches = db.WednesdayMatches.Include(w => w.WednesdaySchedule).Include(w => w.WednesdayTeam).Include(w => w.WednesdayTeam1);
             if (ScheduleID.HasValue)
                 wednesdayMatches = db.WednesdayMatches.Where(x => x.GameDate == ScheduleID.Value);
+            ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", ScheduleID.HasValue ? ScheduleID.Value.ToString() : "");
             return View(wednesdayMatches.ToList());
         }
 
@@ -39,9 +40,9 @@ namespace Leagues.Controllers
         }
 
         // GET: WednesdayMatches/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.GameDate = new SelectList(db.WednesdaySchedules, "id", "id");
+            ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", id.HasValue ? id.Value.ToString() : "");
             ViewBag.Team1 = new SelectList(db.WednesdayTeams, "id", "id");
             ViewBag.Team2 = new SelectList(db.WednesdayTeams, "id", "id");
             return View();
