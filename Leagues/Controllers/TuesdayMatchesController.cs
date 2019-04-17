@@ -21,6 +21,7 @@ namespace Leagues.Controllers
             if (ScheduleID.HasValue)
                 tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == ScheduleID.Value);
             ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", ScheduleID.HasValue? ScheduleID.Value.ToString(): "");
+            ViewBag.Date = ScheduleID.HasValue ? ScheduleID.Value.ToString() : "";
             return View(tuesdayMatches.ToList());
         }
 
@@ -44,9 +45,10 @@ namespace Leagues.Controllers
         // GET: TuesdayMatches/Create
         public ActionResult Create(int? id)
         {
-            ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", id.HasValue? id.Value.ToString():"");
+            ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", id.HasValue? id.Value.ToString():"");
             ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id");
             ViewBag.Team2 = new SelectList(db.TuesdayTeams, "id", "id");
+            ViewBag.Date = id.HasValue ? id.Value.ToString() : "";
             return View();
         }
 
@@ -84,6 +86,7 @@ namespace Leagues.Controllers
             ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", tuesdayMatch.GameDate);
             ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id", tuesdayMatch.Team1);
             ViewBag.Team2 = new SelectList(db.TuesdayTeams, "id", "id", tuesdayMatch.Team2);
+            ViewBag.Date = tuesdayMatch.GameDate.ToString();
             return View(tuesdayMatch);
         }
 
