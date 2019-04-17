@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Leagues.Code;
+using Leagues.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Leagues.Models;
+
 
 namespace Leagues.Controllers
 {
@@ -158,6 +158,44 @@ namespace Leagues.Controllers
             return View(tuesdaySchedule);
         }
 
+        public ActionResult CreateSchedule()
+        {
+            const int numberofWeeks = 9;
+            int numberofTeams = db.TuesdayTeams.Count();
+            int numberOfRinks = numberofTeams / 2 + numberofTeams % 2;
+            numberofTeams += numberofTeams % 2;
+
+            var cs = new CreateSchedule();
+            List<Match> matches = cs.DoIt(numberofWeeks, numberofTeams);
+
+            foreach (var item in db.TuesdayMatches)
+            {
+                db.TuesdayMatches.Remove(item);
+            }
+            db.SaveChanges();
+
+            for (int w = 0; w < numberofWeeks; w++)
+            {
+                for (int r = 0; r < numberOfRinks; r++)
+                {
+                    var match = matches.Find(x => x.Rink == r && x.WeekNum == w);
+                    db.TuesdayMatches.Add(new TuesdayMatch()
+                    {
+                        GameDate = w + 1,
+                        Rink = r + 1,
+                        Team1 = match.Team1 + 1,
+                        Team2 = match.Team2 + 1
+                    });
+                }
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -167,4 +205,7 @@ namespace Leagues.Controllers
             base.Dispose(disposing);
         }
     }
+
+    
+}
 }

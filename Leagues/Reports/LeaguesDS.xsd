@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LeaguesDS" targetNamespace="http://tempuri.org/LeaguesDS.xsd" xmlns:mstns="http://tempuri.org/LeaguesDS.xsd" xmlns="http://tempuri.org/LeaguesDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LeaguesDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="LeaguesDS" msprop:Generator_UserDSName="LeaguesDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TuesdayTeam" msprop:Generator_TableClassName="TuesdayTeamDataTable" msprop:Generator_TableVarName="tableTuesdayTeam" msprop:Generator_RowChangedName="TuesdayTeamRowChanged" msprop:Generator_TablePropName="TuesdayTeam" msprop:Generator_RowDeletingName="TuesdayTeamRowDeleting" msprop:Generator_RowChangingName="TuesdayTeamRowChanging" msprop:Generator_RowEvHandlerName="TuesdayTeamRowChangeEventHandler" msprop:Generator_RowDeletedName="TuesdayTeamRowDeleted" msprop:Generator_RowClassName="TuesdayTeamRow" msprop:Generator_UserTableName="TuesdayTeam" msprop:Generator_RowEvArgName="TuesdayTeamRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TeamNumber" msprop:Generator_ColumnVarNameInTable="columnTeamNumber" msprop:Generator_ColumnPropNameInRow="TeamNumber" msprop:Generator_ColumnPropNameInTable="TeamNumberColumn" msprop:Generator_UserColumnName="TeamNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="Skip" msprop:Generator_ColumnVarNameInTable="columnSkip" msprop:Generator_ColumnPropNameInRow="Skip" msprop:Generator_ColumnPropNameInTable="SkipColumn" msprop:Generator_UserColumnName="Skip" type="xs:string" minOccurs="0" />
+              <xs:element name="Lead" msprop:Generator_ColumnVarNameInTable="columnLead" msprop:Generator_ColumnPropNameInRow="Lead" msprop:Generator_ColumnPropNameInTable="LeadColumn" msprop:Generator_UserColumnName="Lead" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="WednesdayTeam" msprop:Generator_TableClassName="WednesdayTeamDataTable" msprop:Generator_TableVarName="tableWednesdayTeam" msprop:Generator_RowChangedName="WednesdayTeamRowChanged" msprop:Generator_TablePropName="WednesdayTeam" msprop:Generator_RowDeletingName="WednesdayTeamRowDeleting" msprop:Generator_RowChangingName="WednesdayTeamRowChanging" msprop:Generator_RowEvHandlerName="WednesdayTeamRowChangeEventHandler" msprop:Generator_RowDeletedName="WednesdayTeamRowDeleted" msprop:Generator_RowClassName="WednesdayTeamRow" msprop:Generator_UserTableName="WednesdayTeam" msprop:Generator_RowEvArgName="WednesdayTeamRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TeamNumber" msprop:Generator_ColumnVarNameInTable="columnTeamNumber" msprop:Generator_ColumnPropNameInRow="TeamNumber" msprop:Generator_ColumnPropNameInTable="TeamNumberColumn" msprop:Generator_UserColumnName="TeamNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="Skip" msprop:Generator_ColumnVarNameInTable="columnSkip" msprop:Generator_ColumnPropNameInRow="Skip" msprop:Generator_ColumnPropNameInTable="SkipColumn" msprop:Generator_UserColumnName="Skip" type="xs:string" minOccurs="0" />
+              <xs:element name="ViceSkip" msprop:Generator_ColumnVarNameInTable="columnViceSkip" msprop:Generator_ColumnPropNameInRow="ViceSkip" msprop:Generator_ColumnPropNameInTable="ViceSkipColumn" msprop:Generator_UserColumnName="ViceSkip" type="xs:string" minOccurs="0" />
+              <xs:element name="Lead" msprop:Generator_ColumnVarNameInTable="columnLead" msprop:Generator_ColumnPropNameInRow="Lead" msprop:Generator_ColumnPropNameInTable="LeadColumn" msprop:Generator_UserColumnName="Lead" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
