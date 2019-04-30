@@ -178,7 +178,7 @@ namespace Leagues.Controllers
             {
                 for (int r = 0; r < numberOfRinks; r++)
                 {
-                    var match = matches.Find(x => x.Rink == r && x.WeekNum == w);
+                    var match = matches.Find(x => x.Rink == r && x.Week == w);
                     db.TuesdayMatches.Add(new TuesdayMatch()
                     {
                         GameDate = w + 1,
@@ -208,4 +208,4 @@ namespace Leagues.Controllers
 
     
 }
-}
+

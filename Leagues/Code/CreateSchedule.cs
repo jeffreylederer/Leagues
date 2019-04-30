@@ -1,80 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
+
 
 namespace Leagues.Code
 {
     public class CreateSchedule
     {
+        private const int BYE = -1;
+
         public List<Match> DoIt(int numberofWeeks, int numberOfTeams)
         {
+
+            numberOfTeams += numberOfTeams % 2;
             var numberOfRinks = numberOfTeams / 2;
-            bool byes = numberOfTeams != numberOfRinks * 2;
+
             var matches = new List<Match>();
 
-            var teams = new List<TheSchedule>();
-            for (int i = 0; i < numberOfTeams; i++)
+            int[] leftside = new int[numberOfRinks];
+            int[] rightside = new int[numberOfRinks];
+            for (int r = 0; r < numberOfRinks; r++)
             {
-                teams.Add(new TheSchedule(numberofWeeks, numberOfTeams));
+                leftside[r] = r;
+                rightside[r] = numberOfTeams - r - 1;
+                matches.Add(new Match()
+                {
+                    Week = 0,
+                    Rink = r,
+                    Team1 = r,
+                    Team2 = numberOfTeams - r - 1
+                });
             }
 
-            for (var w = 0; w < numberofWeeks; w++)
+            for (int w = 1; w < numberofWeeks; w++)
             {
-                var numofMatches = 0;
-                int rink = 0;
-                while(numofMatches < numberOfRinks)
+                int remainder = ShiftRight(leftside);
+                int other = ShiftLeft(rightside, remainder);
+                leftside[1] = other;
+                for (int r = 0; r < numberOfRinks; r++)
                 {
-                    for (var t1 = 0; t1 < numberOfTeams; t1++)
+                    matches.Add(new Match()
                     {
-                        for (var t2 = 0; t2 < numberOfTeams; t2++)
-                        {
-                            var schedule1 = teams.Find(x => x.TeamNum == t1);
-                            if (t2 != t1 && !schedule1.Opponents.Contains(t2) &&
-                                matches.Any(x => x.WeekNum == w && x.Team1 != t1 && x.Team2 != t1
-                                                 && x.Team1 != t2 && x.Team2 != t2))
-                            {
-                                schedule1.Opponents.Add(t1);
-                                var schedule2 = teams.Find(x => x.TeamNum == t2);
-                                matches.Add(new Match()
-                                {
-                                    WeekNum = w,
-                                    Rink = rink+w % numberOfRinks,
-                                    Team1 = t1 < t2 ? t1 : t2,
-                                    Team2 = t1 < t2 ? t2 : t1
-                                });
-                                rink++;
-                                break;
-                            } // t2 loop
-                        }
-                        numofMatches++;
-                        if (numberOfRinks == numofMatches)
-                            break;
-                    } // t1 loop
-               } // while loop
-            } //weeks loop
+                        Week = w,
+                        Rink = r,
+                        Team1 = leftside[r]< rightside[r]? leftside[r]: rightside[r],
+                        Team2 = leftside[r] < rightside[r] ? rightside[r] : leftside[r]
+                    });
+                }
+            }
             return matches;
+
         }
-    }
 
-    internal class TheSchedule
-    {
-        public int TeamNum { get; set; }
-        public List<int> Opponents { get; set; }
-
-        public TheSchedule(int numOfWeeks, int teamNum)
+        private int ShiftRight(int[] leftside)
         {
-            Opponents = new List<int>();
-            TeamNum = teamNum;
+            int remainder = leftside[leftside.Length - 1];
+            for (int i = leftside.Length-2; i > 0; i--)
+            {
+                leftside[i+1] = leftside[i];
+            }
+            return remainder;
+        }
+
+        private int ShiftLeft(int[] rightside, int remainder)
+        {
+            int other = rightside[0];
+            for (int i = 0; i < rightside.Length - 1; i++)
+            {
+                rightside[i] = rightside[i+1];
+            }
+            rightside[rightside.Length - 1] = remainder;
+            return other;
         }
     }
-
 
     public class Match
     {
-        public int WeekNum { get; set; }
-        public int Rink { get; set; }
-        public int Team1 { get; set; }
-        public int Team2 { get; set; }
+        public int Week;
+        public int Rink;
+        public int Team1;
+        public int Team2;
+
     }
 }

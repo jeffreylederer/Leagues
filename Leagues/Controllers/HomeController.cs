@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Leagues.Code;
+using Leagues.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
+
 
 namespace Leagues.Controllers
 {
@@ -10,7 +14,9 @@ namespace Leagues.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var cs = new CreateSchedule();
+            List<Match> matches = cs.DoIt(9, 12);
+            return View(matches);
         }
 
         public ActionResult About()
