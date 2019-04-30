@@ -28,13 +28,29 @@
                 @Html.DisplayFor(modelItem => item.Week)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rink)
+                @{
+                    if (item.Rink == -1)
+                    {
+                        @Html.Raw("Bye");
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Rink);
+                    }
+                }
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Team1)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Team2)
+                @{
+                    if (item.Team2 != -1)
+                    {
+                        @Html.DisplayFor(modelItem => item.Team2);
+                    }
+                }
+
             </td>
             
         </tr>
