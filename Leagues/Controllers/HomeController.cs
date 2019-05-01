@@ -15,7 +15,7 @@ namespace Leagues.Controllers
         public ActionResult Index()
         {
             var cs = new CreateSchedule();
-            List<Match> matches = cs.DoIt(9, 12);
+            List<Match> matches = cs.NoByes(9, 12);
             return View(matches);
         }
 

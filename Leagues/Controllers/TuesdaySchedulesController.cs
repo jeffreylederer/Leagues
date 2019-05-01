@@ -162,11 +162,14 @@ namespace Leagues.Controllers
         {
             const int numberofWeeks = 9;
             int numberofTeams = db.TuesdayTeams.Count();
-            int numberOfRinks = numberofTeams / 2 + numberofTeams % 2;
-            numberofTeams += numberofTeams % 2;
+            
 
             var cs = new CreateSchedule();
-            List<Match> matches = cs.DoIt(numberofWeeks, numberofTeams);
+            List<Match> matches;
+            if (numberofTeams % 2 == 0)
+                matches = cs.NoByes(numberofWeeks, numberofTeams);
+            else
+                matches = cs.Byes(numberofWeeks, numberofTeams);
 
             foreach (var item in db.TuesdayMatches)
             {
@@ -174,6 +177,9 @@ namespace Leagues.Controllers
             }
             db.SaveChanges();
 
+            var teamCount = numberofTeams + numberofTeams % 2;
+            int numberOfRinks = teamCount / 2;
+            
             for (int w = 0; w < numberofWeeks; w++)
             {
                 for (int r = 0; r < numberOfRinks; r++)
@@ -181,10 +187,10 @@ namespace Leagues.Controllers
                     var match = matches.Find(x => x.Rink == r && x.Week == w);
                     db.TuesdayMatches.Add(new TuesdayMatch()
                     {
-                        GameDate = w + 1,
+                        GameDate = w,
                         Rink = r + 1,
-                        Team1 = match.Team1 + 1,
-                        Team2 = match.Team2 + 1
+                        Team1 = match.Team1,
+                        Team2 = match.Team2
                     });
                 }
             }

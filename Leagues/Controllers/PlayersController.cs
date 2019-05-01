@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace Leagues.Controllers
 {
@@ -12,9 +13,46 @@ namespace Leagues.Controllers
         private readonly LeagueEntities db = new LeagueEntities();
 
         // GET: Players
-        public ActionResult Index()
+        public ActionResult Index(string Filter)
         {
-            return View(db.Players.ToList());
+            var choiceList = new List<choice>();
+            choiceList.Add(new choice()
+            {
+                value = "1",
+                text = "Tuesday"
+            });
+            choiceList.Add(new choice()
+            {
+                value = "2",
+                text = "Wednesday"
+            });
+            choiceList.Add(new choice()
+            {
+                value = "3",
+                text = "Both"
+            });
+
+            ViewBag.Filter = new SelectList(choiceList, "value", "text", "3");
+            List<Player> list;
+            switch (Filter)
+            {
+                case "1":
+                    list = db.Players.Where(x => x.TuesdayLeague).ToList();
+                    break;
+                case "2":
+                    list = db.Players.Where(x => x.WednesdayLeague).ToList();
+                    break;
+                default:
+                    list = db.Players.ToList();
+                    break;
+            }
+            list.Sort(delegate(Player b1, Player b2)
+            {
+                int res = b1.LastName.CompareTo(b2.LastName);
+                return res != 0 ? res : b1.FirstName.CompareTo(b2.FirstName);
+            });
+            ViewBag.Count = list.Count;
+            return View(list);
         }
 
         // GET: Players/Details/5
@@ -163,5 +201,11 @@ namespace Leagues.Controllers
             }
             base.Dispose(disposing);
         }
+    }
+
+    public class choice
+    {
+        public string value { get; set; }
+        public string text { get; set; }
     }
 }
