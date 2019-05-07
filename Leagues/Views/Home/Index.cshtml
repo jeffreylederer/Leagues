@@ -1,59 +1,9 @@
-﻿@model IEnumerable<Leagues.Code.Match>
+﻿
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Week)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rink)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Team2)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Week)
-            </td>
-            <td>
-                @{
-                    if (item.Rink == -1)
-                    {
-                        @Html.Raw("Bye");
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.Rink);
-                    }
-                }
-                
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Team1)
-            </td>
-            <td>
-                @{
-                    if (item.Team2 != -1)
-                    {
-                        @Html.DisplayFor(modelItem => item.Team2);
-                    }
-                }
 
-            </td>
-            
-        </tr>
-    }
 
-</table>

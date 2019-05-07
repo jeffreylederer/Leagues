@@ -36,6 +36,7 @@
                         <li><a href="/TuesdayMatches">Matches</a></li>
                         <div class="dropdown-divider"></div>
                         <li><a href="/Reports/TuesdayTeamsReport.aspx">Team Report</a></li>
+                        <li><a href="/Reports/TuesdayScoreCards.aspx">Score Card Report</a></li>
                     </ul>
                 </li>
                 <li class="menu-item dropdown">
@@ -58,7 +59,7 @@
 <div class="container body-content">
     <form id="form1" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>

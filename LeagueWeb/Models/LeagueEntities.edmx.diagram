@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="34e0de8ef0104ffa82f9d028f2c200ca" Name="Diagram1">
+        <EntityTypeShape EntityType="LeaguesModel.Player" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaguesModel.TuesdayMatch" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaguesModel.TuesdaySchedule" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaguesModel.TuesdayTeam" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaguesModel.WednesdayMatch" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaguesModel.WednesdaySchedule" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaguesModel.WednesdayTeam" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="LeaguesModel.FK_Tuesday_Players" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_Tuesday_Players1" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_WednesdayTeam_Players" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_WednesdayTeam_Players1" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_WednesdayTeam_Players2" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_TuesdaySchedule_TuesdaySchedule" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_TuesdaySchedule_TuesdayTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_TuesdaySchedule_TuesdayTeam1" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_WednesdayMatch_WednesdaySchedule" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_WednesdayMatch_WednesdayTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="LeaguesModel.FK_WednesdayMatch_WednesdayTeam1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

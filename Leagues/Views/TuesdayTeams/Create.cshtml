@@ -46,11 +46,40 @@
         </div>
     </div>
 }
+<h2>Teams So Far</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lead)
+            </th>
+        </tr>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        @foreach (var item in (IEnumerable<Leagues.Models.TuesdayTeam>) ViewBag.Teams)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.id)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player1.FullName)
+                </td>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            </tr>
+        }
+        </table>
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

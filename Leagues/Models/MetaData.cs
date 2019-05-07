@@ -41,6 +41,13 @@ namespace Leagues.Models
 
         [Display(Name = "Team 2")]
         public int Team2 { get; set; }
+
+
+        [Display(Name = "Team 1 Score")]
+        public int Team1Score { get; set; }
+
+        [Display(Name = "Team 2 Score")]
+        public int Team2Score { get; set; }
     }
 
     [MetadataType(typeof(WednesdayMatchMetaData))]
@@ -57,6 +64,12 @@ namespace Leagues.Models
 
         [Display(Name = "Team 2")]
         public int Team2 { get; set; }
+
+        [Display(Name = "Team 1 Score")]
+        public int Team1Score { get; set; }
+
+        [Display(Name = "Team 2 Score")]
+        public int Team2Score { get; set; }
     }
 
     [MetadataType(typeof(TuesdayScheduleMetaData))]

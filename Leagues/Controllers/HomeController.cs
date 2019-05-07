@@ -1,10 +1,5 @@
 ﻿using Leagues.Code;
-using Leagues.Models;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 
@@ -14,9 +9,9 @@ namespace Leagues.Controllers
     {
         public ActionResult Index()
         {
-            var cs = new CreateSchedule();
-            List<Match> matches = cs.NoByes(9, 12);
-            return View(matches);
+            //var cs = new CreateSchedule();
+            //List<Match> matches = cs.NoByes(9, 12);
+            return View();
         }
 
         public ActionResult About()

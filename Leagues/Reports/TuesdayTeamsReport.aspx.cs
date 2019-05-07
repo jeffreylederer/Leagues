@@ -1,6 +1,7 @@
 ﻿using Leagues.Models;
 using Microsoft.Reporting.WebForms;
 using System;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace Leagues.Reports
@@ -18,32 +19,21 @@ namespace Leagues.Reports
                 // Set report mode for local processing.
                 rv1.ProcessingMode = ProcessingMode.Local;
 
-                // Validate report source.
-                //var rptPath = Server.MapPath(@"./Reports/BowlsInventory.rdlc");
-
-                //if(!File.Exists(rptPath))
-                //    return;
-
-                // Set report path.
-                //this.rv1.LocalReport.ReportPath = rptPath;
-
                 rv1.LocalReport.DataSources.Clear();
 
                 var ds = new LeaguesDS();
                 using (LeagueEntities db = new LeagueEntities())
                 {
-                    foreach (var item in db.TuesdayTeams)
+                    foreach (var item in db.TuesdayTeams.OrderBy(x => x.id))
                     {
-                        ds.TuesdayTeam.AddTuesdayTeamRow(item.id, item.Player.FullName, item.Lead.HasValue?item.Player1.FullName:"");
+                        ds.TuesdayTeam.AddTuesdayTeamRow(item.id, item.Player.FullName, item.Lead.HasValue ? item.Player1.FullName : "");
                     }
                 }
 
                 rv1.LocalReport.DataSources.Add(new ReportDataSource("Team", ds.TuesdayTeam.Rows));
 
                 //parameters
-
                 rv1.ShowToolBar = true;
-
 
                 // Refresh the ReportViewer.
                 rv1.LocalReport.Refresh();

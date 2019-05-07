@@ -176,6 +176,7 @@
     <Compile Include="Controllers\WednesdayMatchesController.cs" />
     <Compile Include="Controllers\WednesdaySchedulesController.cs" />
     <Compile Include="Controllers\WednesdayTeamsController.cs" />
+    <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +208,9 @@
     <Compile Include="Models\TuesdayTeam.cs">
       <DependentUpon>LeagueContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tuesday_GetMatchAll_Result.cs">
+      <DependentUpon>LeagueContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WednesdayMatch.cs">
       <DependentUpon>LeagueContext.tt</DependentUpon>
     </Compile>
@@ -216,11 +220,14 @@
     <Compile Include="Models\WednesdayTeam.cs">
       <DependentUpon>LeagueContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Wednesday_GetMatchAll_Result.cs">
+      <DependentUpon>LeagueContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\LeaguesDS.Designer.cs">
+      <DependentUpon>LeaguesDS.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LeaguesDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reports\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
@@ -228,6 +235,13 @@
     </Compile>
     <Compile Include="Reports\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\TuesdayScoreCards.aspx.cs">
+      <DependentUpon>TuesdayScoreCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\TuesdayScoreCards.aspx.designer.cs">
+      <DependentUpon>TuesdayScoreCards.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\TuesdayTeamsReport.aspx.cs">
       <DependentUpon>TuesdayTeamsReport.aspx</DependentUpon>
@@ -252,6 +266,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\uparrow.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -307,6 +322,7 @@
       <DependentUpon>LeagueContext.edmx</DependentUpon>
       <LastGenOutput>LeagueContext.cs</LastGenOutput>
     </Content>
+    <Content Include="Reports\TuesdayScoreCards.aspx" />
     <Content Include="Reports\TuesdayTeamsReport.aspx" />
     <Content Include="Reports\WednesdayTeamsReport.aspx" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -328,9 +344,9 @@
       <DependentUpon>LeaguesDS.xsd</DependentUpon>
     </Content>
     <None Include="Reports\LeaguesDS.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>LeaguesDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="Reports\LeaguesDS.xss">
       <DependentUpon>LeaguesDS.xsd</DependentUpon>
@@ -414,6 +430,7 @@
     <Content Include="Views\WednesdayMatches\Details.cshtml" />
     <Content Include="Views\WednesdayMatches\Edit.cshtml" />
     <Content Include="Views\WednesdayMatches\Index.cshtml" />
+    <Content Include="Views\TuesdayMatches\Scoring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -435,8 +452,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\WednesdayTeams.rdlc" />
-    <EmbeddedResource Include="Reports\TuesdayTeams.rdlc" />
+    <EmbeddedResource Include="Reports\ReportFiles\AllScoreCards.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportFiles\TuesdayScoreCard.rdlc" />
+    <EmbeddedResource Include="Reports\ReportFiles\TuesdayTeams.rdlc" />
+    <EmbeddedResource Include="Reports\ReportFiles\WeekScoreCards.rdlc" />
+    <EmbeddedResource Include="Reports\ReportFiles\WednesdayTeams.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

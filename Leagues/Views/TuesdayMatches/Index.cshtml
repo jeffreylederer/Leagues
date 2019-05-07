@@ -1,11 +1,12 @@
 ﻿@using System.Web.UI.WebControls
+@using Leagues.Extensions
 @model IEnumerable<Leagues.Models.TuesdayMatch>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Tuesday Matches</h2>
+<h2>Tuesday Matches for @ViewBag.Date</h2>
 @using (Html.BeginForm("Index", "TuesdayMatches", FormMethod.Post))
 {
     <div>
@@ -15,12 +16,16 @@
     </div>
 }
 <br />
+
 <p>
     <a href="TuesdayMatches/Create/@ViewBag.Date" id="Create">Create</a>
 </p>
 
-<table class="table">
+<table class="table-condensed">
     <tr>
+        <th>
+            Exchange Rink
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Rink)
         </th>
@@ -28,35 +33,55 @@
             @Html.DisplayNameFor(model => model.TuesdaySchedule.GameDate)
         </th>
         <th>
-            Team 1
+            @Html.DisplayNameFor(model => model.Team1)
         </th>
         <th>
-            Team 2
+            @Html.DisplayNameFor(model => model.Team2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team1Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team2Score)
         </th>
         <th></th>
     </tr>
-
+    @{ var id = 0;}
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TuesdaySchedule.GameDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TuesdayTeam.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TuesdayTeam1.id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @{
+                if (@id > 0)
+                {
+                    @Html.ActionImage("MoveUp", new { id = id, weekid = ViewBag.WeekID }, "~/Content/Images/uparrow.png", "Move Up one rink");
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TuesdaySchedule.GameDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TuesdayTeam.id)&nbsp; (Skip: @Html.DisplayFor(modelItem => item.TuesdayTeam.Player.FullName))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TuesdayTeam1.id) &nbsp;(Skip: @Html.DisplayFor(modelItem => item.TuesdayTeam1.Player.FullName))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team1Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team2Score)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
+        </td>
+    </tr>
+        id++;
     }
 
 </table>

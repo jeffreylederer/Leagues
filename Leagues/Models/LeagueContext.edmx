@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeaguesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LeaguesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Player">
           <Key>
             <PropertyRef Name="id" />
@@ -25,6 +25,8 @@
           <Property Name="Rink" Type="int" Nullable="false" />
           <Property Name="Team1" Type="int" Nullable="false" />
           <Property Name="Team2" Type="int" Nullable="false" />
+          <Property Name="Team1Score" Type="int" Nullable="false" />
+          <Property Name="Team2Score" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TuesdaySchedule">
           <Key>
@@ -51,6 +53,8 @@
           <Property Name="Rink" Type="int" Nullable="false" />
           <Property Name="Team1" Type="int" Nullable="false" />
           <Property Name="Team2" Type="int" Nullable="false" />
+          <Property Name="Team1Score" Type="int" Nullable="false" />
+          <Property Name="Teams2Score" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="WednesdaySchedule">
           <Key>
@@ -201,6 +205,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Tuesday_GetMatchAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="weekid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Wednesday_GetMatchAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="weekid" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="LeaguesModelStoreContainer">
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TuesdayMatch" EntityType="Self.TuesdayMatch" Schema="dbo" store:Type="Tables" />
@@ -254,8 +264,7 @@
             <End Role="WednesdayTeam" EntitySet="WednesdayTeam" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LeaguesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -287,6 +296,8 @@
           <NavigationProperty Name="TuesdaySchedule" Relationship="Self.FK_TuesdaySchedule_TuesdaySchedule" FromRole="TuesdayMatch" ToRole="TuesdaySchedule" />
           <NavigationProperty Name="TuesdayTeam" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam" FromRole="TuesdayMatch" ToRole="TuesdayTeam" />
           <NavigationProperty Name="TuesdayTeam1" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam1" FromRole="TuesdayMatch" ToRole="TuesdayTeam" />
+          <Property Name="Team1Score" Type="Int32" Nullable="false" />
+          <Property Name="Team2Score" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TuesdaySchedule">
           <Key>
@@ -321,6 +332,8 @@
           <NavigationProperty Name="WednesdaySchedule" Relationship="Self.FK_WednesdayMatch_WednesdaySchedule" FromRole="WednesdayMatch" ToRole="WednesdaySchedule" />
           <NavigationProperty Name="WednesdayTeam" Relationship="Self.FK_WednesdayMatch_WednesdayTeam" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
           <NavigationProperty Name="WednesdayTeam1" Relationship="Self.FK_WednesdayMatch_WednesdayTeam1" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
+          <Property Name="Team1Score" Type="Int32" Nullable="false" />
+          <Property Name="Teams2Score" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="WednesdaySchedule">
           <Key>
@@ -529,7 +542,39 @@
             <End Role="WednesdayTeam" EntitySet="WednesdayTeams" />
             <End Role="WednesdayMatch" EntitySet="WednesdayMatches" />
           </AssociationSet>
+          <FunctionImport Name="Tuesday_GetMatchAll" ReturnType="Collection(LeaguesModel.Tuesday_GetMatchAll_Result)" >
+            <Parameter Name="weekid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Wednesday_GetMatchAll" ReturnType="Collection(LeaguesModel.Wednesday_GetMatchAll_Result)" >
+            <Parameter Name="weekid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="Tuesday_GetMatchAll_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Team1Lead" Nullable="true" MaxLength="101"/>
+          <Property Type="String" Name="Team1Skip" Nullable="false" MaxLength="101"/>
+          <Property Type="String" Name="Team2Lead" Nullable="true" MaxLength="101"/>
+          <Property Type="String" Name="Team2Skip" Nullable="false" MaxLength="101" />
+          <Property Type="Int32" Name="Team1" Nullable="false" />
+          <Property Type="Int32" Name="Team2" Nullable="false" />
+          <Property Type="String" Name="GameDateFormatted" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="WeekId" Nullable="false" />
+          <Property Type="Int32" Name="Rink" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Wednesday_GetMatchAll_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Team1Lead" Nullable="true" MaxLength="101"/>
+          <Property Type="String" Name="Team1Skip" Nullable="false" MaxLength="101"/>
+          <Property Type="String" Name="Team2Lead" Nullable="true" MaxLength="101"/>
+          <Property Type="String" Name="Team2Skip" Nullable="false" MaxLength="101" />
+          <Property Type="Int32" Name="Team1" Nullable="false" />
+          <Property Type="Int32" Name="Team2" Nullable="false" />
+          <Property Type="String" Name="GameDateFormatted" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="WeekId" Nullable="false" />
+          <Property Type="Int32" Name="Rink" Nullable="false" />
+          <Property Type="String" Name="ViceSkip1" Nullable="true" MaxLength="101"/>
+          <Property Type="String" Name="VickSkip2" Nullable="true" MaxLength="101" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -551,6 +596,8 @@
           <EntitySetMapping Name="TuesdayMatches">
             <EntityTypeMapping TypeName="LeaguesModel.TuesdayMatch">
               <MappingFragment StoreEntitySet="TuesdayMatch">
+                <ScalarProperty Name="Team2Score" ColumnName="Team2Score" />
+                <ScalarProperty Name="Team1Score" ColumnName="Team1Score" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="GameDate" ColumnName="GameDate" />
                 <ScalarProperty Name="Rink" ColumnName="Rink" />
@@ -580,6 +627,8 @@
           <EntitySetMapping Name="WednesdayMatches">
             <EntityTypeMapping TypeName="LeaguesModel.WednesdayMatch">
               <MappingFragment StoreEntitySet="WednesdayMatch">
+                <ScalarProperty Name="Teams2Score" ColumnName="Teams2Score" />
+                <ScalarProperty Name="Team1Score" ColumnName="Team1Score" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="GameDate" ColumnName="GameDate" />
                 <ScalarProperty Name="Rink" ColumnName="Rink" />
@@ -607,6 +656,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Tuesday_GetMatchAll" FunctionName="LeaguesModel.Store.Tuesday_GetMatchAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LeaguesModel.Tuesday_GetMatchAll_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Team1Lead" ColumnName="Team1Lead" />
+                <ScalarProperty Name="Team1Skip" ColumnName="Team1Skip" />
+                <ScalarProperty Name="Team2Lead" ColumnName="Team2Lead" />
+                <ScalarProperty Name="Team2Skip" ColumnName="Team2Skip" />
+                <ScalarProperty Name="Team1" ColumnName="Team1" />
+                <ScalarProperty Name="Team2" ColumnName="Team2" />
+                <ScalarProperty Name="GameDateFormatted" ColumnName="GameDateFormatted" />
+                <ScalarProperty Name="WeekId" ColumnName="WeekId" />
+                <ScalarProperty Name="Rink" ColumnName="Rink" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Wednesday_GetMatchAll" FunctionName="LeaguesModel.Store.Wednesday_GetMatchAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LeaguesModel.Wednesday_GetMatchAll_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Team1Lead" ColumnName="Team1Lead" />
+                <ScalarProperty Name="Team1Skip" ColumnName="Team1Skip" />
+                <ScalarProperty Name="Team2Lead" ColumnName="Team2Lead" />
+                <ScalarProperty Name="Team2Skip" ColumnName="Team2Skip" />
+                <ScalarProperty Name="Team1" ColumnName="Team1" />
+                <ScalarProperty Name="Team2" ColumnName="Team2" />
+                <ScalarProperty Name="GameDateFormatted" ColumnName="GameDateFormatted" />
+                <ScalarProperty Name="WeekId" ColumnName="WeekId" />
+                <ScalarProperty Name="Rink" ColumnName="Rink" />
+                <ScalarProperty Name="ViceSkip1" ColumnName="ViceSkip1" />
+                <ScalarProperty Name="VickSkip2" ColumnName="VickSkip2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

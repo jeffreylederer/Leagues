@@ -12,6 +12,8 @@ namespace Leagues.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class LeagueEntities : DbContext
     {
@@ -32,5 +34,23 @@ namespace Leagues.Models
         public virtual DbSet<WednesdayMatch> WednesdayMatches { get; set; }
         public virtual DbSet<WednesdaySchedule> WednesdaySchedules { get; set; }
         public virtual DbSet<WednesdayTeam> WednesdayTeams { get; set; }
+    
+        public virtual ObjectResult<Tuesday_GetMatchAll_Result> Tuesday_GetMatchAll(Nullable<int> weekid)
+        {
+            var weekidParameter = weekid.HasValue ?
+                new ObjectParameter("weekid", weekid) :
+                new ObjectParameter("weekid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tuesday_GetMatchAll_Result>("Tuesday_GetMatchAll", weekidParameter);
+        }
+    
+        public virtual ObjectResult<Wednesday_GetMatchAll_Result> Wednesday_GetMatchAll(Nullable<int> weekid)
+        {
+            var weekidParameter = weekid.HasValue ?
+                new ObjectParameter("weekid", weekid) :
+                new ObjectParameter("weekid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Wednesday_GetMatchAll_Result>("Wednesday_GetMatchAll", weekidParameter);
+        }
     }
 }

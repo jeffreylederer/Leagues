@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Leagues.Models;
+using Leagues.Code;
 
 namespace Leagues.Controllers
 {
@@ -20,12 +22,52 @@ namespace Leagues.Controllers
             var tuesdayMatches = db.TuesdayMatches.Include(t => t.TuesdaySchedule).Include(t => t.TuesdayTeam).Include(t => t.TuesdayTeam1);
             if (ScheduleID.HasValue)
                 tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == ScheduleID.Value);
-            ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", ScheduleID.HasValue? ScheduleID.Value.ToString(): "");
-            ViewBag.Date = ScheduleID.HasValue ? ScheduleID.Value.ToString() : "";
-            return View(tuesdayMatches.ToList());
+            ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules.ToList(), "id", "GameDateFormatted", ScheduleID.HasValue? ScheduleID.Value: 0);
+            ViewBag.Date = db.TuesdaySchedules.Find(ScheduleID.Value).GameDateFormatted;
+            ViewBag.WeekID = ScheduleID;
+            return View(tuesdayMatches.OrderBy(x=>x.Rink).ToList());
         }
 
-        
+        public ActionResult MoveUp(int id, int weekid)
+        {
+            var tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == weekid).OrderBy(x => x.Rink);
+            var match = tuesdayMatches.First(x => x.Rink == id);
+            var match1 = tuesdayMatches.First(x => x.Rink == id+1);
+            match1.Rink = id;
+            match.Rink = id + 1;
+            db.Entry(match).State = EntityState.Modified;
+            db.Entry(match1).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", new { ScheduleID = weekid });
+        }
+
+        public ActionResult CreateMatches()
+        {
+            var numOfWeeks = db.TuesdaySchedules.Count();
+            var numofTeams = db.TuesdayTeams.Count();
+            var cs = new CreateSchedule();
+            List<Match> matches = cs.NoByes(numOfWeeks, numofTeams);
+            int i = 0;
+            var all = db.TuesdayMatches;
+            db.TuesdayMatches.RemoveRange(all);
+            foreach (var match in matches)
+            {
+                db.TuesdayMatches.Add(new TuesdayMatch()
+                {
+                    id =i ++,
+                    GameDate = match.Week+1,
+                    Rink = match.Rink+1,
+                    Team1 = match.Team1+1,
+                    Team2 = match.Team2+1,
+                    Team1Score =  0,
+                    Team2Score = 0
+                });
+            }
+            db.SaveChanges();
+            return RedirectToAction("index");
+        }
+
+
 
         // GET: TuesdayMatches/Details/5
         public ActionResult Details(int? id)
@@ -43,52 +85,52 @@ namespace Leagues.Controllers
         }
 
         // GET: TuesdayMatches/Create
-        public ActionResult Create(int? id)
-        {
-            ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", id.HasValue? id.Value.ToString():"");
-            ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id");
-            ViewBag.Team2 = new SelectList(db.TuesdayTeams, "id", "id");
-            ViewBag.Date = id.HasValue ? id.Value.ToString() : "";
-            return View();
-        }
+        //public ActionResult Create(int? id)
+        //{
+        //    ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "GameDateFormatted", id.HasValue? id.Value.ToString():"");
+        //    ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id");
+        //    ViewBag.Team2 = new SelectList(db.TuesdayTeams, "id", "id");
+        //    ViewBag.Date = id.HasValue ? id.Value.ToString() : "";
+        //    return View();
+        //}
 
-        // POST: TuesdayMatches/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,GameDate,Rink,Team1,Team2")] TuesdayMatch tuesdayMatch)
-        {
-            if (ModelState.IsValid)
-            {
-                db.TuesdayMatches.Add(tuesdayMatch);
-                try
-                {
-                    db.SaveChanges();
-                    return RedirectToAction("Index", new { ScheduleID = tuesdayMatch.GameDate});
-                }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
-                {
-                    Exception ex = e;
-                    while (ex.InnerException != null)
-                        ex = ex.InnerException;
-                    ModelState.AddModelError(string.Empty, ex.Message);
-                }
-                catch (Exception)
-                {
-                    ModelState.AddModelError(string.Empty, "Insert failed");
+        //// POST: TuesdayMatches/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "id,GameDate,Rink,Team1,Team2")] TuesdayMatch tuesdayMatch)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.TuesdayMatches.Add(tuesdayMatch);
+        //        try
+        //        {
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index", new { ScheduleID = tuesdayMatch.GameDate});
+        //        }
+        //        catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+        //        {
+        //            Exception ex = e;
+        //            while (ex.InnerException != null)
+        //                ex = ex.InnerException;
+        //            ModelState.AddModelError(string.Empty, ex.Message);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            ModelState.AddModelError(string.Empty, "Insert failed");
 
-                }
+        //        }
 
 
-            }
+        //    }
 
-            ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", tuesdayMatch.GameDate);
-            ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id", tuesdayMatch.Team1);
-            ViewBag.Team2 = new SelectList(db.TuesdayTeams, "id", "id", tuesdayMatch.Team2);
-            ViewBag.Date = tuesdayMatch.GameDate.ToString();
-            return View(tuesdayMatch);
-        }
+        //    ViewBag.GameDate = new SelectList(db.TuesdaySchedules, "id", "id", tuesdayMatch.GameDate);
+        //    ViewBag.Team1 = new SelectList(db.TuesdayTeams, "id", "id", tuesdayMatch.Team1);
+        //    ViewBag.Team2 = new SelectList(db.TuesdayTeams, "id", "id", tuesdayMatch.Team2);
+        //    ViewBag.Date = tuesdayMatch.GameDate.ToString();
+        //    return View(tuesdayMatch);
+        //}
 
         // GET: TuesdayMatches/Edit/5
         public ActionResult Edit(int? id)
@@ -113,7 +155,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,GameDate,Rink,Team1,Team2")] TuesdayMatch tuesdayMatch)
+        public ActionResult Edit([Bind(Include = "id,GameDate,Rink,Team1,Team2,Team1Score,Team2Score")] TuesdayMatch tuesdayMatch)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +163,7 @@ namespace Leagues.Controllers
                 try
                 {
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { ScheduleID = tuesdayMatch.GameDate});
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException e)
                 {
@@ -141,8 +183,8 @@ namespace Leagues.Controllers
             return View(tuesdayMatch);
         }
 
-        // GET: TuesdayMatches/Delete/5
-        public ActionResult Delete(int? id)
+        
+        public ActionResult Scoring(int? id)
         {
             if (id == null)
             {
@@ -156,31 +198,76 @@ namespace Leagues.Controllers
             return View(tuesdayMatch);
         }
 
-        // POST: TuesdayMatches/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: TuesdayMatches/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Scoring([Bind(Include = "id,GameDate,Rink,Team1,Team2,Team1Score,Team2Score")] TuesdayMatch tuesdayMatch)
         {
-            TuesdayMatch tuesdayMatch = db.TuesdayMatches.Find(id);
-            db.TuesdayMatches.Remove(tuesdayMatch);
-            try
+            if (ModelState.IsValid)
             {
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
-            {
-                Exception ex = e;
-                while (ex.InnerException != null)
-                    ex = ex.InnerException;
-                ViewBag.Error = ex.Message;
-            }
-            catch (Exception)
-            {
-                ViewBag.Error = "Delete failed";
+                db.Entry(tuesdayMatch).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index", new { ScheduleID = tuesdayMatch.GameDate });
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    Exception ex = e;
+                    while (ex.InnerException != null)
+                        ex = ex.InnerException;
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Edit failed");
+                }
             }
             return View(tuesdayMatch);
         }
+
+        // GET: TuesdayMatches/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    TuesdayMatch tuesdayMatch = db.TuesdayMatches.Find(id);
+        //    if (tuesdayMatch == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(tuesdayMatch);
+        //}
+
+        //// POST: TuesdayMatches/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    TuesdayMatch tuesdayMatch = db.TuesdayMatches.Find(id);
+        //    db.TuesdayMatches.Remove(tuesdayMatch);
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+        //    {
+        //        Exception ex = e;
+        //        while (ex.InnerException != null)
+        //            ex = ex.InnerException;
+        //        ViewBag.Error = ex.Message;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        ViewBag.Error = "Delete failed";
+        //    }
+        //    return View(tuesdayMatch);
+        //}
 
         protected override void Dispose(bool disposing)
         {
