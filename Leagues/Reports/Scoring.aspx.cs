@@ -15,9 +15,7 @@ namespace Leagues.Reports
             {
                 var weekid = int.Parse(Request.QueryString["weekid"]);
                 var league = Request.QueryString["league"];
-                rv1.Height = Unit.Parse("100%");
-                rv1.Width = Unit.Parse("100%");
-                rv1.CssClass = "table";
+                
 
                 // Set report mode for local processing.
                 rv1.ProcessingMode = ProcessingMode.Local;

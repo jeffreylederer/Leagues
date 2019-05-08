@@ -110,7 +110,7 @@
                   <Width>0.61458in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.8125in</Width>
+                  <Width>1.62625in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.47917in</Width>
@@ -119,7 +119,7 @@
                   <Width>0.59375in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.82292in</Width>
+                  <Width>1.41667in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.47917in</Width>
@@ -306,7 +306,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Team2Skip</Value>
+                                  <Value>Skip</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -613,7 +613,7 @@
             <Top>0.36333in</Top>
             <Left>0.01958in</Left>
             <Height>0.5in</Height>
-            <Width>6.21875in</Width>
+            <Width>5.62626in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -630,7 +630,7 @@
                   <Width>0.63542in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.8125in</Width>
+                  <Width>1.45958in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.46875in</Width>
@@ -1051,7 +1051,7 @@
             <Top>1.53in</Top>
             <Left>0.03in</Left>
             <Height>0.5in</Height>
-            <Width>6.02209in</Width>
+            <Width>4.66917in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
