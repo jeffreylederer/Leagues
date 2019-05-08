@@ -25,6 +25,8 @@ namespace Leagues.Reports
                 rv1.ProcessingMode = ProcessingMode.Local;
                 rv1.LocalReport.DataSources.Clear();
 
+                
+                var matches = new List<Tuesday_GetMatchAll_Result>();
                 var ds = new LeaguesDS();
                 using (LeagueEntities db = new LeagueEntities())
                 {
@@ -32,16 +34,15 @@ namespace Leagues.Reports
                     {
                         ds.Matches.AddMatchesRow(item.id, item.GameDateFormatted);
                     }
-                   
                 }
 
                 rv1.LocalReport.DataSources.Add(new ReportDataSource("Matches", ds.Matches.Rows));
+                rv1.LocalReport.ReportPath = "./Reports/ReportFiles/AllScoreCards.rdlc";
 
-                
-                rv1.ShowToolBar = true;
+                    
 
-                // Refresh the ReportViewer.
-                rv1.LocalReport.Refresh();
+               // Refresh the ReportViewer.
+               rv1.LocalReport.Refresh();
             }
         }
 
@@ -71,7 +72,7 @@ namespace Leagues.Reports
                             e.DataSources.Add(new ReportDataSource("Match", ds.TuesdayScoreCards.Rows));
                             break;
 
-                        case "WeekScoreCard":
+                        case "WeekScoreCards":
                             var weekid = int.Parse(e.Parameters["weekid"].Values[0]);
                             var matches = new List<Tuesday_GetMatchAll_Result>();
                             using (var en = db.Tuesday_GetMatchAll(weekid).GetEnumerator())

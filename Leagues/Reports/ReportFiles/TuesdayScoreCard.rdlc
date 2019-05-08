@@ -247,7 +247,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Match</DataSetName>
-            <Left>0.00917in</Left>
             <Height>0.5in</Height>
             <Width>1.59375in</Width>
             <Style>
@@ -600,8 +599,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Match</DataSetName>
-            <Top>1.0925in</Top>
-            <Left>0.00917in</Left>
+            <Top>0.8425in</Top>
             <Height>0.51042in</Height>
             <Width>5.48042in</Width>
             <ZIndex>1</ZIndex>
@@ -618,7 +616,7 @@
                   <Width>0.52208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.39458in</Width>
+                  <Width>2.60874in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -713,7 +711,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.56375in</Size>
+                    <Size>2.345in</Size>
                     <CellContents>
                       <Textbox Name="Team1">
                         <CanGrow>true</CanGrow>
@@ -749,10 +747,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Match</DataSetName>
-            <Top>0.78694in</Top>
+            <Top>0.53694in</Top>
             <Left>0.00917in</Left>
             <Height>0.25in</Height>
-            <Width>5.48041in</Width>
+            <Width>5.47582in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -760,19 +758,6 @@
               </Border>
             </Style>
           </Tablix>
-          <Line Name="Line1">
-            <Top>1.80083in</Top>
-            <Left>0.00917in</Left>
-            <Height>0in</Height>
-            <Width>6.49083in</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-                <Width>3pt</Width>
-              </Border>
-            </Style>
-          </Line>
           <Tablix Name="Tablix4">
             <TablixCorner>
               <TablixCornerRows>
@@ -885,7 +870,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!Rink.Value</Value>
+                                <Value>=Fields!Week.Value</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
@@ -956,11 +941,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Match</DataSetName>
-            <Top>2.14646in</Top>
-            <Left>0.00458in</Left>
+            <Top>1.52146in</Top>
             <Height>0.5in</Height>
             <Width>1.59834in</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1311,11 +1295,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Match</DataSetName>
-            <Top>3.23896in</Top>
-            <Left>0.00458in</Left>
+            <Top>2.36396in</Top>
             <Height>0.51042in</Height>
             <Width>5.48042in</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1329,7 +1312,7 @@
                   <Width>0.52208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.39458in</Width>
+                  <Width>2.60874in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1424,7 +1407,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.56375in</Size>
+                    <Size>2.34959in</Size>
                     <CellContents>
                       <Textbox Name="Team3">
                         <CanGrow>true</CanGrow>
@@ -1460,38 +1443,24 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Match</DataSetName>
-            <Top>2.9334in</Top>
-            <Left>0.00458in</Left>
+            <Top>2.0584in</Top>
             <Height>0.25in</Height>
             <Width>5.48041in</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
-          <Line Name="Line2">
-            <Top>3.94729in</Top>
-            <Left>0.00458in</Left>
-            <Height>0in</Height>
-            <Width>6.49083in</Width>
-            <ZIndex>7</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-                <Width>3pt</Width>
-              </Border>
-            </Style>
-          </Line>
         </ReportItems>
-        <Height>3.94729in</Height>
+        <Height>3.03125in</Height>
         <Style />
       </Body>
-      <Width>6.5in</Width>
+      <Width>5.60999in</Width>
       <Page>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.5in</RightMargin>
         <TopMargin>1in</TopMargin>
         <BottomMargin>1in</BottomMargin>
         <Style />
@@ -1517,6 +1486,7 @@
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>842398ba-35a7-474c-9ed5-cd7ac3721e98</rd:ReportID>
 </Report>

@@ -6,7 +6,7 @@
     <asp:ScriptManager runat="server" ID="sc"></asp:ScriptManager>
     <rsweb:ReportViewer ID="rv1" runat="server" AsyncRendering="false" OnReportError="Rv1_ReportError"
                         Width="600px" Height="1000px">
-        <LocalReport ReportPath="./Reports/ReportFiles/AllScoreCards.rdlc"  OnSubreportProcessing="LocalReport_SubreportProcessing">
+        <LocalReport  OnSubreportProcessing="LocalReport_SubreportProcessing">
         </LocalReport>
     </rsweb:ReportViewer>
 </asp:Content>

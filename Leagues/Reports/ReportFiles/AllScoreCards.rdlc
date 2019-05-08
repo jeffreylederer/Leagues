@@ -72,7 +72,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>6.16667in</Width>
+              <Width>6in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -120,7 +120,7 @@
         </TablixRowHierarchy>
         <DataSetName>Matches</DataSetName>
         <Height>0.25in</Height>
-        <Width>6.16667in</Width>
+        <Width>6in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -132,10 +132,10 @@
     <Height>0.27084in</Height>
     <Style />
   </Body>
-  <Width>6.30208in</Width>
+  <Width>6.16667in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
     <TopMargin>1in</TopMargin>
     <BottomMargin>1in</BottomMargin>
     <Style />
