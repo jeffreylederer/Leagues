@@ -54,7 +54,7 @@
           <Property Name="Team1" Type="int" Nullable="false" />
           <Property Name="Team2" Type="int" Nullable="false" />
           <Property Name="Team1Score" Type="int" Nullable="false" />
-          <Property Name="Teams2Score" Type="nchar" MaxLength="10" />
+          <Property Name="Team2Score" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="WednesdaySchedule">
           <Key>
@@ -333,7 +333,7 @@
           <NavigationProperty Name="WednesdayTeam" Relationship="Self.FK_WednesdayMatch_WednesdayTeam" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
           <NavigationProperty Name="WednesdayTeam1" Relationship="Self.FK_WednesdayMatch_WednesdayTeam1" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
           <Property Name="Team1Score" Type="Int32" Nullable="false" />
-          <Property Name="Teams2Score" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Team2Score" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="WednesdaySchedule">
           <Key>
@@ -627,7 +627,7 @@
           <EntitySetMapping Name="WednesdayMatches">
             <EntityTypeMapping TypeName="LeaguesModel.WednesdayMatch">
               <MappingFragment StoreEntitySet="WednesdayMatch">
-                <ScalarProperty Name="Teams2Score" ColumnName="Teams2Score" />
+                <ScalarProperty Name="Team2Score" ColumnName="Team2Score" />
                 <ScalarProperty Name="Team1Score" ColumnName="Team1Score" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="GameDate" ColumnName="GameDate" />

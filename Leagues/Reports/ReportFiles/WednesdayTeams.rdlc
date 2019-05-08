@@ -9,7 +9,7 @@
               <Width>0.75in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.25in</Width>
+              <Width>2.28125in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.25in</Width>
@@ -299,7 +299,7 @@
         </TablixRowHierarchy>
         <DataSetName>Team</DataSetName>
         <Height>0.5in</Height>
-        <Width>7.5in</Width>
+        <Width>7.53125in</Width>
         <Style>
           <Border>
             <Style>None</Style>

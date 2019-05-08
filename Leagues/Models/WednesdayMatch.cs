@@ -20,7 +20,7 @@ namespace Leagues.Models
         public int Team1 { get; set; }
         public int Team2 { get; set; }
         public int Team1Score { get; set; }
-        public string Teams2Score { get; set; }
+        public int Team2Score { get; set; }
     
         public virtual WednesdaySchedule WednesdaySchedule { get; set; }
         public virtual WednesdayTeam WednesdayTeam { get; set; }

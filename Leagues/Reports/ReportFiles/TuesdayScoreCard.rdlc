@@ -821,7 +821,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.00459in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -885,7 +885,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!Week.Value</Value>
+                                <Value>=Fields!Rink.Value</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
@@ -959,7 +959,7 @@
             <Top>2.14646in</Top>
             <Left>0.00458in</Left>
             <Height>0.5in</Height>
-            <Width>1.59375in</Width>
+            <Width>1.59834in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1506,8 +1506,8 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>

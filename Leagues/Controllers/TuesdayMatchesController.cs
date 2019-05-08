@@ -19,9 +19,7 @@ namespace Leagues.Controllers
         // GET: TuesdayMatches
         public ActionResult Index(int? ScheduleID)
         {
-            var tuesdayMatches = db.TuesdayMatches.Include(t => t.TuesdaySchedule).Include(t => t.TuesdayTeam).Include(t => t.TuesdayTeam1);
-            if (ScheduleID.HasValue)
-                tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == ScheduleID.Value);
+            var tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == ScheduleID.Value); ;
             ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules.ToList(), "id", "GameDateFormatted", ScheduleID.HasValue? ScheduleID.Value: 0);
             ViewBag.Date = db.TuesdaySchedules.Find(ScheduleID.Value).GameDateFormatted;
             ViewBag.WeekID = ScheduleID;
