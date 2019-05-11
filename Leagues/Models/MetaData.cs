@@ -18,6 +18,10 @@ namespace Leagues.Models
         [StringLength(30)]
         public string LastName { get; set; }
 
+        [Display(Name = "Shorten Name")]
+        [StringLength(25)]
+        public string shortname { get; set; }
+
         [Display(Name = "In Tuesday League")]
         public bool TuesdayLeague { get; set; }
         [Display(Name = "In Wednesday League")]
@@ -25,6 +29,9 @@ namespace Leagues.Models
 
         [Display(Name = "Player")]
         public string FullName { get; set; }
+
+        [Display(Name = "Nickname")]
+        public string NickName { get; set; }
     }
 
     [MetadataType(typeof(TuesdayMatchMetaData))]

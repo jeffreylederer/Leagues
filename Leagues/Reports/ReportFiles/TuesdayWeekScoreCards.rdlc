@@ -56,12 +56,14 @@
                               <Value>=Fields!matchid.Value</Value>
                             </Parameter>
                           </Parameters>
+                          <KeepTogether>true</KeepTogether>
                           <Style>
                             <Border>
                               <Style>None</Style>
                             </Border>
                           </Style>
                         </Subreport>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -108,7 +110,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>="Match Date: " + Parameters!WeekDate.Value</Value>
+                      <Value>="Tuesday Match Date: " + Parameters!WeekDate.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -150,10 +152,6 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="weekid">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -164,11 +162,6 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>WeekDate</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>weekid</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

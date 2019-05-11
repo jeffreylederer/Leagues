@@ -21,16 +21,16 @@
           <DataField>Team1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Team1Skip">
-          <DataField>Team1Skip</DataField>
+        <Field Name="Players1">
+          <DataField>Players1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Team2">
           <DataField>Team2</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Team2Skip">
-          <DataField>Team2Skip</DataField>
+        <Field Name="Players2">
+          <DataField>Players2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Team1Score">
@@ -65,8 +65,8 @@
           <DataField>Team</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Skip">
-          <DataField>Skip</DataField>
+        <Field Name="Players">
+          <DataField>Players</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TotalScore">
@@ -206,7 +206,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Skip</Value>
+                                  <Value>Players</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -432,21 +432,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Team1Skip">
+                        <Textbox Name="Players1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Team1Skip.Value</Value>
+                                  <Value>=Fields!Players1.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Team1Skip</rd:DefaultName>
+                          <rd:DefaultName>Players1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -526,21 +526,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Team2Skip">
+                        <Textbox Name="Players2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Team2Skip.Value</Value>
+                                  <Value>=Fields!Players2.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Team2Skip</rd:DefaultName>
+                          <rd:DefaultName>Players2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -719,7 +719,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Skip</Value>
+                                  <Value>Players</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -905,21 +905,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Skip">
+                        <Textbox Name="Players">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Skip.Value</Value>
+                                  <Value>=Fields!Players.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Skip</rd:DefaultName>
+                          <rd:DefaultName>Players</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1081,7 +1081,7 @@
             <Top>0.04167in</Top>
             <Left>0.03in</Left>
             <Height>0.25in</Height>
-            <Width>6.20834in</Width>
+            <Width>5.61584in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1140,13 +1140,13 @@
             </Style>
           </Line>
         </ReportItems>
-        <Height>2.26958in</Height>
+        <Height>2.0925in</Height>
         <Style />
       </Body>
       <Width>7.44667in</Width>
       <Page>
         <PageHeader>
-          <Height>0.25in</Height>
+          <Height>0.5in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1170,8 +1170,44 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.25in</Top>
               <Height>0.25in</Height>
-              <Width>5.39458in</Width>
+              <Width>5.64584in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!League.Value + " League"</Value>
+                      <Style>
+                        <FontSize>14pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.02083in</Top>
+              <Left>0.02605in</Left>
+              <Height>0.25in</Height>
+              <Width>5.6198in</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

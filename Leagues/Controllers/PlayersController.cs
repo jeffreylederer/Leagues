@@ -13,8 +13,14 @@ namespace Leagues.Controllers
         private readonly LeagueEntities db = new LeagueEntities();
 
         // GET: Players
-        public ActionResult Index(string Filter)
+        public ActionResult Index(string sortOrder,string Filter)
         {
+            
+            ViewData["FullNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["FirstNameSortParm"] = sortOrder == "firstname" ? "firstname_desc" : "firstname";
+            ViewData["CurrentFilter"] = Filter;
+
+
             var choiceList = new List<choice>();
             choiceList.Add(new choice()
             {
@@ -33,43 +39,41 @@ namespace Leagues.Controllers
             });
 
             ViewBag.Filter = new SelectList(choiceList, "value", "text", "3");
-            List<Player> list;
+            var list = from s in db.Players
+                select s;
+           
             switch (Filter)
             {
                 case "1":
-                    list = db.Players.Where(x => x.TuesdayLeague).ToList();
+                    list = list.Where(x => x.TuesdayLeague);
                     break;
                 case "2":
-                    list = db.Players.Where(x => x.WednesdayLeague).ToList();
+                    list = list.Where(x => x.WednesdayLeague);
+                    break;
+               
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    list = list.OrderByDescending(s => s.LastName + " " + s.FirstName);
+                    break;
+                case "firstname_desc":
+                    list = list.OrderBy(s => s.FirstName);
+                    break;
+                case "firstname":
+                    list = list.OrderByDescending(s => s.FirstName);
                     break;
                 default:
-                    list = db.Players.ToList();
+                    list = list.OrderBy(s => s.LastName + " " + s.FirstName);
                     break;
             }
-            list.Sort(delegate(Player b1, Player b2)
-            {
-                int res = b1.LastName.CompareTo(b2.LastName);
-                return res != 0 ? res : b1.FirstName.CompareTo(b2.FirstName);
-            });
-            ViewBag.Count = list.Count;
+            ViewBag.Count = list.Count();
+
+
             return View(list);
         }
 
-        // GET: Players/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Player player = db.Players.Find(id);
-            if (player == null)
-            {
-                return HttpNotFound();
-            }
-            return View(player);
-        }
-
+        
         // GET: Players/Create
         public ActionResult Create()
         {
@@ -81,7 +85,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,FirstName,LastName,TuesdayLeague,WednesdayLeague")] Player player)
+        public ActionResult Create([Bind(Include = "id,FirstName,LastName,TuesdayLeague,WednesdayLeague,shortname")] Player player)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +131,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,TuesdayLeague,WednesdayLeague")] Player player)
+        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,TuesdayLeague,WednesdayLeague,shortname")] Player player)
         {
             if (ModelState.IsValid)
             {

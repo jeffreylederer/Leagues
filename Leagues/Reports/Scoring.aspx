@@ -5,6 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label runat="server" ForeColor="Red" ID="lblError" EnableViewState="False"></asp:Label>
     <asp:ScriptManager runat="server" ID="sc"></asp:ScriptManager>
+    <asp:HyperLink runat="server" ID="hyReturn" Text="Return to Match page"></asp:HyperLink>
     <rsweb:ReportViewer ID="rv1" runat="server" AsyncRendering="false" OnReportError="Rv1_ReportError"
                         Width="800px" Height="1000px" ShowPrintButton="True" ShowExportControls="True">
         <LocalReport ReportPath="./Reports/ReportFiles/Standings.rdlc"  >

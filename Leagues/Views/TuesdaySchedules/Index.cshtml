@@ -7,9 +7,9 @@
 <h2>Tuesday Schedule</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Date", "Create")
 </p>
-<table class="table">
+<table class="table-condensed table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.id)
@@ -30,7 +30,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
     </tr>

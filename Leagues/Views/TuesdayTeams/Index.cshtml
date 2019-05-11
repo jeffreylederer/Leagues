@@ -7,9 +7,10 @@
 <h2>Tuesday Teams</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Team", "Create")<br/>
+    <a href="/Reports/TuesdayTeamsReport.aspx" >Teams Report</a>
 </p>
-<table class="table">
+<table class="table-condensed table-striped">
 <tr>
     <th>
         @Html.DisplayNameFor(model => model.id)
@@ -36,8 +37,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.id }) |
+           @Html.ActionLink("Delete", "Delete", new { id = item.id }) |
             @Html.ActionLink("Remove Lead", "RemoveLead", new { id = item.id })
         </td>
     </tr>

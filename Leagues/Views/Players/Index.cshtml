@@ -7,21 +7,26 @@
 <h2>Index</h2>
 Count: @ViewBag.Count
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add a Player", "Create")
 </p>
 @using (Html.BeginForm("Index", "Players", FormMethod.Get))
 {    
     @Html.Raw("Select League: ") @Html.DropDownList("Filter")  <br/> 
+
     <button type="submit">Filter</button>
 }
 <br/>
-<table class="table">
+<table class="table-condensed table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Last Name", "Index", new { sortOrder=ViewBag.FullNameSortParm, currentFilter=ViewBag.CurrentFilter })
+        </th>
+
+        <th>
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.NickName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TuesdayLeague)
@@ -41,15 +46,17 @@ Count: @ViewBag.Count
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.NickName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.TuesdayLeague)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WednesdayLeague)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
         </td>
     </tr>
 }

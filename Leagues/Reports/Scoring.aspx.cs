@@ -15,9 +15,8 @@ namespace Leagues.Reports
             {
                 var weekid = int.Parse(Request.QueryString["weekid"]);
                 var league = Request.QueryString["league"];
-                
 
-                // Set report mode for local processing.
+               // Set report mode for local processing.
                 rv1.ProcessingMode = ProcessingMode.Local;
 
                 rv1.LocalReport.DataSources.Clear();
@@ -28,8 +27,11 @@ namespace Leagues.Reports
                 {
                     foreach (var item in db.TuesdayMatches.Where(x=>x.GameDate==weekid).OrderBy(x => x.Rink))
                     {
-                        ds.Game.AddGameRow(item.Team1, item.TuesdayTeam.Player.FullName,
-                            item.Team2, item.TuesdayTeam1.Player.FullName, item.Team1Score,
+                        ds.Game.AddGameRow(item.Team1, 
+                            item.TuesdayTeam.Player.NickName + ", " + item.TuesdayTeam.Player1.NickName,
+                            item.Team2,
+                            item.TuesdayTeam1.Player.NickName + ", " + item.TuesdayTeam1.Player1.NickName,
+                            item.Team1Score,
                             item.Team2Score, item.Rink);
                     }
                     WeekDate = db.TuesdaySchedules.Find(weekid).GameDateFormatted;
@@ -48,6 +50,17 @@ namespace Leagues.Reports
 
                 // Refresh the ReportViewer.
                 rv1.LocalReport.Refresh();
+            }
+        }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                var weekid = int.Parse(Request.QueryString["weekid"]);
+                var league = Request.QueryString["league"];
+
+                hyReturn.NavigateUrl = $"/{league}Matches/Index?ScheduleID={weekid}";
             }
         }
 

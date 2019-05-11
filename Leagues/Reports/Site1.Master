@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Application name</a>
+            <a class="navbar-brand" href="/">Leagues</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -33,10 +33,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="/TuesdaySchedules">Schedule</a></li>
                         <li><a href="/TuesdayTeams">Teams</a></li>
+                        <li><a href="/TuesdayMatches/CreateMatches">Teams</a></li>
                         <li><a href="/TuesdayMatches?ScheduleID=1">Matches</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a href="/Reports/TuesdayTeamsReport.aspx">Team Report</a></li>
-                        <li><a href="/Reports/TuesdayScoreCards.aspx">Score Card Report</a></li>
+                        
                     </ul>
                 </li>
                 <li class="menu-item dropdown">
@@ -44,9 +43,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="/WednesdaySchedules">Schedule</a></li>
                         <li><a href="/WednesdayTeams">Teams</a></li>
-                        <li><a href="/WednesdayMatchesScheduleID=1">Matches</a></li>
-                        <div class="dropdown-divider "></div>
-                        <li><a href="/Reports/WednesdayTeamsReport.aspx">Team Report</a></li>
+                        <li><a href="/WednesdayMatches/CreateMatches">Teams</a></li>
+                        <li><a href="/WednesdayMatches?ScheduleID=1">Matches</a></li>
+                        
                     </ul>
                 </li>
 

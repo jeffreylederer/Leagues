@@ -18,11 +18,11 @@
 <br />
 
 <p>
-    <a href="TuesdayMatches/Create/@ViewBag.Date" id="Create">Create</a><br/>
-    <a href="/Reports/Scoring.aspx?league=Tuesday&weekid=@ViewBag.WeekID" >View Standings</a>
+    <a href="/Reports/Scoring.aspx?league=Tuesday&weekid=@ViewBag.WeekID" >This week's standings report</a><br/>
+    <a href="/Reports/TuesdayScoreCards.aspx?&weekid=@ViewBag.WeekID" >This week's score cards</a>
 </p>
 
-<table class="table-condensed">
+<table class="table-condensed table-striped">
     <tr>
         <th>
             Exchange Rink
@@ -78,8 +78,7 @@
             @Html.DisplayFor(modelItem => item.Team2Score)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-            @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
+           @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
         </td>
     </tr>
         id++;

@@ -30,6 +30,8 @@ namespace Leagues.Models
         public bool TuesdayLeague { get; set; }
         public bool WednesdayLeague { get; set; }
         public string FullName { get; set; }
+        public string shortname { get; set; }
+        public string NickName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TuesdayTeam> TuesdayTeams { get; set; }

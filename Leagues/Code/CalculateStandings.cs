@@ -23,7 +23,7 @@ namespace Leagues.Code
                         Wins = 0,
                         Loses = 0,
                         TotalScore = 0,
-                        Skip = team.Player.FullName
+                        Players = team.Player.NickName + ", "+ team.Player1.NickName
                     });
                 }
                 foreach (var week in db.TuesdaySchedules.Where(x => x.id <= weekid))
@@ -36,8 +36,8 @@ namespace Leagues.Code
                             var loser = list.Find(x => x.TeamNumber == match.Team2);
                             winner.Wins++;
                             loser.Loses++;
-                            winner.TotalScore += match.Team1Score;
-                            loser.TotalScore += match.Team2Score;
+                            winner.TotalScore += Math.Min(20,match.Team1Score);
+                            
                         }
                         else
                         {
@@ -45,8 +45,8 @@ namespace Leagues.Code
                             var loser = list.Find(x => x.TeamNumber == match.Team1);
                             winner.Wins++;
                             loser.Loses++;
-                            winner.TotalScore += match.Team2Score;
-                            loser.TotalScore += match.Team1Score;
+                            winner.TotalScore += Math.Min(20,match.Team2Score);
+                            
 
                         }
                     }
@@ -55,7 +55,7 @@ namespace Leagues.Code
                     int place = 1;
                     foreach (var item in list)
                     {
-                        ds.Standing.AddStandingRow(item.TeamNumber, item.Skip, item.TotalScore, place++,item.Wins, item.Loses
+                        ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, place++,item.Wins, item.Loses
                             );
                     }
                 }
@@ -77,7 +77,7 @@ namespace Leagues.Code
                         Wins = 0,
                         Loses = 0,
                         TotalScore = 0,
-                        Skip = team.Player.FullName
+                        Players = team.Player.NickName + ", " + team.Player1.NickName + team.Player2.NickName
                     });
                 }
                 foreach (var week in db.WednesdaySchedules.Where(x => x.id < weekid))
@@ -89,16 +89,16 @@ namespace Leagues.Code
                             var winner = list.Find(x => x.TeamNumber == match.Team1);
                             var loser = list.Find(x => x.TeamNumber == match.Team2);
                             winner.Wins++;
-                            winner.TeamNumber += winner.TeamNumber;
-                            winner.TeamNumber += loser.TeamNumber;
+                            winner.TeamNumber += Math.Min(20,winner.TeamNumber);
+                            
                         }
                         else
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team2);
                             var loser = list.Find(x => x.TeamNumber == match.Team1);
                             winner.Wins++;
-                            winner.TeamNumber += winner.TeamNumber;
-                            winner.TeamNumber += loser.TeamNumber;
+                            winner.TeamNumber += Math.Min(20,winner.TeamNumber);
+                           
 
                         }
                     }
@@ -107,7 +107,7 @@ namespace Leagues.Code
                     int place = 1;
                     foreach (var item in list)
                     {
-                        ds.Standing.AddStandingRow(item.TeamNumber, item.Skip, item.TotalScore, item.Wins, item.Loses,
+                        ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, item.Wins, item.Loses,
                             place++);
                     }
                 }
@@ -123,7 +123,7 @@ namespace Leagues.Code
         public int Wins { get; set; }
         public int Loses { get; set; }
         public int TotalScore { get; set; }
-        public string Skip { get; set; }
+        public string Players { get; set; }
         
     }
 }

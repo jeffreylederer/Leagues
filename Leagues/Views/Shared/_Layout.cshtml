@@ -16,7 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Leagues", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -27,11 +27,11 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Schedule", "Index", "TuesdaySchedules")</li>
                             <li>@Html.ActionLink("Teams", "Index", "TuesdayTeams")</li>
-                            <li>@Html.ActionLink("Matches", "Index", "TuesdayMatches", new { ScheduleID = 1}, null)</li>
-                            <div class="dropdown-divider"></div>
                             <li>@Html.ActionLink("Create Matches", "CreateMatches", "TuesdayMatches")</li>
-                            <li><a href="/Reports/TuesdayTeamsReport.aspx">Team Report</a></li>
-                            <li><a href="/Reports/TuesdayScoreCards.aspx">Score Cards</a></li>
+                            <li>@Html.ActionLink("Matches", "Index", "TuesdayMatches", new { ScheduleID = 1 }, null)</li>
+                       
+
+
                         </ul>
                     </li>
                     <li class="menu-item dropdown">
@@ -39,10 +39,10 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Schedule", "Index", "WednesdaySchedules")</li>
                             <li>@Html.ActionLink("Teams", "Index", "WednesdayTeams")</li>
-                            <li>@Html.ActionLink("Matches", "Index", "TuesdayMatches", new {id=1}, null)</li>
+                            <li>@Html.ActionLink("Create Matches", "CreateMatches", "WednesdayMatches")</li>
                             <li>@Html.ActionLink("Matches", "Index", "WednesdayMatches", new { id = 1 }, null)</li>
                             <div class="dropdown-divider"></div>
-                            <li><a href="/Reports/WednesdayTeamsReport.aspx">Team Report</a></li>
+
                         </ul>
                     </li>
 

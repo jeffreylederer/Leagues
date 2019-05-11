@@ -15,6 +15,8 @@
           <Property Name="TuesdayLeague" Type="bit" Nullable="false" />
           <Property Name="WednesdayLeague" Type="bit" Nullable="false" />
           <Property Name="FullName" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="25" />
+          <Property Name="NickName" Type="varchar" MaxLength="50" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="TuesdayMatch">
           <Key>
@@ -34,7 +36,7 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="GameDate" Type="date" Nullable="false" />
-          <Property Name="GameDateFormatted" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" />
+          <Property Name="GameDateFormatted" Type="varchar" MaxLength="30" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="TuesdayTeam">
           <Key>
@@ -283,6 +285,8 @@
           <NavigationProperty Name="WednesdayTeams" Relationship="Self.FK_WednesdayTeam_Players" FromRole="Player" ToRole="WednesdayTeam" />
           <NavigationProperty Name="WednesdayTeams1" Relationship="Self.FK_WednesdayTeam_Players1" FromRole="Player" ToRole="WednesdayTeam" />
           <NavigationProperty Name="WednesdayTeams2" Relationship="Self.FK_WednesdayTeam_Players2" FromRole="Player" ToRole="WednesdayTeam" />
+          <Property Name="shortname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="TuesdayMatch">
           <Key>
@@ -305,7 +309,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="GameDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="GameDateFormatted" Type="String" MaxLength="12" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="GameDateFormatted" Type="String" MaxLength="30" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="TuesdayMatches" Relationship="Self.FK_TuesdaySchedule_TuesdaySchedule" FromRole="TuesdaySchedule" ToRole="TuesdayMatch" />
         </EntityType>
         <EntityType Name="TuesdayTeam">
@@ -543,10 +547,10 @@
             <End Role="WednesdayMatch" EntitySet="WednesdayMatches" />
           </AssociationSet>
           <FunctionImport Name="Tuesday_GetMatchAll" ReturnType="Collection(LeaguesModel.Tuesday_GetMatchAll_Result)" >
-            <Parameter Name="weekid" Mode="In" Type="Int32" />
+          <Parameter Name="weekid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Wednesday_GetMatchAll" ReturnType="Collection(LeaguesModel.Wednesday_GetMatchAll_Result)" >
-            <Parameter Name="weekid" Mode="In" Type="Int32" />
+          <Parameter Name="weekid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Tuesday_GetMatchAll_Result">
@@ -584,6 +588,8 @@
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="LeaguesModel.Player">
               <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

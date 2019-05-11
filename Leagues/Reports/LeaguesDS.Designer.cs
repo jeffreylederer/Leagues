@@ -1908,11 +1908,11 @@ namespace Leagues.Reports {
             
             private global::System.Data.DataColumn columnTeam1;
             
-            private global::System.Data.DataColumn columnTeam1Skip;
+            private global::System.Data.DataColumn columnPlayers1;
             
             private global::System.Data.DataColumn columnTeam2;
             
-            private global::System.Data.DataColumn columnTeam2Skip;
+            private global::System.Data.DataColumn columnPlayers2;
             
             private global::System.Data.DataColumn columnTeam1Score;
             
@@ -1963,9 +1963,9 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team1SkipColumn {
+            public global::System.Data.DataColumn Players1Column {
                 get {
-                    return this.columnTeam1Skip;
+                    return this.columnPlayers1;
                 }
             }
             
@@ -1979,9 +1979,9 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team2SkipColumn {
+            public global::System.Data.DataColumn Players2Column {
                 get {
-                    return this.columnTeam2Skip;
+                    return this.columnPlayers2;
                 }
             }
             
@@ -2046,13 +2046,13 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GameRow AddGameRow(int Team1, string Team1Skip, int Team2, string Team2Skip, int Team1Score, int Team2Score, int Rink) {
+            public GameRow AddGameRow(int Team1, string Players1, int Team2, string Players2, int Team1Score, int Team2Score, int Rink) {
                 GameRow rowGameRow = ((GameRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Team1,
-                        Team1Skip,
+                        Players1,
                         Team2,
-                        Team2Skip,
+                        Players2,
                         Team1Score,
                         Team2Score,
                         Rink};
@@ -2079,9 +2079,9 @@ namespace Leagues.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnTeam1 = base.Columns["Team1"];
-                this.columnTeam1Skip = base.Columns["Team1Skip"];
+                this.columnPlayers1 = base.Columns["Players1"];
                 this.columnTeam2 = base.Columns["Team2"];
-                this.columnTeam2Skip = base.Columns["Team2Skip"];
+                this.columnPlayers2 = base.Columns["Players2"];
                 this.columnTeam1Score = base.Columns["Team1Score"];
                 this.columnTeam2Score = base.Columns["Team2Score"];
                 this.columnRink = base.Columns["Rink"];
@@ -2092,12 +2092,12 @@ namespace Leagues.Reports {
             private void InitClass() {
                 this.columnTeam1 = new global::System.Data.DataColumn("Team1", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeam1);
-                this.columnTeam1Skip = new global::System.Data.DataColumn("Team1Skip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam1Skip);
+                this.columnPlayers1 = new global::System.Data.DataColumn("Players1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlayers1);
                 this.columnTeam2 = new global::System.Data.DataColumn("Team2", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeam2);
-                this.columnTeam2Skip = new global::System.Data.DataColumn("Team2Skip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam2Skip);
+                this.columnPlayers2 = new global::System.Data.DataColumn("Players2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlayers2);
                 this.columnTeam1Score = new global::System.Data.DataColumn("Team1Score", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeam1Score);
                 this.columnTeam2Score = new global::System.Data.DataColumn("Team2Score", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2239,7 +2239,7 @@ namespace Leagues.Reports {
             
             private global::System.Data.DataColumn columnTeam;
             
-            private global::System.Data.DataColumn columnSkip;
+            private global::System.Data.DataColumn columnPlayers;
             
             private global::System.Data.DataColumn columnTotalScore;
             
@@ -2292,9 +2292,9 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn SkipColumn {
+            public global::System.Data.DataColumn PlayersColumn {
                 get {
-                    return this.columnSkip;
+                    return this.columnPlayers;
                 }
             }
             
@@ -2367,11 +2367,11 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public StandingRow AddStandingRow(int Team, string Skip, int TotalScore, int Place, int Wins, int Loses) {
+            public StandingRow AddStandingRow(int Team, string Players, int TotalScore, int Place, int Wins, int Loses) {
                 StandingRow rowStandingRow = ((StandingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Team,
-                        Skip,
+                        Players,
                         TotalScore,
                         Place,
                         Wins,
@@ -2399,7 +2399,7 @@ namespace Leagues.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnTeam = base.Columns["Team"];
-                this.columnSkip = base.Columns["Skip"];
+                this.columnPlayers = base.Columns["Players"];
                 this.columnTotalScore = base.Columns["TotalScore"];
                 this.columnPlace = base.Columns["Place"];
                 this.columnWins = base.Columns["Wins"];
@@ -2411,8 +2411,8 @@ namespace Leagues.Reports {
             private void InitClass() {
                 this.columnTeam = new global::System.Data.DataColumn("Team", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeam);
-                this.columnSkip = new global::System.Data.DataColumn("Skip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSkip);
+                this.columnPlayers = new global::System.Data.DataColumn("Players", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlayers);
                 this.columnTotalScore = new global::System.Data.DataColumn("TotalScore", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalScore);
                 this.columnPlace = new global::System.Data.DataColumn("Place", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2422,7 +2422,7 @@ namespace Leagues.Reports {
                 this.columnLoses = new global::System.Data.DataColumn("Loses", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLoses);
                 this.columnTeam.Caption = "Team1";
-                this.columnSkip.Caption = "Team1Skip";
+                this.columnPlayers.Caption = "Team1Skip";
                 this.columnTotalScore.Caption = "Team1Score";
             }
             
@@ -3161,17 +3161,17 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team1Skip {
+            public string Players1 {
                 get {
                     try {
-                        return ((string)(this[this.tableGame.Team1SkipColumn]));
+                        return ((string)(this[this.tableGame.Players1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team1Skip\' in table \'Game\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Players1\' in table \'Game\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGame.Team1SkipColumn] = value;
+                    this[this.tableGame.Players1Column] = value;
                 }
             }
             
@@ -3193,17 +3193,17 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team2Skip {
+            public string Players2 {
                 get {
                     try {
-                        return ((string)(this[this.tableGame.Team2SkipColumn]));
+                        return ((string)(this[this.tableGame.Players2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team2Skip\' in table \'Game\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Players2\' in table \'Game\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGame.Team2SkipColumn] = value;
+                    this[this.tableGame.Players2Column] = value;
                 }
             }
             
@@ -3269,14 +3269,14 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam1SkipNull() {
-                return this.IsNull(this.tableGame.Team1SkipColumn);
+            public bool IsPlayers1Null() {
+                return this.IsNull(this.tableGame.Players1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam1SkipNull() {
-                this[this.tableGame.Team1SkipColumn] = global::System.Convert.DBNull;
+            public void SetPlayers1Null() {
+                this[this.tableGame.Players1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3293,14 +3293,14 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam2SkipNull() {
-                return this.IsNull(this.tableGame.Team2SkipColumn);
+            public bool IsPlayers2Null() {
+                return this.IsNull(this.tableGame.Players2Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam2SkipNull() {
-                this[this.tableGame.Team2SkipColumn] = global::System.Convert.DBNull;
+            public void SetPlayers2Null() {
+                this[this.tableGame.Players2Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3372,17 +3372,17 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Skip {
+            public string Players {
                 get {
                     try {
-                        return ((string)(this[this.tableStanding.SkipColumn]));
+                        return ((string)(this[this.tableStanding.PlayersColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Skip\' in table \'Standing\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Players\' in table \'Standing\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableStanding.SkipColumn] = value;
+                    this[this.tableStanding.PlayersColumn] = value;
                 }
             }
             
@@ -3464,14 +3464,14 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsSkipNull() {
-                return this.IsNull(this.tableStanding.SkipColumn);
+            public bool IsPlayersNull() {
+                return this.IsNull(this.tableStanding.PlayersColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetSkipNull() {
-                this[this.tableStanding.SkipColumn] = global::System.Convert.DBNull;
+            public void SetPlayersNull() {
+                this[this.tableStanding.PlayersColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

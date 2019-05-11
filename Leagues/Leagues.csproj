@@ -419,7 +419,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Players\Create.cshtml" />
     <Content Include="Views\Players\Delete.cshtml" />
-    <Content Include="Views\Players\Details.cshtml" />
     <Content Include="Views\Players\Edit.cshtml" />
     <Content Include="Views\Players\Index.cshtml" />
     <Content Include="Views\TuesdayTeams\Create.cshtml" />
@@ -486,7 +485,7 @@
     <EmbeddedResource Include="Reports\ReportFiles\TuesdayTeams.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ReportFiles\WeekScoreCards.rdlc">
+    <EmbeddedResource Include="Reports\ReportFiles\TuesdayWeekScoreCards.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\WednesdayTeams.rdlc" />
