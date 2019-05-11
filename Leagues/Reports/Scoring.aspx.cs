@@ -3,7 +3,6 @@ using Leagues.Models;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Linq;
-using System.Web.UI.WebControls;
 
 namespace Leagues.Reports
 {
@@ -23,18 +22,23 @@ namespace Leagues.Reports
 
                 var ds = new LeaguesDS();
                 var WeekDate = "";
-                using (LeagueEntities db = new LeagueEntities())
+                using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.TuesdayMatches.Where(x=>x.GameDate==weekid).OrderBy(x => x.Rink))
+                    foreach (var item in db.TuesdayMatches.Where(x=>x.GameDate==weekid && x.Rink!=-1).OrderBy(x => x.Rink))
                     {
                         ds.Game.AddGameRow(item.Team1, 
                             item.TuesdayTeam.Player.NickName + ", " + item.TuesdayTeam.Player1.NickName,
-                            item.Team2,
+                            item.Team2.Value,
                             item.TuesdayTeam1.Player.NickName + ", " + item.TuesdayTeam1.Player1.NickName,
                             item.Team1Score,
                             item.Team2Score, item.Rink);
                     }
                     WeekDate = db.TuesdaySchedules.Find(weekid).GameDateFormatted;
+                    var match = db.TuesdayMatches.Where(x => x.Rink == -1 && x.GameDate == weekid).First();
+                    ds.Byes.Clear();
+                    ds.Byes.AddByesRow(match.TuesdaySchedule.GameDateFormatted, match.Team1,
+                        match.TuesdayTeam.Player.NickName + ", " + match.TuesdayTeam.Player1.NickName);
+                    rv1.LocalReport.DataSources.Add(new ReportDataSource("Bye", ds.Byes.Rows));
                 }
 
                 rv1.LocalReport.DataSources.Add(new ReportDataSource("Game", ds.Game.Rows));

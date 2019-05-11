@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LeaguesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TuesdayLeague" Type="bit" Nullable="false" />
+          <Property Name="WednesdayLeague" Type="bit" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="25" />
+          <Property Name="NickName" Type="varchar" MaxLength="50" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="TuesdayMatch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameDate" Type="int" Nullable="false" />
+          <Property Name="Rink" Type="int" Nullable="false" />
+          <Property Name="Team1" Type="int" Nullable="false" />
+          <Property Name="Team2" Type="int" />
+          <Property Name="Team1Score" Type="int" Nullable="false" />
+          <Property Name="Team2Score" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TuesdaySchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="GameDate" Type="date" Nullable="false" />
+          <Property Name="GameDateFormatted" Type="varchar" MaxLength="30" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="TuesdayTeam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Skip" Type="int" Nullable="false" />
+          <Property Name="Lead" Type="int" />
+        </EntityType>
+        <EntityType Name="WednesdayMatch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameDate" Type="int" Nullable="false" />
+          <Property Name="Rink" Type="int" Nullable="false" />
+          <Property Name="Team1" Type="int" Nullable="false" />
+          <Property Name="Team2" Type="int" />
+          <Property Name="Team1Score" Type="int" Nullable="false" />
+          <Property Name="Team2Score" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WednesdaySchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="GameDate" Type="date" Nullable="false" />
+          <Property Name="GameDateFormatted" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="WednesdayTeam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Skip" Type="int" Nullable="false" />
+          <Property Name="ViceSkip" Type="int" />
+          <Property Name="Lead" Type="int" />
+        </EntityType>
+        <Association Name="FK_Tuesday_Players">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayTeam">
+              <PropertyRef Name="Skip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tuesday_Players1">
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayTeam">
+              <PropertyRef Name="Lead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TuesdaySchedule_TuesdaySchedule">
+          <End Role="TuesdaySchedule" Type="Self.TuesdaySchedule" Multiplicity="1" />
+          <End Role="TuesdayMatch" Type="Self.TuesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuesdaySchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayMatch">
+              <PropertyRef Name="GameDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TuesdaySchedule_TuesdayTeam">
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="1" />
+          <End Role="TuesdayMatch" Type="Self.TuesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayMatch">
+              <PropertyRef Name="Team1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TuesdaySchedule_TuesdayTeam1">
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="0..1" />
+          <End Role="TuesdayMatch" Type="Self.TuesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayMatch">
+              <PropertyRef Name="Team2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayMatch_WednesdaySchedule">
+          <End Role="WednesdaySchedule" Type="Self.WednesdaySchedule" Multiplicity="1" />
+          <End Role="WednesdayMatch" Type="Self.WednesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WednesdaySchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayMatch">
+              <PropertyRef Name="GameDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayMatch_WednesdayTeam">
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="1" />
+          <End Role="WednesdayMatch" Type="Self.WednesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WednesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayMatch">
+              <PropertyRef Name="Team1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayMatch_WednesdayTeam1">
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="0..1" />
+          <End Role="WednesdayMatch" Type="Self.WednesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WednesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayMatch">
+              <PropertyRef Name="Team2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayTeam_Players">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayTeam">
+              <PropertyRef Name="Skip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayTeam_Players1">
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayTeam">
+              <PropertyRef Name="ViceSkip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayTeam_Players2">
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayTeam">
+              <PropertyRef Name="Lead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeaguesModelStoreContainer">
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TuesdayMatch" EntityType="Self.TuesdayMatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TuesdaySchedule" EntityType="Self.TuesdaySchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TuesdayTeam" EntityType="Self.TuesdayTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WednesdayMatch" EntityType="Self.WednesdayMatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WednesdaySchedule" EntityType="Self.WednesdaySchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WednesdayTeam" EntityType="Self.WednesdayTeam" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tuesday_Players" Association="Self.FK_Tuesday_Players">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tuesday_Players1" Association="Self.FK_Tuesday_Players1">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TuesdaySchedule_TuesdaySchedule" Association="Self.FK_TuesdaySchedule_TuesdaySchedule">
+            <End Role="TuesdaySchedule" EntitySet="TuesdaySchedule" />
+            <End Role="TuesdayMatch" EntitySet="TuesdayMatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TuesdaySchedule_TuesdayTeam" Association="Self.FK_TuesdaySchedule_TuesdayTeam">
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeam" />
+            <End Role="TuesdayMatch" EntitySet="TuesdayMatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TuesdaySchedule_TuesdayTeam1" Association="Self.FK_TuesdaySchedule_TuesdayTeam1">
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeam" />
+            <End Role="TuesdayMatch" EntitySet="TuesdayMatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayMatch_WednesdaySchedule" Association="Self.FK_WednesdayMatch_WednesdaySchedule">
+            <End Role="WednesdaySchedule" EntitySet="WednesdaySchedule" />
+            <End Role="WednesdayMatch" EntitySet="WednesdayMatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayMatch_WednesdayTeam" Association="Self.FK_WednesdayMatch_WednesdayTeam">
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeam" />
+            <End Role="WednesdayMatch" EntitySet="WednesdayMatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayMatch_WednesdayTeam1" Association="Self.FK_WednesdayMatch_WednesdayTeam1">
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeam" />
+            <End Role="WednesdayMatch" EntitySet="WednesdayMatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayTeam_Players" Association="Self.FK_WednesdayTeam_Players">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayTeam_Players1" Association="Self.FK_WednesdayTeam_Players1">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayTeam_Players2" Association="Self.FK_WednesdayTeam_Players2">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeam" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LeaguesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TuesdayLeague" Type="Boolean" Nullable="false" />
+          <Property Name="WednesdayLeague" Type="Boolean" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="shortname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="TuesdayTeams" Relationship="Self.FK_Tuesday_Players" FromRole="Player" ToRole="TuesdayTeam" />
+          <NavigationProperty Name="TuesdayTeams1" Relationship="Self.FK_Tuesday_Players1" FromRole="Player" ToRole="TuesdayTeam" />
+          <NavigationProperty Name="WednesdayTeams" Relationship="Self.FK_WednesdayTeam_Players" FromRole="Player" ToRole="WednesdayTeam" />
+          <NavigationProperty Name="WednesdayTeams1" Relationship="Self.FK_WednesdayTeam_Players1" FromRole="Player" ToRole="WednesdayTeam" />
+          <NavigationProperty Name="WednesdayTeams2" Relationship="Self.FK_WednesdayTeam_Players2" FromRole="Player" ToRole="WednesdayTeam" />
+        </EntityType>
+        <EntityType Name="TuesdayMatch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameDate" Type="Int32" Nullable="false" />
+          <Property Name="Rink" Type="Int32" Nullable="false" />
+          <Property Name="Team1" Type="Int32" Nullable="false" />
+          <Property Name="Team2" Type="Int32" />
+          <Property Name="Team1Score" Type="Int32" Nullable="false" />
+          <Property Name="Team2Score" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TuesdaySchedule" Relationship="Self.FK_TuesdaySchedule_TuesdaySchedule" FromRole="TuesdayMatch" ToRole="TuesdaySchedule" />
+          <NavigationProperty Name="TuesdayTeam" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam" FromRole="TuesdayMatch" ToRole="TuesdayTeam" />
+          <NavigationProperty Name="TuesdayTeam1" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam1" FromRole="TuesdayMatch" ToRole="TuesdayTeam" />
+        </EntityType>
+        <EntityType Name="TuesdaySchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="GameDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GameDateFormatted" Type="String" MaxLength="30" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="TuesdayMatches" Relationship="Self.FK_TuesdaySchedule_TuesdaySchedule" FromRole="TuesdaySchedule" ToRole="TuesdayMatch" />
+        </EntityType>
+        <EntityType Name="TuesdayTeam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Skip" Type="Int32" Nullable="false" />
+          <Property Name="Lead" Type="Int32" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_Tuesday_Players" FromRole="TuesdayTeam" ToRole="Player" />
+          <NavigationProperty Name="Player1" Relationship="Self.FK_Tuesday_Players1" FromRole="TuesdayTeam" ToRole="Player" />
+          <NavigationProperty Name="TuesdayMatches" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam" FromRole="TuesdayTeam" ToRole="TuesdayMatch" />
+          <NavigationProperty Name="TuesdayMatches1" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam1" FromRole="TuesdayTeam" ToRole="TuesdayMatch" />
+        </EntityType>
+        <EntityType Name="WednesdayMatch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameDate" Type="Int32" Nullable="false" />
+          <Property Name="Rink" Type="Int32" Nullable="false" />
+          <Property Name="Team1" Type="Int32" Nullable="false" />
+          <Property Name="Team2" Type="Int32" />
+          <Property Name="Team1Score" Type="Int32" Nullable="false" />
+          <Property Name="Team2Score" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WednesdaySchedule" Relationship="Self.FK_WednesdayMatch_WednesdaySchedule" FromRole="WednesdayMatch" ToRole="WednesdaySchedule" />
+          <NavigationProperty Name="WednesdayTeam" Relationship="Self.FK_WednesdayMatch_WednesdayTeam" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
+          <NavigationProperty Name="WednesdayTeam1" Relationship="Self.FK_WednesdayMatch_WednesdayTeam1" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
+        </EntityType>
+        <EntityType Name="WednesdaySchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="GameDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GameDateFormatted" Type="String" MaxLength="12" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="WednesdayMatches" Relationship="Self.FK_WednesdayMatch_WednesdaySchedule" FromRole="WednesdaySchedule" ToRole="WednesdayMatch" />
+        </EntityType>
+        <EntityType Name="WednesdayTeam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Skip" Type="Int32" Nullable="false" />
+          <Property Name="ViceSkip" Type="Int32" />
+          <Property Name="Lead" Type="Int32" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_WednesdayTeam_Players" FromRole="WednesdayTeam" ToRole="Player" />
+          <NavigationProperty Name="Player1" Relationship="Self.FK_WednesdayTeam_Players1" FromRole="WednesdayTeam" ToRole="Player" />
+          <NavigationProperty Name="Player2" Relationship="Self.FK_WednesdayTeam_Players2" FromRole="WednesdayTeam" ToRole="Player" />
+          <NavigationProperty Name="WednesdayMatches" Relationship="Self.FK_WednesdayMatch_WednesdayTeam" FromRole="WednesdayTeam" ToRole="WednesdayMatch" />
+          <NavigationProperty Name="WednesdayMatches1" Relationship="Self.FK_WednesdayMatch_WednesdayTeam1" FromRole="WednesdayTeam" ToRole="WednesdayMatch" />
+        </EntityType>
+        <Association Name="FK_Tuesday_Players">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayTeam">
+              <PropertyRef Name="Skip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tuesday_Players1">
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayTeam">
+              <PropertyRef Name="Lead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayTeam_Players">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayTeam">
+              <PropertyRef Name="Skip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayTeam_Players1">
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayTeam">
+              <PropertyRef Name="ViceSkip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayTeam_Players2">
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayTeam">
+              <PropertyRef Name="Lead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TuesdaySchedule_TuesdaySchedule">
+          <End Role="TuesdaySchedule" Type="Self.TuesdaySchedule" Multiplicity="1" />
+          <End Role="TuesdayMatch" Type="Self.TuesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuesdaySchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayMatch">
+              <PropertyRef Name="GameDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TuesdaySchedule_TuesdayTeam">
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="1" />
+          <End Role="TuesdayMatch" Type="Self.TuesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayMatch">
+              <PropertyRef Name="Team1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TuesdaySchedule_TuesdayTeam1">
+          <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="0..1" />
+          <End Role="TuesdayMatch" Type="Self.TuesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TuesdayMatch">
+              <PropertyRef Name="Team2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayMatch_WednesdaySchedule">
+          <End Role="WednesdaySchedule" Type="Self.WednesdaySchedule" Multiplicity="1" />
+          <End Role="WednesdayMatch" Type="Self.WednesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WednesdaySchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayMatch">
+              <PropertyRef Name="GameDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayMatch_WednesdayTeam">
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="1" />
+          <End Role="WednesdayMatch" Type="Self.WednesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WednesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayMatch">
+              <PropertyRef Name="Team1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WednesdayMatch_WednesdayTeam1">
+          <End Role="WednesdayTeam" Type="Self.WednesdayTeam" Multiplicity="0..1" />
+          <End Role="WednesdayMatch" Type="Self.WednesdayMatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WednesdayTeam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WednesdayMatch">
+              <PropertyRef Name="Team2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeaguesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="TuesdayMatches" EntityType="Self.TuesdayMatch" />
+          <EntitySet Name="TuesdaySchedules" EntityType="Self.TuesdaySchedule" />
+          <EntitySet Name="TuesdayTeams" EntityType="Self.TuesdayTeam" />
+          <EntitySet Name="WednesdayMatches" EntityType="Self.WednesdayMatch" />
+          <EntitySet Name="WednesdaySchedules" EntityType="Self.WednesdaySchedule" />
+          <EntitySet Name="WednesdayTeams" EntityType="Self.WednesdayTeam" />
+          <AssociationSet Name="FK_Tuesday_Players" Association="Self.FK_Tuesday_Players">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tuesday_Players1" Association="Self.FK_Tuesday_Players1">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayTeam_Players" Association="Self.FK_WednesdayTeam_Players">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayTeam_Players1" Association="Self.FK_WednesdayTeam_Players1">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayTeam_Players2" Association="Self.FK_WednesdayTeam_Players2">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TuesdaySchedule_TuesdaySchedule" Association="Self.FK_TuesdaySchedule_TuesdaySchedule">
+            <End Role="TuesdaySchedule" EntitySet="TuesdaySchedules" />
+            <End Role="TuesdayMatch" EntitySet="TuesdayMatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TuesdaySchedule_TuesdayTeam" Association="Self.FK_TuesdaySchedule_TuesdayTeam">
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeams" />
+            <End Role="TuesdayMatch" EntitySet="TuesdayMatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TuesdaySchedule_TuesdayTeam1" Association="Self.FK_TuesdaySchedule_TuesdayTeam1">
+            <End Role="TuesdayTeam" EntitySet="TuesdayTeams" />
+            <End Role="TuesdayMatch" EntitySet="TuesdayMatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayMatch_WednesdaySchedule" Association="Self.FK_WednesdayMatch_WednesdaySchedule">
+            <End Role="WednesdaySchedule" EntitySet="WednesdaySchedules" />
+            <End Role="WednesdayMatch" EntitySet="WednesdayMatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayMatch_WednesdayTeam" Association="Self.FK_WednesdayMatch_WednesdayTeam">
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeams" />
+            <End Role="WednesdayMatch" EntitySet="WednesdayMatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WednesdayMatch_WednesdayTeam1" Association="Self.FK_WednesdayMatch_WednesdayTeam1">
+            <End Role="WednesdayTeam" EntitySet="WednesdayTeams" />
+            <End Role="WednesdayMatch" EntitySet="WednesdayMatches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LeaguesModelStoreContainer" CdmEntityContainer="LeaguesEntities">
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="LeaguesModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="TuesdayLeague" ColumnName="TuesdayLeague" />
+                <ScalarProperty Name="WednesdayLeague" ColumnName="WednesdayLeague" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TuesdayMatches">
+            <EntityTypeMapping TypeName="LeaguesModel.TuesdayMatch">
+              <MappingFragment StoreEntitySet="TuesdayMatch">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="Rink" ColumnName="Rink" />
+                <ScalarProperty Name="Team1" ColumnName="Team1" />
+                <ScalarProperty Name="Team2" ColumnName="Team2" />
+                <ScalarProperty Name="Team1Score" ColumnName="Team1Score" />
+                <ScalarProperty Name="Team2Score" ColumnName="Team2Score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TuesdaySchedules">
+            <EntityTypeMapping TypeName="LeaguesModel.TuesdaySchedule">
+              <MappingFragment StoreEntitySet="TuesdaySchedule">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="GameDateFormatted" ColumnName="GameDateFormatted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TuesdayTeams">
+            <EntityTypeMapping TypeName="LeaguesModel.TuesdayTeam">
+              <MappingFragment StoreEntitySet="TuesdayTeam">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Skip" ColumnName="Skip" />
+                <ScalarProperty Name="Lead" ColumnName="Lead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WednesdayMatches">
+            <EntityTypeMapping TypeName="LeaguesModel.WednesdayMatch">
+              <MappingFragment StoreEntitySet="WednesdayMatch">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="Rink" ColumnName="Rink" />
+                <ScalarProperty Name="Team1" ColumnName="Team1" />
+                <ScalarProperty Name="Team2" ColumnName="Team2" />
+                <ScalarProperty Name="Team1Score" ColumnName="Team1Score" />
+                <ScalarProperty Name="Team2Score" ColumnName="Team2Score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WednesdaySchedules">
+            <EntityTypeMapping TypeName="LeaguesModel.WednesdaySchedule">
+              <MappingFragment StoreEntitySet="WednesdaySchedule">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="GameDateFormatted" ColumnName="GameDateFormatted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WednesdayTeams">
+            <EntityTypeMapping TypeName="LeaguesModel.WednesdayTeam">
+              <MappingFragment StoreEntitySet="WednesdayTeam">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Skip" ColumnName="Skip" />
+                <ScalarProperty Name="ViceSkip" ColumnName="ViceSkip" />
+                <ScalarProperty Name="Lead" ColumnName="Lead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

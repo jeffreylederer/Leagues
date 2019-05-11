@@ -194,8 +194,51 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LeagueModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeagueModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeagueModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeagueModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeagueModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\MetaData.cs" />
+    <Compile Include="Models\Player.cs">
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TuesdayMatch.cs">
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TuesdaySchedule.cs">
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TuesdayTeam.cs">
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WednesdayMatch.cs">
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WednesdaySchedule.cs">
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WednesdayTeam.cs">
+      <DependentUpon>LeagueModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Byes.aspx.cs">
+      <DependentUpon>Byes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Byes.aspx.designer.cs">
+      <DependentUpon>Byes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\LeaguesDS.Designer.cs">
       <DependentUpon>LeaguesDS.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -291,6 +334,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\LeagueModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LeagueModel.edmx</DependentUpon>
+      <LastGenOutput>LeagueModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LeagueModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LeagueModel.edmx</DependentUpon>
+      <LastGenOutput>LeagueModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reports\Byes.aspx" />
     <Content Include="Reports\Scoring.aspx" />
     <Content Include="Reports\TuesdayScoreCards.aspx" />
     <Content Include="Reports\TuesdayTeamsReport.aspx" />
@@ -305,6 +359,13 @@
     <Content Include="Reports\Site1.Master" />
     <Content Include="Reports\LeaguesDS.xsc">
       <DependentUpon>LeaguesDS.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\LeagueModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LeagueModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LeagueModel.edmx.diagram">
+      <DependentUpon>LeagueModel.edmx</DependentUpon>
     </Content>
     <None Include="Reports\LeaguesDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -410,6 +471,7 @@
     <EmbeddedResource Include="Reports\ReportFiles\AllScoreCards.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportFiles\Byes.rdlc" />
     <EmbeddedResource Include="Reports\ReportFiles\Standings.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>

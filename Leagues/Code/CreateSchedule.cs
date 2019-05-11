@@ -69,7 +69,7 @@ namespace Leagues.Code
                 Week = 0,
                 Rink = -1,
                 Team1 = 0,
-                Team2 = -1
+                Team2 = 0
             });
 
             for (int r = 1; r < numberOfRinks; r++)
@@ -104,12 +104,11 @@ namespace Leagues.Code
                     };
                     if (match.Team2 == teamCount - 1)
                     {
-                        match.Team2 = -1;
+                        match.Team2 = match.Team1;
                         match.Rink = -1;
                     }
                     else
                     {
-                        match.Rink = (match.Rink + 2 * w) % numberOfRinks;
                         rink++;
                     }
                     matches.Add(match);

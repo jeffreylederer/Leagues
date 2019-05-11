@@ -12,7 +12,7 @@ namespace Leagues.Code
         public static LeaguesDS.StandingDataTable Tuesday(int weekid)
         {
             var ds = new LeaguesDS();
-            using (var db = new LeagueEntities())
+            using (var db = new LeaguesEntities())
             {
                 var list = new List<Standing>();
                 foreach (var team in db.TuesdayTeams)
@@ -30,7 +30,7 @@ namespace Leagues.Code
                 {
                     foreach (var match in db.TuesdayMatches.Where(x => x.GameDate == week.id))
                     {
-                        if (match.Team1Score > match.Team2Score)
+                        if (match.Team1Score > match.Team2Score || match.Rink!=-1)
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team1);
                             var loser = list.Find(x => x.TeamNumber == match.Team2);
@@ -39,15 +39,19 @@ namespace Leagues.Code
                             winner.TotalScore += Math.Min(20,match.Team1Score);
                             
                         }
-                        else
+                        else if(match.Rink != -1)
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team2);
                             var loser = list.Find(x => x.TeamNumber == match.Team1);
                             winner.Wins++;
                             loser.Loses++;
                             winner.TotalScore += Math.Min(20,match.Team2Score);
-                            
-
+                        }
+                        else
+                        {
+                            var winner = list.Find(x => x.TeamNumber == match.Team1);
+                            winner.Wins++;
+                            winner.TotalScore += Math.Min(20, match.Team1Score);
                         }
                     }
                     list.Sort((a, b) => (b.Wins * 1000 + b.TotalScore).CompareTo(a.Wins * 1000 + a.TotalScore));
@@ -66,7 +70,7 @@ namespace Leagues.Code
         public static LeaguesDS.StandingDataTable Wednesday(int weekid)
         {
             var ds = new LeaguesDS();
-            using (var db = new LeagueEntities())
+            using (var db = new LeaguesEntities())
             {
                 var list = new List<Standing>();
                 foreach (var team in db.WednesdayTeams)

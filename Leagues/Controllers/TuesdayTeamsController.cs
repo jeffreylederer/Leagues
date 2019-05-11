@@ -13,7 +13,7 @@ namespace Leagues.Controllers
 {
     public class TuesdayTeamsController : Controller
     {
-        private LeagueEntities db = new LeagueEntities();
+        private LeaguesEntities db = new LeaguesEntities();
 
         // GET: TuesdayTeams
         public ActionResult Index()

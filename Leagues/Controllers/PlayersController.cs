@@ -10,7 +10,7 @@ namespace Leagues.Controllers
 {
     public class PlayersController : Controller
     {
-        private readonly LeagueEntities db = new LeagueEntities();
+        private readonly LeaguesEntities db = new LeaguesEntities();
 
         // GET: Players
         public ActionResult Index(string sortOrder,string Filter)
@@ -21,22 +21,24 @@ namespace Leagues.Controllers
             ViewData["CurrentFilter"] = Filter;
 
 
-            var choiceList = new List<choice>();
-            choiceList.Add(new choice()
+            var choiceList = new List<Choice>
             {
-                value = "1",
-                text = "Tuesday"
-            });
-            choiceList.Add(new choice()
-            {
-                value = "2",
-                text = "Wednesday"
-            });
-            choiceList.Add(new choice()
-            {
-                value = "3",
-                text = "Both"
-            });
+                new Choice()
+                {
+                    Value = "1",
+                    Text = "Tuesday"
+                },
+                new Choice()
+                {
+                    Value = "2",
+                    Text = "Wednesday"
+                },
+                new Choice()
+                {
+                    Value = "3",
+                    Text = "Both"
+                }
+            };
 
             ViewBag.Filter = new SelectList(choiceList, "value", "text", "3");
             var list = from s in db.Players
@@ -207,9 +209,9 @@ namespace Leagues.Controllers
         }
     }
 
-    public class choice
+    public class Choice
     {
-        public string value { get; set; }
-        public string text { get; set; }
+        public string Value { get; set; }
+        public string Text { get; set; }
     }
 }

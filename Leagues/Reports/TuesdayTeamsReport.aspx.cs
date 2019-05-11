@@ -20,7 +20,7 @@ namespace Leagues.Reports
                 rv1.LocalReport.DataSources.Clear();
 
                 var ds = new LeaguesDS();
-                using (LeagueEntities db = new LeagueEntities())
+                using (LeaguesEntities db = new LeaguesEntities())
                 {
                     foreach (var item in db.TuesdayTeams.OrderBy(x => x.id))
                     {

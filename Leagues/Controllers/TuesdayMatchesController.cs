@@ -14,13 +14,13 @@ namespace Leagues.Controllers
 {
     public class TuesdayMatchesController : Controller
     {
-        private LeagueEntities db = new LeagueEntities();
+        private LeaguesEntities db = new LeaguesEntities();
 
         // GET: TuesdayMatches
         public ActionResult Index(int? ScheduleID)
         {
-            var tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == ScheduleID.Value); ;
-            ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules.ToList(), "id", "GameDateFormatted", ScheduleID.HasValue? ScheduleID.Value: 0);
+            var tuesdayMatches = db.TuesdayMatches.Where(x => x.GameDate == ScheduleID.Value && x.Rink != -1); ;
+            ViewBag.ScheduleID = new SelectList(db.TuesdaySchedules.ToList(), "id", "GameDateFormatted", ScheduleID ?? 0);
             ViewBag.Date = db.TuesdaySchedules.Find(ScheduleID.Value).GameDateFormatted;
             ViewBag.WeekID = ScheduleID;
             return View(tuesdayMatches.OrderBy(x=>x.Rink).ToList());
@@ -50,9 +50,11 @@ namespace Leagues.Controllers
         {
             var numOfWeeks = db.TuesdaySchedules.Count();
             var numofTeams = db.TuesdayTeams.Count();
+            db.TuesdayMatches.RemoveRange(db.TuesdayMatches);
+            db.SaveChanges();
             var cs = new CreateSchedule();
             List<Match> matches = null;
-            if (numofTeams % 2 == 1)
+            if (numofTeams % 2 == 0)
                 matches = cs.NoByes(numOfWeeks, numofTeams);
             else
                 matches = cs.Byes(numOfWeeks, numofTeams);
@@ -65,7 +67,7 @@ namespace Leagues.Controllers
                 {
                     id = i++,
                     GameDate = match.Week + 1,
-                    Rink = match.Rink + 1,
+                    Rink = match.Rink==-1? -1: match.Rink + 1,
                     Team1 = match.Team1 + 1,
                     Team2 = match.Team2 + 1,
                     Team1Score = 0,
@@ -73,7 +75,7 @@ namespace Leagues.Controllers
                 });
             }
             db.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("index", new {ScheduleID=1});
         }
 
         public ActionResult Scoring(int? id)

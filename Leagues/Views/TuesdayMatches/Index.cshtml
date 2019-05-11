@@ -66,10 +66,10 @@
             @Html.DisplayFor(modelItem => item.TuesdaySchedule.GameDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TuesdayTeam.id)&nbsp; (Skip: @Html.DisplayFor(modelItem => item.TuesdayTeam.Player.FullName))
+            @Html.DisplayFor(modelItem => item.TuesdayTeam.id)&nbsp; (@Html.DisplayFor(modelItem => item.TuesdayTeam.Player.NickName),@Html.DisplayFor(modelItem => item.TuesdayTeam.Player1.NickName) )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TuesdayTeam1.id) &nbsp;(Skip: @Html.DisplayFor(modelItem => item.TuesdayTeam1.Player.FullName))
+            @Html.DisplayFor(modelItem => item.TuesdayTeam1.id) &nbsp;(@Html.DisplayFor(modelItem => item.TuesdayTeam1.Player.NickName),@Html.DisplayFor(modelItem => item.TuesdayTeam1.Player1.NickName) )
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Team1Score)

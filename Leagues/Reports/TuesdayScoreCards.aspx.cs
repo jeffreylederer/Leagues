@@ -25,9 +25,9 @@ namespace Leagues.Reports
                
                 var ds = new LeaguesDS();
                 string date;
-                using (LeagueEntities db = new LeagueEntities())
+                using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.TuesdayMatches.Where(x => x.GameDate == weekid).SortBy("Rink")) 
+                    foreach (var item in db.TuesdayMatches.Where(x => x.GameDate == weekid && x.Rink !=-1).SortBy("Rink")) 
                     {
                         ds.ScoreWeek.AddScoreWeekRow(item.id);
                     }
@@ -48,8 +48,8 @@ namespace Leagues.Reports
 
         public void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
         {
-            using (LeagueEntities db = new LeagueEntities())
-            {
+            using (LeaguesEntities db = new LeaguesEntities())
+            { 
                 using (var ds = new LeaguesDS())
                 {
                     switch (e.ReportPath)

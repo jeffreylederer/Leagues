@@ -29,7 +29,8 @@
                             <li>@Html.ActionLink("Teams", "Index", "TuesdayTeams")</li>
 
                             <li>@Html.ActionLink("Matches", "Index", "TuesdayMatches", new { ScheduleID = 1 }, null)</li>
-                            <li >----------------------------</li>
+                            <li><a href="/Reports/Byes.aspx?league=Tuesday">Byes</a></li>
+                            <li>----------------------------</li>
                             <li>@Html.ActionLink("Create Matches", "CreateMatches", "TuesdayMatches")</li>
 
                         </ul>
@@ -41,6 +42,7 @@
                             <li>@Html.ActionLink("Teams", "Index", "WednesdayTeams")</li>
 
                             <li>@Html.ActionLink("Matches", "Index", "WednesdayMatches", new { id = 1 }, null)</li>
+                            <li><a href="/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
                             <li>----------------------------</li>
                             <li>@Html.ActionLink("Create Matches", "CreateMatches", "WednesdayMatches")</li>
                         </ul>
