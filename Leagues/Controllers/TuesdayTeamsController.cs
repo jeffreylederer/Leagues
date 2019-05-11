@@ -39,20 +39,7 @@ namespace Leagues.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: TuesdayTeams/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TuesdayTeam tuesdayTeam = db.TuesdayTeams.Find(id);
-            if (tuesdayTeam == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tuesdayTeam);
-        }
+        
 
         // GET: TuesdayTeams/Create
         public ActionResult Create()

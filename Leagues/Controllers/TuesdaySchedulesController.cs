@@ -20,21 +20,7 @@ namespace Leagues.Controllers
             return View(db.TuesdaySchedules.ToList());
         }
 
-        // GET: TuesdaySchedules/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TuesdaySchedule tuesdaySchedule = db.TuesdaySchedules.Find(id);
-            if (tuesdaySchedule == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tuesdaySchedule);
-        }
-
+      
         // GET: TuesdaySchedules/Create
         public ActionResult Create()
         {

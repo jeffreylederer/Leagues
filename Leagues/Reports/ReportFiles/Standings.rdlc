@@ -306,7 +306,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Skip</Value>
+                                  <Value>Players</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
