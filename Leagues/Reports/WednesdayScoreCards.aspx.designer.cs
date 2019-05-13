@@ -10,7 +10,7 @@
 namespace Leagues.Reports {
     
     
-    public partial class Scoring {
+    public partial class WednesdayScoreCards {
         
         /// <summary>
         /// lblError control.

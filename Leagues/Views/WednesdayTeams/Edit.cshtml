@@ -16,9 +16,10 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.Skip)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ID, "Team Number", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.id, "Team Number", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Model.id
         </div>
@@ -27,13 +28,12 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Skip, "Skip", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("Skip", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Skip, "", new { @class = "text-danger" })
+            @Model.Player.FullName
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ViceSkip, "ViceSkip", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ViceSkip, "Vice Skip", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("ViceSkip", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ViceSkip, "", new { @class = "text-danger" })
@@ -55,6 +55,43 @@
     </div>
 </div>
 }
+
+<h2>Teams So Far</h2>
+<table class="table-condensed table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Skip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ViceSkip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lead)
+        </th>
+    </tr>
+
+    @foreach (var item in (IEnumerable<Leagues.Models.WednesdayTeam>) ViewBag.Teams)
+    {
+    <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.id)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player1.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player2.FullName)
+        </td>
+
+    </tr>
+    }
+</table>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

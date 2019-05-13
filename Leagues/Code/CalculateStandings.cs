@@ -30,7 +30,7 @@ namespace Leagues.Code
                 {
                     foreach (var match in db.TuesdayMatches.Where(x => x.GameDate == week.id))
                     {
-                        if (match.Team1Score > match.Team2Score || match.Rink!=-1)
+                        if (match.Team1Score > match.Team2Score && match.Rink!=-1)
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team1);
                             var loser = list.Find(x => x.TeamNumber == match.Team2);
@@ -51,7 +51,6 @@ namespace Leagues.Code
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team1);
                             winner.Wins++;
-                            winner.TotalScore += Math.Min(20, match.Team1Score);
                         }
                     }
                     list.Sort((a, b) => (b.Wins * 1000 + b.TotalScore).CompareTo(a.Wins * 1000 + a.TotalScore));
@@ -84,35 +83,40 @@ namespace Leagues.Code
                         Players = team.Player.NickName + ", " + team.Player1.NickName + team.Player2.NickName
                     });
                 }
-                foreach (var week in db.WednesdaySchedules.Where(x => x.id < weekid))
+                foreach (var week in db.WednesdaySchedules.Where(x => x.id <= weekid))
                 {
                     foreach (var match in db.WednesdayMatches.Where(x => x.GameDate == week.id))
                     {
-                        if (match.Team1Score > match.Team2Score)
+                        if (match.Team1Score > match.Team2Score && match.Rink != -1)
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team1);
                             var loser = list.Find(x => x.TeamNumber == match.Team2);
                             winner.Wins++;
-                            winner.TeamNumber += Math.Min(20,winner.TeamNumber);
-                            
+                            loser.Loses++;
+                            winner.TotalScore += Math.Min(20, match.Team1Score);
+
                         }
-                        else
+                        else if (match.Rink != -1)
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team2);
                             var loser = list.Find(x => x.TeamNumber == match.Team1);
                             winner.Wins++;
-                            winner.TeamNumber += Math.Min(20,winner.TeamNumber);
-                           
-
+                            loser.Loses++;
+                            winner.TotalScore += Math.Min(20, match.Team2Score);
+                        }
+                        else
+                        {
+                            var winner = list.Find(x => x.TeamNumber == match.Team1);
+                            winner.Wins++;
                         }
                     }
-                    list.Sort((a, b) => (a.Wins * 1000 + a.TotalScore).CompareTo(b.Wins * 1000 + b.TotalScore));
+                    list.Sort((a, b) => (b.Wins * 1000 + b.TotalScore).CompareTo(a.Wins * 1000 + a.TotalScore));
 
                     int place = 1;
                     foreach (var item in list)
                     {
-                        ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, item.Wins, item.Loses,
-                            place++);
+                        ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, place++, item.Wins, item.Loses
+                        );
                     }
                 }
             }

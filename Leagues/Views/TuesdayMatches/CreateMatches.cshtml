@@ -3,7 +3,7 @@
     ViewBag.Title = "CreateMatches";
 }
 
-<h2>Delete All Matches for Tuesday League</h2>
+<h2>Create New Matches for Tuesday League</h2>
 
 <h3 style="color: red;">Are you sure you want to erase all matches and create a new set of matches?</h3>
 <div>
@@ -17,7 +17,7 @@
 
         <div class="form-actions no-color">
             @Html.Hidden("DeleteIT","Yes")
-            <input type="submit" value="Delete" class="btn btn-default"/> |
+            <input type="submit" value="Create New Matches" class="btn btn-default"/> |
             @Html.ActionLink("Back to Home Page", "Index", "Home")
         </div>
     }

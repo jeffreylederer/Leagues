@@ -42,7 +42,7 @@
                             <li>@Html.ActionLink("Schedule", "Index", "WednesdaySchedules")</li>
                             <li>@Html.ActionLink("Teams", "Index", "WednesdayTeams")</li>
 
-                            <li>@Html.ActionLink("Matches", "Index", "WednesdayMatches", new { id = 1 }, null)</li>
+                            <li>@Html.ActionLink("Matches", "Index", "WednesdayMatches", new { ScheduleID = 1 }, null)</li>
                             <li><a href="/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
                             <li>----------------------------</li>
                             <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "WednesdayMatches")</li>

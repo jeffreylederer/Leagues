@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Leagues.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
-using Leagues.Models;
 
 namespace Leagues.Controllers
 {
@@ -44,8 +42,14 @@ namespace Leagues.Controllers
         // GET: TuesdayTeams/Create
         public ActionResult Create()
         {
-            var item1 = db.TuesdayTeams.OrderByDescending(x => x.id).First();
-            var id = (item1 == null) ? 1 : item1.id + 1;
+            var items = db.TuesdayTeams.ToList();
+            
+            int id = 1;
+            if (items.Count > 1)
+            {
+                items.Sort((a, b) => a.id.CompareTo(b.id));
+                id = items[items.Count - 1].id + 1;
+            }
             var item = new TuesdayTeam()
             {
                 id = id
@@ -57,8 +61,8 @@ namespace Leagues.Controllers
                 if(!teams.Any(x=>x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);
             }
-            ViewBag.Skip = new SelectList(list.OrderBy(x=>x.LastName), "id", "FullName"," ");
-            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName"," ");
+            ViewBag.Skip = new SelectList(list.OrderBy(x=>x.LastName), "id", "FullName","");
+            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName","");
             ViewBag.Teams = teams;
             return View(item);
         }
@@ -100,8 +104,8 @@ namespace Leagues.Controllers
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);
             }
-            ViewBag.Skip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", " ");
-            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", " ");
+            ViewBag.Skip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", tuesdayTeam.Skip);
+            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", tuesdayTeam.Lead);
             ViewBag.Teams = teams;
             return View(tuesdayTeam);
         }
@@ -125,6 +129,8 @@ namespace Leagues.Controllers
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);
             }
+            if (tuesdayTeam.Lead != null)
+                list.Add(tuesdayTeam.Player1);
             ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", tuesdayTeam.Lead);
             ViewBag.Teams = teams;
             return View(tuesdayTeam);
@@ -166,6 +172,8 @@ namespace Leagues.Controllers
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);
             }
+            if (tuesdayTeam.Lead != null)
+                list.Add(tuesdayTeam.Player1);
             ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", tuesdayTeam.Lead);
             ViewBag.Teams = teams;
             return View(tuesdayTeam);

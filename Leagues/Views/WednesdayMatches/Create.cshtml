@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>WednesdayMatch</h4>
+        <h4>Wednesday Match</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Team1, "Team1", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Team1, "Team 1", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Team1", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Team1, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Team2, "Team2", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Team2, "Team 2", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Team2", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Team2, "", new { @class = "text-danger" })
@@ -56,7 +56,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new { ScheduleID = ViewBag.Date })
+    @Html.ActionLink("Back to List", "Index", new { ScheduleID = ViewBag.Date})
 </div>
 
 @section Scripts {

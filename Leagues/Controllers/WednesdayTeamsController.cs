@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Leagues.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Leagues.Models;
 
 namespace Leagues.Controllers
 {
@@ -17,32 +16,73 @@ namespace Leagues.Controllers
         // GET: WednesdayTeams
         public ActionResult Index()
         {
-            var wednesdayTeams = db.WednesdayTeams.Include(w => w.Player).Include(w => w.Player1).Include(w => w.Player2);
-            return View(wednesdayTeams.ToList());
+            var WednesdayTeams = db.WednesdayTeams.Include(t => t.Player).Include(t => t.Player1);
+            return View(WednesdayTeams.OrderBy(x => x.id).ToList());
         }
 
-        // GET: WednesdayTeams/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult RemoveLead(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WednesdayTeam wednesdayTeam = db.WednesdayTeams.Find(id);
-            if (wednesdayTeam == null)
+            WednesdayTeam WednesdayTeam = db.WednesdayTeams.Find(id);
+            if (WednesdayTeam == null)
             {
                 return HttpNotFound();
             }
-            return View(wednesdayTeam);
+            WednesdayTeam.Lead = null;
+            db.Entry(WednesdayTeam).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
+
+        public ActionResult RemoveViceSkip(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WednesdayTeam WednesdayTeam = db.WednesdayTeams.Find(id);
+            if (WednesdayTeam == null)
+            {
+                return HttpNotFound();
+            }
+            WednesdayTeam.ViceSkip = null;
+            db.Entry(WednesdayTeam).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
 
         // GET: WednesdayTeams/Create
         public ActionResult Create()
         {
-            ViewBag.Skip = new SelectList(db.Players.Where(x=>x.WednesdayLeague), "id", "FullName");
-            ViewBag.ViceSkip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName");
-            ViewBag.Lead = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName");
-            return View();
+            var items = db.WednesdayTeams.ToList();
+            int id = 1;
+            if (items.Count > 1)
+            {
+                items.Sort((a, b) => a.id.CompareTo(b.id));
+                id = items[items.Count - 1].id + 1;
+            }
+
+            var item = new WednesdayTeam()
+            {
+                id = id
+            };
+            var teams = db.WednesdayTeams.OrderBy(x => x.id);
+            var list = new List<Player>();
+            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            {
+                if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
+                    list.Add(player);
+            }
+            ViewBag.Skip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", " ");
+            ViewBag.ViceSkip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", " ");
+            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", " ");
+            ViewBag.Teams = teams;
+            return View(item);
         }
 
         // POST: WednesdayTeams/Create
@@ -50,11 +90,11 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Skip,ViceSkip,Lead")] WednesdayTeam wednesdayTeam)
+        public ActionResult Create([Bind(Include = "id,Skip,Lead,ViceSkip")] WednesdayTeam WednesdayTeam)
         {
             if (ModelState.IsValid)
             {
-                db.WednesdayTeams.Add(wednesdayTeam);
+                db.WednesdayTeams.Add(WednesdayTeam);
                 try
                 {
                     db.SaveChanges();
@@ -72,12 +112,21 @@ namespace Leagues.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Insert failed");
                 }
+
             }
 
-            ViewBag.Skip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Skip);
-            ViewBag.ViceSkip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.ViceSkip);
-            ViewBag.Lead = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Lead);
-            return View(wednesdayTeam);
+            var teams = db.WednesdayTeams.OrderBy(x => x.id);
+            var list = new List<Player>();
+            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            {
+                if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
+                    list.Add(player);
+            }
+            ViewBag.Skip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", WednesdayTeam.Skip);
+            ViewBag.ViceSkip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", WednesdayTeam.ViceSkip);
+            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", WednesdayTeam.Lead);
+            ViewBag.Teams = teams;
+            return View(WednesdayTeam);
         }
 
         // GET: WednesdayTeams/Edit/5
@@ -87,15 +136,26 @@ namespace Leagues.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WednesdayTeam wednesdayTeam = db.WednesdayTeams.Find(id);
-            if (wednesdayTeam == null)
+            WednesdayTeam WednesdayTeam = db.WednesdayTeams.Find(id);
+            if (WednesdayTeam == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Skip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Skip);
-            ViewBag.ViceSkip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.ViceSkip);
-            ViewBag.Lead = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Lead);
-            return View(wednesdayTeam);
+            var teams = db.WednesdayTeams.OrderBy(x => x.id);
+            var list = new List<Player>();
+            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            {
+                if(!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
+                    list.Add(player);
+            }
+            if (WednesdayTeam.ViceSkip != null)
+                list.Add(WednesdayTeam.Player1);
+            if (WednesdayTeam.Lead != null)
+                list.Add(WednesdayTeam.Player2);
+            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", WednesdayTeam.Lead);
+            ViewBag.ViceSkip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", WednesdayTeam.ViceSkip);
+            ViewBag.Teams = teams;
+            return View(WednesdayTeam);
         }
 
         // POST: WednesdayTeams/Edit/5
@@ -103,11 +163,11 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Skip,ViceSkip,Lead")] WednesdayTeam wednesdayTeam)
+        public ActionResult Edit([Bind(Include = "id,Skip,Lead,ViceSkip")] WednesdayTeam WednesdayTeam)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(wednesdayTeam).State = EntityState.Modified;
+                db.Entry(WednesdayTeam).State = EntityState.Modified;
                 try
                 {
                     db.SaveChanges();
@@ -118,7 +178,7 @@ namespace Leagues.Controllers
                     Exception ex = e;
                     while (ex.InnerException != null)
                         ex = ex.InnerException;
-                    ModelState.AddModelError(string.Empty, ex.Message);
+                    ModelState.AddModelError(string.Empty, e.Message);
 
                 }
                 catch (Exception)
@@ -126,10 +186,22 @@ namespace Leagues.Controllers
                     ModelState.AddModelError(string.Empty, "Edit failed");
                 }
             }
-            ViewBag.Skip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Skip);
-            ViewBag.ViceSkip = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.ViceSkip);
-            ViewBag.Lead = new SelectList(db.Players.Where(x => x.WednesdayLeague), "id", "FullName", wednesdayTeam.Lead);
-            return View(wednesdayTeam);
+            var teams = db.WednesdayTeams.OrderBy(x => x.id);
+
+            var list = new List<Player>();
+            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            {
+                if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
+                    list.Add(player);
+            }
+            if (WednesdayTeam.ViceSkip != null)
+                list.Add(WednesdayTeam.Player1);
+            if (WednesdayTeam.Lead != null)
+                list.Add(WednesdayTeam.Player2);
+            ViewBag.Lead = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", WednesdayTeam.Lead);
+            ViewBag.ViceSkip = new SelectList(list.OrderBy(x => x.LastName), "id", "FullName", WednesdayTeam.ViceSkip);
+            ViewBag.Teams = teams;
+            return View(WednesdayTeam);
         }
 
         // GET: WednesdayTeams/Delete/5
@@ -139,12 +211,12 @@ namespace Leagues.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WednesdayTeam wednesdayTeam = db.WednesdayTeams.Find(id);
-            if (wednesdayTeam == null)
+            WednesdayTeam WednesdayTeam = db.WednesdayTeams.Find(id);
+            if (WednesdayTeam == null)
             {
                 return HttpNotFound();
             }
-            return View(wednesdayTeam);
+            return View(WednesdayTeam);
         }
 
         // POST: WednesdayTeams/Delete/5
@@ -152,8 +224,8 @@ namespace Leagues.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            WednesdayTeam wednesdayTeam = db.WednesdayTeams.Find(id);
-            db.WednesdayTeams.Remove(wednesdayTeam);
+            WednesdayTeam WednesdayTeam = db.WednesdayTeams.Find(id);
+            db.WednesdayTeams.Remove(WednesdayTeam);
             try
             {
                 db.SaveChanges();
@@ -170,7 +242,7 @@ namespace Leagues.Controllers
             {
                 ViewBag.Error = "Delete failed";
             }
-            return View(wednesdayTeam);
+            return View(WednesdayTeam);
         }
 
         protected override void Dispose(bool disposing)

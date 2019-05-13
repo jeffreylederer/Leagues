@@ -244,12 +244,19 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Scoring.aspx.cs">
-      <DependentUpon>Scoring.aspx</DependentUpon>
+    <Compile Include="Reports\WednesdayScoring.aspx.cs">
+      <DependentUpon>WednesdayScoring.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\Scoring.aspx.designer.cs">
-      <DependentUpon>Scoring.aspx</DependentUpon>
+    <Compile Include="Reports\WednesdayScoring.aspx.designer.cs">
+      <DependentUpon>WednesdayScoring.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\TuesdayScoring.aspx.cs">
+      <DependentUpon>TuesdayScoring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\TuesdayScoring.aspx.designer.cs">
+      <DependentUpon>TuesdayScoring.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
@@ -257,6 +264,13 @@
     </Compile>
     <Compile Include="Reports\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\WednesdayScoreCards.aspx.cs">
+      <DependentUpon>WednesdayScoreCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\WednesdayScoreCards.aspx.designer.cs">
+      <DependentUpon>WednesdayScoreCards.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\TuesdayScoreCards.aspx.cs">
       <DependentUpon>TuesdayScoreCards.aspx</DependentUpon>
@@ -345,7 +359,9 @@
       <LastGenOutput>LeagueModel.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\Byes.aspx" />
-    <Content Include="Reports\Scoring.aspx" />
+    <Content Include="Reports\WednesdayScoring.aspx" />
+    <Content Include="Reports\TuesdayScoring.aspx" />
+    <Content Include="Reports\WednesdayScoreCards.aspx" />
     <Content Include="Reports\TuesdayScoreCards.aspx" />
     <Content Include="Reports\TuesdayTeamsReport.aspx" />
     <Content Include="Reports\WednesdayTeamsReport.aspx" />
@@ -433,21 +449,22 @@
     <Content Include="Views\TuesdaySchedules\Index.cshtml" />
     <Content Include="Views\TuesdayMatches\Create.cshtml" />
     <Content Include="Views\TuesdayMatches\Index.cshtml" />
-    <Content Include="Views\WednesdayTeams\Create.cshtml" />
-    <Content Include="Views\WednesdayTeams\Delete.cshtml" />
-    <Content Include="Views\WednesdayTeams\Edit.cshtml" />
-    <Content Include="Views\WednesdayTeams\Index.cshtml" />
+    <Content Include="Views\TuesdayMatches\Scoring.cshtml" />
+    <Content Include="Views\TuesdayMatches\CreateMatches.cshtml" />
+    <Content Include="Views\TuesdayMatches\ClearSchedule.cshtml" />
+    <Content Include="Views\WednesdayMatches\Create.cshtml" />
+    <Content Include="Views\WednesdayMatches\CreateMatches.cshtml" />
+    <Content Include="Views\WednesdayMatches\Index.cshtml" />
+    <Content Include="Views\WednesdayMatches\Scoring.cshtml" />
     <Content Include="Views\WednesdaySchedules\Create.cshtml" />
     <Content Include="Views\WednesdaySchedules\Delete.cshtml" />
     <Content Include="Views\WednesdaySchedules\Edit.cshtml" />
     <Content Include="Views\WednesdaySchedules\Index.cshtml" />
-    <Content Include="Views\WednesdayMatches\Create.cshtml" />
-    <Content Include="Views\WednesdayMatches\Index.cshtml" />
-    <Content Include="Views\TuesdayMatches\Scoring.cshtml" />
-    <Content Include="Views\TuesdayMatches\CreateMatches.cshtml" />
-    <Content Include="Views\WednesdayMatches\CreateMatches.cshtml" />
-    <Content Include="Views\WednesdayMatches\Scoring.cshtml" />
-    <Content Include="Views\TuesdayMatches\ClearSchedule.cshtml" />
+    <Content Include="Views\WednesdayTeams\Create.cshtml" />
+    <Content Include="Views\WednesdayTeams\Delete.cshtml" />
+    <Content Include="Views\WednesdayTeams\Edit.cshtml" />
+    <Content Include="Views\WednesdayTeams\Index.cshtml" />
+    <Content Include="Views\WednesdayMatches\ClearSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -474,6 +491,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\Byes.rdlc" />
     <EmbeddedResource Include="Reports\ReportFiles\Standings.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportFiles\WednesdayWeekScoreCards.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportFiles\WednesdayScoreCard.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\TuesdayScoreCard.rdlc">

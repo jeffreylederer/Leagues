@@ -50,7 +50,7 @@ namespace Leagues.Controllers
         {
             var numOfWeeks = db.TuesdaySchedules.Count();
             var numofTeams = db.TuesdayTeams.Count();
-            
+            db.TuesdayMatches.RemoveRange(db.TuesdayMatches);
             db.SaveChanges();
             var cs = new CreateSchedule();
             List<Match> matches = null;
@@ -58,14 +58,11 @@ namespace Leagues.Controllers
                 matches = cs.NoByes(numOfWeeks, numofTeams);
             else
                 matches = cs.Byes(numOfWeeks, numofTeams);
-            int i = 0;
-            var all = db.TuesdayMatches;
-            db.TuesdayMatches.RemoveRange(all);
+           
             foreach (var match in matches)
             {
                 db.TuesdayMatches.Add(new TuesdayMatch()
                 {
-                    id = i++,
                     GameDate = match.Week + 1,
                     Rink = match.Rink==-1? -1: match.Rink + 1,
                     Team1 = match.Team1 + 1,

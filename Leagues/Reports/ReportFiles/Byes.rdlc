@@ -295,7 +295,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Tuesday League Byes</Value>
+                      <Value>=Parameters!League.Value +" League Byes"</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>

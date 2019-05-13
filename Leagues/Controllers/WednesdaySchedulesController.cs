@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Leagues.Code;
+using Leagues.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Leagues.Models;
+
 
 namespace Leagues.Controllers
 {
@@ -20,20 +20,6 @@ namespace Leagues.Controllers
             return View(db.WednesdaySchedules.ToList());
         }
 
-        // GET: WednesdaySchedules/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WednesdaySchedule wednesdaySchedule = db.WednesdaySchedules.Find(id);
-            if (wednesdaySchedule == null)
-            {
-                return HttpNotFound();
-            }
-            return View(wednesdaySchedule);
-        }
 
         // GET: WednesdaySchedules/Create
         public ActionResult Create()
@@ -46,11 +32,11 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,GameDate")] WednesdaySchedule wednesdaySchedule)
+        public ActionResult Create([Bind(Include = "id,GameDate")] WednesdaySchedule WednesdaySchedule)
         {
             if (ModelState.IsValid)
             {
-                db.WednesdaySchedules.Add(wednesdaySchedule);
+                db.WednesdaySchedules.Add(WednesdaySchedule);
                 try
                 {
                     db.SaveChanges();
@@ -62,7 +48,6 @@ namespace Leagues.Controllers
                     while (ex.InnerException != null)
                         ex = ex.InnerException;
                     ModelState.AddModelError(string.Empty, ex.Message);
-
                 }
                 catch (Exception)
                 {
@@ -70,7 +55,7 @@ namespace Leagues.Controllers
                 }
             }
 
-            return View(wednesdaySchedule);
+            return View(WednesdaySchedule);
         }
 
         // GET: WednesdaySchedules/Edit/5
@@ -80,12 +65,12 @@ namespace Leagues.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WednesdaySchedule wednesdaySchedule = db.WednesdaySchedules.Find(id);
-            if (wednesdaySchedule == null)
+            WednesdaySchedule WednesdaySchedule = db.WednesdaySchedules.Find(id);
+            if (WednesdaySchedule == null)
             {
                 return HttpNotFound();
             }
-            return View(wednesdaySchedule);
+            return View(WednesdaySchedule);
         }
 
         // POST: WednesdaySchedules/Edit/5
@@ -93,11 +78,11 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,GameDate")] WednesdaySchedule wednesdaySchedule)
+        public ActionResult Edit([Bind(Include = "id,GameDate")] WednesdaySchedule WednesdaySchedule)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(wednesdaySchedule).State = EntityState.Modified;
+                db.Entry(WednesdaySchedule).State = EntityState.Modified;
                 try
                 {
                     db.SaveChanges();
@@ -109,14 +94,13 @@ namespace Leagues.Controllers
                     while (ex.InnerException != null)
                         ex = ex.InnerException;
                     ModelState.AddModelError(string.Empty, ex.Message);
-
                 }
                 catch (Exception)
                 {
                     ModelState.AddModelError(string.Empty, "Edit failed");
                 }
             }
-            return View(wednesdaySchedule);
+            return View(WednesdaySchedule);
         }
 
         // GET: WednesdaySchedules/Delete/5
@@ -126,12 +110,12 @@ namespace Leagues.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WednesdaySchedule wednesdaySchedule = db.WednesdaySchedules.Find(id);
-            if (wednesdaySchedule == null)
+            WednesdaySchedule WednesdaySchedule = db.WednesdaySchedules.Find(id);
+            if (WednesdaySchedule == null)
             {
                 return HttpNotFound();
             }
-            return View(wednesdaySchedule);
+            return View(WednesdaySchedule);
         }
 
         // POST: WednesdaySchedules/Delete/5
@@ -139,8 +123,8 @@ namespace Leagues.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            WednesdaySchedule wednesdaySchedule = db.WednesdaySchedules.Find(id);
-            db.WednesdaySchedules.Remove(wednesdaySchedule);
+            WednesdaySchedule WednesdaySchedule = db.WednesdaySchedules.Find(id);
+            db.WednesdaySchedules.Remove(WednesdaySchedule);
             try
             {
                 db.SaveChanges();
@@ -157,8 +141,10 @@ namespace Leagues.Controllers
             {
                 ViewBag.Error = "Delete failed";
             }
-            return View(wednesdaySchedule);
+            return View(WednesdaySchedule);
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
@@ -169,4 +155,7 @@ namespace Leagues.Controllers
             base.Dispose(disposing);
         }
     }
+
+
 }
+

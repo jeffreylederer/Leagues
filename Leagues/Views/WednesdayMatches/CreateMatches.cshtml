@@ -1,25 +1,25 @@
-﻿@model Leagues.Models.TuesdayMatch
-
+﻿
 @{
     ViewBag.Title = "CreateMatches";
 }
 
-<h2>Create Matches for Tuesday League</h2>
+<h2>Create Matches for Wednesday League</h2>
 
 <h3 style="color: red;">Are you sure you want to erase all matches and create a new set of matches?</h3>
 <div>
-    <h4>Create Matches</h4>
-    <hr />
-    
-    This will erase all the matches for the Tuesday League and create a new round robin set of matches using the 
-    Tuesday schedule and Tuesday teams.
-    <br/>
-    @using (Html.BeginForm()) {
+
+
+    This will erase all matches for the Wednesday League and create a new round robin set of matches using the
+    Wednesday schedule and Wednesday's teams.
+    <br /><br />
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index", new {ScheduleID=1})
+            @Html.Hidden("DeleteIT", "Yes")
+            <input type="submit" value="Create Matches" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Home Page", "Index", "Home")
         </div>
     }
 </div>

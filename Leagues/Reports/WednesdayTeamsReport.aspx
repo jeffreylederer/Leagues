@@ -6,7 +6,7 @@
     <asp:Label runat="server" ForeColor="Red" ID="lblError" EnableViewState="False"></asp:Label>
     <asp:ScriptManager runat="server" ID="sc"></asp:ScriptManager>
     <rsweb:ReportViewer ID="rv1" runat="server" AsyncRendering="false" OnReportError="Rv1_ReportError"
-                        Width="600px" Height="1000px">
+                        Width="800px" Height="1000px">
         <LocalReport ReportPath="Reports/ReportFiles/WednesdayTeams.rdlc" >
         </LocalReport>
     </rsweb:ReportViewer>

@@ -1,73 +1,106 @@
-﻿@model IEnumerable<Leagues.Models.WednesdayMatch>
+﻿@using System.Web.UI.WebControls
+@using Leagues.Extensions
+@model IEnumerable<Leagues.Models.WednesdayMatch>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Wednesday Matches</h2>
+<h2>Wednesday Matches for @ViewBag.Date</h2>
 @using (Html.BeginForm("Index", "WednesdayMatches", FormMethod.Post))
 {
     <div>
-        @Html.DropDownList("ScheduleID", (SelectList) ViewBag.ScheduleID, "Select Week", new {@class = "form-control"})
-        <input type="submit" value="Select Week" class="btn btn-primary"/>
+
+        @Html.DropDownList("ScheduleID", (SelectList)ViewBag.ScheduleID, "Select Week", new { @class = "form-control" })
+        <input type="submit" value="Select Week" class="btn btn-primary" />
     </div>
 }
-    <br />
+<br />
+
 <p>
-    <a href="WednesdayMatches/Create/@ViewBag.Date" id="Create">Create</a>
+    <a href="/Reports/WednesdayScoring.aspx?weekid=@ViewBag.WeekID" >This week's standings report</a><br/>
+    <a href="/Reports/WednesdayScoreCards.aspx?&weekid=@ViewBag.WeekID" >This week's score cards</a>
 </p>
-<table class="table">
+
+<table class="table-condensed table-striped">
     <tr>
+        <th>
+            Exchange Rink
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Rink)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WednesdaySchedule.id)
+            @Html.DisplayNameFor(model => model.WednesdaySchedule.GameDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WednesdayTeam.id)
+            @Html.DisplayNameFor(model => model.Team1)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WednesdayTeam1.id)
+            @Html.DisplayNameFor(model => model.Team2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team1Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team2Score)
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
+    @{ var id = 0;}
+    @foreach (var item in Model)
+    {
     <tr>
+        <td>
+            @{
+                if (@id > 0)
+                {
+                    @Html.ActionImage("MoveUp", new { id = id, weekid = ViewBag.WeekID }, "~/Content/Images/uparrow.png", "Move Up one rink");
+                }
+            }
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Rink)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WednesdaySchedule.id)
+            @Html.DisplayFor(modelItem => item.WednesdaySchedule.GameDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WednesdayTeam.id)
+            @Html.DisplayFor(modelItem => item.WednesdayTeam.id)&nbsp; (@Html.DisplayFor(modelItem => item.WednesdayTeam.Player.NickName),@Html.DisplayFor(modelItem => item.WednesdayTeam.Player1.NickName),@Html.DisplayFor(modelItem => item.WednesdayTeam.Player2.NickName) )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WednesdayTeam1.id)
+            @Html.DisplayFor(modelItem => item.WednesdayTeam1.id) &nbsp;(@Html.DisplayFor(modelItem => item.WednesdayTeam1.Player.NickName),@Html.DisplayFor(modelItem => item.WednesdayTeam1.Player1.NickName),@Html.DisplayFor(modelItem => item.WednesdayTeam1.Player2.NickName) )
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.DisplayFor(modelItem => item.Team1Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team2Score)
+        </td>
+        <td>
+           @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
         </td>
     </tr>
-}
-    @section Scripts {
-        <script type="text/javascript">
-            $(document).ready(function(){
-
-                $("#ScheduleID").change(function(){
-
-                    var selected = $("#ScheduleID option:selected").val();
-                    $("#Create").attr('href',"WednesdayMatches/Create/" + selected);
-
-                });
-
-            });
-
-        </script>
+        id++;
     }
 
 </table>
+
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#ScheduleID").change(function(){
+
+                var selected = $("#ScheduleID option:selected").val();
+                $("#Create").attr('href',"WednesdayMatches/Create/" + selected);
+
+            });
+
+        });
+
+    </script>
+}
