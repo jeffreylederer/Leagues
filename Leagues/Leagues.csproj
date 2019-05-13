@@ -447,6 +447,7 @@
     <Content Include="Views\TuesdayMatches\CreateMatches.cshtml" />
     <Content Include="Views\WednesdayMatches\CreateMatches.cshtml" />
     <Content Include="Views\WednesdayMatches\Scoring.cshtml" />
+    <Content Include="Views\TuesdayMatches\ClearSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,7 +36,8 @@
                         <li><a href="/TuesdayMatches?ScheduleID=1">Matches</a></li>
                         <li><a href="/Reports/Byes.aspx?league=Tuesday">Byes</a></li>
                         <li>-----------------------------------------</li>
-                        <li><a href="/TuesdayMatches/CreateMatches">Teams</a></li>    
+                        <li><a href="/TuesdayMatches/ClearSchedule">Clear Schedule</a></li>
+                        <li><a href="/TuesdayMatches/CreateMatches">Create Matches</a></li>    
                         </ul>
                 </li>
                 <li class="menu-item dropdown">
@@ -47,7 +48,8 @@
                         <li><a href="/WednesdayMatches?ScheduleID=1">Matches</a></li>
                         <li><a href="/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
                         <li>-----------------------------------------</li>
-                        <li><a href="/WednesdayMatches/CreateMatches">Teams</a></li>
+                        <li><a href="/WednesdayMatches/ClearSchedule">Clear Schedule</a></li>
+                        <li><a href="/WednesdayMatches/CreateMatches">Create Matches</a></li>
                         
                     </ul>
                 </li>

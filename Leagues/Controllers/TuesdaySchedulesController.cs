@@ -144,49 +144,7 @@ namespace Leagues.Controllers
             return View(tuesdaySchedule);
         }
 
-        public ActionResult CreateSchedule()
-        {
-            const int numberofWeeks = 9;
-            int numberofTeams = db.TuesdayTeams.Count();
-            
-
-            var cs = new CreateSchedule();
-            List<Match> matches;
-            if (numberofTeams % 2 == 0)
-                matches = cs.NoByes(numberofWeeks, numberofTeams);
-            else
-                matches = cs.Byes(numberofWeeks, numberofTeams);
-
-            foreach (var item in db.TuesdayMatches)
-            {
-                db.TuesdayMatches.Remove(item);
-            }
-            db.SaveChanges();
-
-            var teamCount = numberofTeams + numberofTeams % 2;
-            int numberOfRinks = teamCount / 2;
-            
-            for (int w = 0; w < numberofWeeks; w++)
-            {
-                for (int r = 0; r < numberOfRinks; r++)
-                {
-                    var match = matches.Find(x => x.Rink == r && x.Week == w);
-                    db.TuesdayMatches.Add(new TuesdayMatch()
-                    {
-                        GameDate = w,
-                        Rink = r + 1,
-                        Team1 = match.Team1,
-                        Team2 = match.Team2
-                    });
-                }
-            }
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-
-
-
+        
 
         protected override void Dispose(bool disposing)
         {

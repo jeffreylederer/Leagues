@@ -64,6 +64,8 @@ namespace Leagues.Code
 
             leftside[0] = 0;
             rightside[0] = teamCount - 1;
+
+            // do first week bye
             matches.Add(new Match()
             {
                 Week = 0,
@@ -72,6 +74,8 @@ namespace Leagues.Code
                 Team2 = 0
             });
 
+
+            // do first week
             for (int r = 1; r < numberOfRinks; r++)
             {
                 leftside[r] = r;
@@ -109,8 +113,10 @@ namespace Leagues.Code
                     }
                     else
                     {
+                        match.Rink = (match.Rink + 2 * w) % (numberOfRinks - 1);
                         rink++;
                     }
+                    
                     matches.Add(match);
                 }
             }

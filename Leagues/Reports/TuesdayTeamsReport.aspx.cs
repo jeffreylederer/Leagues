@@ -33,6 +33,7 @@ namespace Leagues.Reports
                 //parameters
                 rv1.ShowToolBar = true;
 
+
                 // Refresh the ReportViewer.
                 rv1.LocalReport.Refresh();
             }

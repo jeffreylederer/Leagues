@@ -50,7 +50,7 @@ namespace Leagues.Controllers
         {
             var numOfWeeks = db.TuesdaySchedules.Count();
             var numofTeams = db.TuesdayTeams.Count();
-            db.TuesdayMatches.RemoveRange(db.TuesdayMatches);
+            
             db.SaveChanges();
             var cs = new CreateSchedule();
             List<Match> matches = null;
@@ -76,6 +76,22 @@ namespace Leagues.Controllers
             }
             db.SaveChanges();
             return RedirectToAction("index", new {ScheduleID=1});
+        }
+
+         public ActionResult ClearSchedule()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ClearSchedule(string DeleteIT)
+        {
+            db.TuesdaySchedules.RemoveRange(db.TuesdaySchedules);
+            db.TuesdayTeams.RemoveRange(db.TuesdayTeams);
+            db.TuesdayMatches.RemoveRange(db.TuesdayMatches);
+            db.SaveChanges();
+            return RedirectToAction("index","Home");
         }
 
         public ActionResult Scoring(int? id)
