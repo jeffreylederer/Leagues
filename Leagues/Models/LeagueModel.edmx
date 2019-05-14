@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeaguesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LeaguesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Player">
           <Key>
             <PropertyRef Name="id" />
@@ -45,6 +45,15 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Skip" Type="int" Nullable="false" />
           <Property Name="Lead" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Roles" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="WednesdayMatch">
           <Key>
@@ -212,6 +221,7 @@
           <EntitySet Name="TuesdayMatch" EntityType="Self.TuesdayMatch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TuesdaySchedule" EntityType="Self.TuesdaySchedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TuesdayTeam" EntityType="Self.TuesdayTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WednesdayMatch" EntityType="Self.WednesdayMatch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WednesdaySchedule" EntityType="Self.WednesdaySchedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WednesdayTeam" EntityType="Self.WednesdayTeam" Schema="dbo" store:Type="Tables" />
@@ -260,8 +270,7 @@
             <End Role="WednesdayTeam" EntitySet="WednesdayTeam" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LeaguesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -541,7 +550,17 @@
             <End Role="WednesdayTeam" EntitySet="WednesdayTeams" />
             <End Role="WednesdayMatch" EntitySet="WednesdayMatches" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="LeaguesModel.User" />
         </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -622,6 +641,16 @@
                 <ScalarProperty Name="Skip" ColumnName="Skip" />
                 <ScalarProperty Name="ViceSkip" ColumnName="ViceSkip" />
                 <ScalarProperty Name="Lead" ColumnName="Lead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LeaguesModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

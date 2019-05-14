@@ -7,6 +7,7 @@ namespace Leagues.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             //var cs = new CreateSchedule();

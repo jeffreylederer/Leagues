@@ -23,6 +23,7 @@
         <AssociationConnector Association="LeaguesModel.FK_WednesdayMatch_WednesdaySchedule" ManuallyRouted="false" />
         <AssociationConnector Association="LeaguesModel.FK_WednesdayMatch_WednesdayTeam" ManuallyRouted="false" />
         <AssociationConnector Association="LeaguesModel.FK_WednesdayMatch_WednesdayTeam1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LeaguesModel.User" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
