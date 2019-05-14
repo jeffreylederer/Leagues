@@ -12,6 +12,7 @@ using Leagues.Code;
 
 namespace Leagues.Controllers
 {
+    [Authorize]
     public class TuesdayMatchesController : Controller
     {
         private LeaguesEntities db = new LeaguesEntities();
@@ -39,6 +40,7 @@ namespace Leagues.Controllers
             return RedirectToAction("Index", new { ScheduleID = weekid });
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateMatches()
         {
             return View();
@@ -75,7 +77,8 @@ namespace Leagues.Controllers
             return RedirectToAction("index", new {ScheduleID=1});
         }
 
-         public ActionResult ClearSchedule()
+        [Authorize(Roles = "Admin")]
+        public ActionResult ClearSchedule()
         {
             return View();
         }

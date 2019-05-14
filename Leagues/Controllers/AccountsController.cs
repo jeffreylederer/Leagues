@@ -31,13 +31,30 @@ namespace Leagues.Controllers
                     // same operation on the user entered password here, But for now
                     // since the password is in plain text lets just authenticate directly
 
-                    bool userValid = entities.Users.Any(user => user.username == username && user.password == password);
+                    var userValids = entities.Users.Where(user => user.username == username && user.password == password);
 
                     // User found in the database
-                    if (userValid)
+                    if (userValids != null && userValids.Count() == 1)
                     {
-
+                        var userValid = userValids.First();
                         FormsAuthentication.SetAuthCookie(username, false);
+                        string roles = userValid.Roles;
+
+                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                            1, // Ticket version 
+                            userValid.username, // username to be used by ticket 
+                            DateTime.Now, // ticket issue date-time
+                            DateTime.Now.AddMinutes(60), // Date and time the cookie will expire 
+                            false, // persistent cookie?
+                            roles??"", // user data, role of the user 
+                            FormsAuthentication.FormsCookiePath);
+
+                        string encryptCookie = FormsAuthentication.Encrypt(ticket);
+                        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptCookie);
+                        HttpContext.Response.Cookies.Add(cookie);
+
+
+
                         if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                             && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                         {

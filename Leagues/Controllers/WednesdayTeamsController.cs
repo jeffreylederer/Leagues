@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Leagues.Controllers
 {
+    [Authorize]
     public class WednesdayTeamsController : Controller
     {
         private LeaguesEntities db = new LeaguesEntities();

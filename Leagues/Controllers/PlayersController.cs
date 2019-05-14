@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace Leagues.Controllers
 {
+    [Authorize]
     public class PlayersController : Controller
     {
         private readonly LeaguesEntities db = new LeaguesEntities();

@@ -30,24 +30,26 @@ namespace Leagues
                     {
                         //let us take out the username now                
                         string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
-                        string roles = string.Empty;
-
-                        using (var entities = new LeaguesEntities())
-                        {
-                            User user = entities.Users.SingleOrDefault(u => u.username == username);
-
-                            roles = user.Roles;
-                        }
                         //let us extract the roles from our own custom cookie
+                        HttpCookie cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
 
+                        if (cookie != null)
+                        {
+                            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
 
-                        //Let us set the Pricipal with our user specific details
-                        e.User = new System.Security.Principal.GenericPrincipal(
-                            new System.Security.Principal.GenericIdentity(username, "Forms"), roles.Split(';'));
+                            if (ticket != null && !ticket.Expired)
+                            {
+                                var roles = ticket.UserData.Split(',');
+
+                                //Let us set the Pricipal with our user specific details
+                                e.User = new System.Security.Principal.GenericPrincipal(
+                                    new System.Security.Principal.GenericIdentity(username, "Forms"), roles);
+                            }
+                        }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        //somehting went wrong
+                        var message = ex.Message;
                     }
                 }
             }

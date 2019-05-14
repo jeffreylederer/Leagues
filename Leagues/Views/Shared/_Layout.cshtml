@@ -30,9 +30,14 @@
 
                             <li>@Html.ActionLink("Matches", "Index", "TuesdayMatches", new { ScheduleID = 1 }, null)</li>
                             <li><a href="/Reports/Byes.aspx?league=Tuesday">Byes</a></li>
-                            <li>----------------------------</li>
-                            <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "TuesdayMatches")</li>
-                            <li>@Html.ActionLink("Create Matches", "CreateMatches", "TuesdayMatches")</li>
+                            @{
+                                if (HttpContext.Current.User.IsInRole("Admin"))
+                                {
+                                    <li>----------------------------</li>
+                                    <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "TuesdayMatches")</li>
+                                    <li>@Html.ActionLink("Create Matches", "CreateMatches", "TuesdayMatches")</li>
+                                }
+                            }
 
                         </ul>
                     </li>
@@ -44,10 +49,15 @@
 
                             <li>@Html.ActionLink("Matches", "Index", "WednesdayMatches", new { ScheduleID = 1 }, null)</li>
                             <li><a href="/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
-                            <li>----------------------------</li>
-                            <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "WednesdayMatches")</li>
-                            <li>@Html.ActionLink("Create Matches", "CreateMatches", "WednesdayMatches")</li>
-                        </ul>
+                        @{
+                            if (HttpContext.Current.User.IsInRole("Admin"))
+                            {
+                                <li>----------------------------</li>
+                                <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "WednesdayMatches")</li>
+                                <li>@Html.ActionLink("Create Matches", "CreateMatches", "WednesdayMatches")</li>
+                            }
+                        }
+                            </ul>
                     </li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
