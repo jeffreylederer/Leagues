@@ -13,5 +13,20 @@ namespace Leagues.Reports
         {
 
         }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+
+            if (!HttpContext.Current.User.IsInRole("Admin"))
+            {
+                hyError.Visible = false;
+                hyTCreate.Visible = false;
+                hyTClear.Visible = false;
+                hyWCreate.Visible = false;
+                hyWClear.Visible = false;
+                lblDashT.Visible = false;
+                lblDashW.Visible = false;
+            }
+        }
     }
 }

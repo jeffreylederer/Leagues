@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Elmah;
 
 namespace Leagues.Controllers
 {
@@ -85,14 +86,16 @@ namespace Leagues.Controllers
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException e)
                 {
+                    ErrorSignal.FromCurrentContext().Raise(e);
                     Exception ex = e;
                     while (ex.InnerException != null)
                         ex = ex.InnerException;
                     ModelState.AddModelError(string.Empty, ex.Message);
 
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    ErrorSignal.FromCurrentContext().Raise(e);
                     ModelState.AddModelError(string.Empty, "Insert failed");
                 }
                 
@@ -154,14 +157,16 @@ namespace Leagues.Controllers
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException e)
                 {
+                    ErrorSignal.FromCurrentContext().Raise(e);
                     Exception ex = e;
                     while (ex.InnerException != null)
                         ex = ex.InnerException;
                     ModelState.AddModelError(string.Empty, e.Message);
 
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    ErrorSignal.FromCurrentContext().Raise(e);
                     ModelState.AddModelError(string.Empty, "Edit failed");
                 }
             }
@@ -209,13 +214,15 @@ namespace Leagues.Controllers
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException e)
             {
+                ErrorSignal.FromCurrentContext().Raise(e);
                 Exception ex = e;
                 while (ex.InnerException != null)
                     ex = ex.InnerException;
                 ViewBag.Error = ex.Message;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                ErrorSignal.FromCurrentContext().Raise(e);
                 ViewBag.Error = "Delete failed";
             }
             return View(tuesdayTeam);

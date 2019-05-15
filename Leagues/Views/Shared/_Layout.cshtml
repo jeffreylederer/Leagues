@@ -36,6 +36,7 @@
                                     <li>----------------------------</li>
                                     <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "TuesdayMatches")</li>
                                     <li>@Html.ActionLink("Create Matches", "CreateMatches", "TuesdayMatches")</li>
+                                   
                                 }
                             }
 
@@ -49,16 +50,22 @@
 
                             <li>@Html.ActionLink("Matches", "Index", "WednesdayMatches", new { ScheduleID = 1 }, null)</li>
                             <li><a href="/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
-                        @{
-                            if (HttpContext.Current.User.IsInRole("Admin"))
-                            {
-                                <li>----------------------------</li>
-                                <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "WednesdayMatches")</li>
-                                <li>@Html.ActionLink("Create Matches", "CreateMatches", "WednesdayMatches")</li>
+                            @{
+                                if (HttpContext.Current.User.IsInRole("Admin"))
+                                {
+                                    <li>----------------------------</li>
+                                    <li>@Html.ActionLink("Clear Schedule", "ClearSchedule", "WednesdayMatches")</li>
+                                    <li>@Html.ActionLink("Create Matches", "CreateMatches", "WednesdayMatches")</li>
+                                }
                             }
-                        }
-                            </ul>
+                        </ul>
                     </li>
+                @{
+                    if (HttpContext.Current.User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Error Log", "Index", "Elmah", new {type = ""}, new {target = "_blank"})</li>
+                    }
+                }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>

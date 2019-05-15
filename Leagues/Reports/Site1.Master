@@ -35,9 +35,9 @@
                         <li><a href="/TuesdayTeams">Teams</a></li>
                         <li><a href="/TuesdayMatches?ScheduleID=1">Matches</a></li>
                         <li><a href="/Reports/Byes.aspx?league=Tuesday">Byes</a></li>
-                        <li>-----------------------------------------</li>
-                        <li><a href="/TuesdayMatches/ClearSchedule">Clear Schedule</a></li>
-                        <li><a href="/TuesdayMatches/CreateMatches">Create Matches</a></li>    
+                        <li><asp:Label runat="server" ID="lblDashT">-----------------------------------------</asp:Label></li>
+                        <li><asp:HyperLink runat="server" NavigateUrl="/TuesdayMatches/ClearSchedule" ID="hyTClear" Text="Clear Schedule" /></li>
+                        <li><asp:HyperLink runat="server" NavigateUrl="/TuesdayMatches/CreateMatches" ID="hyTCreate" Text="Create Matches" /></li>   
                         </ul>
                 </li>
                 <li class="menu-item dropdown">
@@ -47,13 +47,12 @@
                         <li><a href="/WednesdayTeams">Teams</a></li>
                         <li><a href="/WednesdayMatches?ScheduleID=1">Matches</a></li>
                         <li><a href="/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
-                        <li>-----------------------------------------</li>
-                        <li><a href="/WednesdayMatches/ClearSchedule">Clear Schedule</a></li>
-                        <li><a href="/WednesdayMatches/CreateMatches">Create Matches</a></li>
-                        
+                        <li><asp:Label runat="server" ID="lblDashW">-----------------------------------------</asp:Label></li>
+                        <li><asp:HyperLink runat="server" NavigateUrl="/WednesdayMatches/ClearSchedule" ID="hyWClear" Text="Clear Schedule" /></li>
+                        <li><asp:HyperLink runat="server" NavigateUrl="/WednesdayMatches/CreateMatches" ID="hyWCreate" Text="Create Matches" /></li>
                     </ul>
                 </li>
-
+                <li><asp:HyperLink runat="server" NavigateUrl="/Elmah" ID="hyError" Text="Error Log" Target="_blank" /></li>
                 <li><a href="/Home/About">About</a></li>
                 <li><a href="/Home/Contact">Contact</a></li>
             </ul>

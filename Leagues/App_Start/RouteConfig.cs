@@ -13,6 +13,11 @@ namespace Leagues
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                "Admin_elmah",
+                "elmah/{type}",
+                new { action = "Index", controller = "Elmah", type = UrlParameter.Optional });
+
             routes.MapPageRoute("TuesdayTeams", "Reports", "~/Reports/TuesdayTeamsReport.aspx", false, null,
                 new RouteValueDictionary(new { controller = new IncomingRequestConstraint() }));
 

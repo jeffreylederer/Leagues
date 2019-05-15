@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using Elmah;
 using Leagues.Models;
 using Leagues.Code;
 
@@ -36,7 +37,16 @@ namespace Leagues.Controllers
             match.Rink = id + 1;
             db.Entry(match).State = EntityState.Modified;
             db.Entry(match1).State = EntityState.Modified;
-            db.SaveChanges();
+            try
+            {
+
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                ErrorSignal.FromCurrentContext().Raise(e);
+            }
+           
             return RedirectToAction("Index", new { ScheduleID = weekid });
         }
 
@@ -73,7 +83,15 @@ namespace Leagues.Controllers
                     Team2Score = 0
                 });
             }
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                ErrorSignal.FromCurrentContext().Raise(e);
+            }
+            
             return RedirectToAction("index", new {ScheduleID=1});
         }
 
@@ -90,7 +108,17 @@ namespace Leagues.Controllers
             db.TuesdaySchedules.RemoveRange(db.TuesdaySchedules);
             db.TuesdayTeams.RemoveRange(db.TuesdayTeams);
             db.TuesdayMatches.RemoveRange(db.TuesdayMatches);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                ErrorSignal.FromCurrentContext().Raise(e);
+                Console.WriteLine(e);
+                throw;
+            }
+            
             return RedirectToAction("index","Home");
         }
 
@@ -125,13 +153,15 @@ namespace Leagues.Controllers
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException e)
                 {
+                    ErrorSignal.FromCurrentContext().Raise(e);
                     Exception ex = e;
                     while (ex.InnerException != null)
                         ex = ex.InnerException;
                     ModelState.AddModelError(string.Empty, ex.Message);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    ErrorSignal.FromCurrentContext().Raise(e);
                     ModelState.AddModelError(string.Empty, "Edit failed");
                 }
             }
