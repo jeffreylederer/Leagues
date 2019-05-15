@@ -31,10 +31,11 @@ namespace Leagues.Controllers
                     // same operation on the user entered password here, But for now
                     // since the password is in plain text lets just authenticate directly
 
-                    var user = entities.Users.Find(username);
+                    var users = entities.Users.Where(x => x.username == model.Username);
                     // User found in the database
-                    if (user != null && user.password == model.Password)
+                    if (users != null && users.Count()==1 && users.First().password == model.Password)
                     {
+                        var user = users.First();
                         FormsAuthentication.SetAuthCookie(username, false);
                         string roles = user.Roles;
 
