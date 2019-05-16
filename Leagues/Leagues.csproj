@@ -474,6 +474,8 @@
     <Content Include="Models\LeagueModel.edmx.diagram">
       <DependentUpon>LeagueModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Reports\LeaguesDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>LeaguesDS.Designer.cs</LastGenOutput>
