@@ -265,6 +265,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Code\CalculateStandings.cs" />
     <Compile Include="Code\CreateSchedule.cs" />
+    <Compile Include="Code\GenerateSchedule.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ElmahController.cs" />
     <Compile Include="Controllers\ElmanResult.cs" />
@@ -560,6 +561,8 @@
     <Content Include="Views\WednesdayMatches\ClearSchedule.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\TuesdaySchedules\ViewSchedule.cshtml" />
+    <Content Include="Views\WednesdaySchedules\ViewSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -584,27 +587,41 @@
   <ItemGroup>
     <EmbeddedResource Include="Reports\ReportFiles\AllScoreCards.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ReportFiles\Byes.rdlc" />
+    <EmbeddedResource Include="Reports\ReportFiles\Byes.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportFiles\Schedule.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\Standings.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\WednesdayWeekScoreCards.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\WednesdayScoreCard.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\TuesdayScoreCard.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\TuesdayTeams.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportFiles\TuesdayWeekScoreCards.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ReportFiles\WednesdayTeams.rdlc" />
+    <EmbeddedResource Include="Reports\ReportFiles\WednesdayTeams.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

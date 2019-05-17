@@ -22,6 +22,12 @@ namespace Leagues.Controllers
             return View(db.WednesdaySchedules.ToList());
         }
 
+        public ActionResult ViewSchedule()
+        {
+            ViewBag.Schedule = GenerateSchedule.Wednesday();
+            return View();
+        }
+
 
         // GET: WednesdaySchedules/Create
         public ActionResult Create()

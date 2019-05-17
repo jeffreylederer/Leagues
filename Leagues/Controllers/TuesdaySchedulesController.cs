@@ -22,13 +22,19 @@ namespace Leagues.Controllers
             return View(db.TuesdaySchedules.ToList());
         }
 
-      
+        public ActionResult ViewSchedule()
+        {
+            ViewBag.Schedule = GenerateSchedule.Tuesday();
+            return View();
+        }
+
         // GET: TuesdaySchedules/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        
         // POST: TuesdaySchedules/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
