@@ -22,6 +22,15 @@ namespace Leagues.Reports {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// hyTSchedule control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyTSchedule;
+        
+        /// <summary>
         /// lblDashT control.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,13 @@ namespace Leagues.Reports {
         protected global::System.Web.UI.WebControls.HyperLink hyTCreate;
         
         /// <summary>
-        /// hyTSchedule control.
+        /// hyWSchedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hyTSchedule;
+        protected global::System.Web.UI.WebControls.HyperLink hyWSchedule;
         
         /// <summary>
         /// lblDashW control.
@@ -83,15 +92,6 @@ namespace Leagues.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hyWCreate;
-        
-        /// <summary>
-        /// hyWSchedule control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hyWSchedule;
         
         /// <summary>
         /// hyError control.

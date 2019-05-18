@@ -1,12 +1,11 @@
-﻿using Leagues.Code;
+﻿using Elmah;
+using Leagues.Code;
 using Leagues.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Elmah;
 
 
 namespace Leagues.Controllers
@@ -22,13 +21,7 @@ namespace Leagues.Controllers
             return View(db.WednesdaySchedules.ToList());
         }
 
-        public ActionResult ViewSchedule()
-        {
-            ViewBag.Schedule = GenerateSchedule.Wednesday();
-            return View();
-        }
-
-
+       
         // GET: WednesdaySchedules/Create
         public ActionResult Create()
         {

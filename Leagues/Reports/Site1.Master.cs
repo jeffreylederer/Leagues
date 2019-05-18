@@ -26,8 +26,6 @@ namespace Leagues.Reports
                 hyWClear.Visible = false;
                 lblDashT.Visible = false;
                 lblDashW.Visible = false;
-                hyTSchedule.Visible = false;
-                hyWSchedule.Visible = false;
             }
         }
     }

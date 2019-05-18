@@ -4,6 +4,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <asp:Label runat="server" ForeColor="Red" ID="lblError" EnableViewState="False"></asp:Label>
+    <a href="/WednesdayTeams/index">Back to Teams Page</a>
     <asp:ScriptManager runat="server" ID="sc"></asp:ScriptManager>
     <rsweb:ReportViewer ID="rv1" runat="server" AsyncRendering="false" OnReportError="Rv1_ReportError"
                         Width="800px" Height="1000px">
