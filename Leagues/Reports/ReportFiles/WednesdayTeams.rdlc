@@ -9,13 +9,13 @@
               <Width>0.75in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.28125in</Width>
+              <Width>2in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.25in</Width>
+              <Width>2in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.25in</Width>
+              <Width>2in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -299,7 +299,7 @@
         </TablixRowHierarchy>
         <DataSetName>Team</DataSetName>
         <Height>0.5in</Height>
-        <Width>7.53125in</Width>
+        <Width>6.75in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -310,7 +310,7 @@
     <Height>0.53125in</Height>
     <Style />
   </Body>
-  <Width>7.53125in</Width>
+  <Width>6.75in</Width>
   <Page>
     <PageHeader>
       <Height>0.3in</Height>
@@ -337,7 +337,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox6</rd:DefaultName>
           <Height>0.25in</Height>
-          <Width>7.53125in</Width>
+          <Width>6.75in</Width>
           <Style>
             <Border>
               <Style>None</Style>

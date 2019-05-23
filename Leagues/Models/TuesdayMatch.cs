@@ -21,6 +21,7 @@ namespace Leagues.Models
         public Nullable<int> Team2 { get; set; }
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
+        public int Forfeit { get; set; }
     
         public virtual TuesdaySchedule TuesdaySchedule { get; set; }
         public virtual TuesdayTeam TuesdayTeam { get; set; }

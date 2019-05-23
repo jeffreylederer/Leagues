@@ -55,6 +55,9 @@ namespace Leagues.Models
 
         [Display(Name = "Team 2 Score")]
         public int Team2Score { get; set; }
+
+        [Display(Name = "Forfeiting Team")]
+        public int Forfeit { get; set; }
     }
 
     [MetadataType(typeof(WednesdayMatchMetaData))]
@@ -77,6 +80,9 @@ namespace Leagues.Models
 
         [Display(Name = "Team 2 Score")]
         public int Team2Score { get; set; }
+
+        [Display(Name = "Forfeiting Team")]
+        public int Forfeit { get; set; }
     }
 
     [MetadataType(typeof(TuesdayScheduleMetaData))]
@@ -129,6 +135,9 @@ namespace Leagues.Models
         [Display(Name = "Team Number")]
         [Required]
         public int id { get; set; }
+
+        [Display(Name = "Vice Skip")]
+        public  string ViceSkip { get; set; }
     }
 }
 

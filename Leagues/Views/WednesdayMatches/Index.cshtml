@@ -45,6 +45,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Team2Score)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Forfeit)
+        </th>
         <th></th>
     </tr>
     @{ var id = 0;}
@@ -78,11 +81,30 @@
             @Html.DisplayFor(modelItem => item.Team2Score)
         </td>
         <td>
-           @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
+            @{
+                switch (item.Forfeit.ToString())
+                {
+                    case "1":
+                        @Html.Raw("")
+                        ;
+                        break;
+                    case "2":
+                        @Html.DisplayFor(modelItem => item.WednesdayTeam.id)
+                        ;
+                        break;
+                    case "3":
+                        @Html.DisplayFor(modelItem => item.WednesdayTeam1.id)
+                        ;
+                        break;
+                }
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
         </td>
     </tr>
         id++;
-    }
+  }
 
 </table>
 
@@ -95,12 +117,12 @@
 
             $("#ScheduleID").change(function(){
 
-                var selected = $("#ScheduleID option:selected").val();
+                            var selected = $("#ScheduleID option:selected").val();
                 $("#Create").attr('href',"WednesdayMatches/Create/" + selected);
 
-            });
+                        });
 
-        });
+                    });
 
     </script>
 }

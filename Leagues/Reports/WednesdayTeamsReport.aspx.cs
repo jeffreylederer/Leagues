@@ -1,6 +1,7 @@
 ﻿using Leagues.Models;
 using Microsoft.Reporting.WebForms;
 using System;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 
@@ -30,7 +31,7 @@ namespace Leagues.Reports
                 var ds = new LeaguesDS();
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.WednesdayTeams)
+                    foreach (var item in db.WednesdayTeams.OrderBy(x=>x.id))
                     {
                         ds.WednesdayTeam.AddWednesdayTeamRow(item.id, item.Player.FullName, item.ViceSkip.HasValue ? item.Player1.FullName : "",
                             item.Lead.HasValue ? item.Player2.FullName : "");

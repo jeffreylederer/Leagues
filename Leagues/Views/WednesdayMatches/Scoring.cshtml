@@ -10,74 +10,115 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Wednesday Match</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.id)
-    @Html.HiddenFor(model => model.GameDate)
-    @Html.HiddenFor(model => model.Rink)
-    @Html.HiddenFor(model => model.Team1)
-    @Html.HiddenFor(model => model.Team2)
-    
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.GameDate, "Date", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Model.WednesdaySchedule.GameDateFormatted
+    <div class="form-horizontal">
+        <h4>Wednesday Match</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.GameDate)
+        @Html.HiddenFor(model => model.Rink)
+        @Html.HiddenFor(model => model.Team1)
+        @Html.HiddenFor(model => model.Team2)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GameDate, "Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.WednesdaySchedule.GameDateFormatted
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.Rink
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team1, "Team", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.Team1 &nbsp; &nbsp;(@Model.WednesdayTeam.Player.NickName, @Model.WednesdayTeam1.Player1.NickName, @Model.WednesdayTeam1.Player2.NickName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team2, "Team", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.Team2 &nbsp;&nbsp;(@Model.WednesdayTeam1.Player.NickName, @Model.WednesdayTeam1.Player1.NickName, @Model.WednesdayTeam1.Player2.NickName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team1Score, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Team1Score, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Team1Score, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team2Score, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Team2Score, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Team2Score, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Forfeit, "Team Forfeiting", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Forfeit", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Forfeit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Rink, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Model.Rink
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Team1, "Team", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Model.Team1 &nbsp; &nbsp;(@Model.WednesdayTeam.Player.NickName, @Model.WednesdayTeam1.Player1.NickName, @Model.WednesdayTeam1.Player2.NickName)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Team2, "Team", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Model.Team2 &nbsp;&nbsp;(@Model.WednesdayTeam1.Player.NickName, @Model.WednesdayTeam1.Player1.NickName, @Model.WednesdayTeam1.Player2.NickName)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Team1Score, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Team1Score, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Team1Score, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Team2Score, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Team2Score, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Team2Score, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new {ScheduleID=Model.GameDate})
+    @Html.ActionLink("Back to List", "Index", new { ScheduleID = Model.GameDate })
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            switch ($("#Forfeit").find(":selected").val()) {
+            case "1":
+                $("#Team1Score").prop('disabled', false);
+                $("#Team2Score").prop('disabled', false);
+                break;
+            case "2":
+            case "3":
+                $("#Team1Score").val(0);
+                $("#Team2Score").val(0);
+                $("#Team1Score").prop('disabled', true);
+                $("#Team2Score").prop('disabled', true);
+                break;
+            }
+        });
+
+        $('#Forfeit').change(function() {
+            switch ($(this).find(":selected").val()) {
+                case "1":
+                    $("#Team1Score").prop('disabled', false);
+                    $("#Team2Score").prop('disabled', false);
+                    break;
+                case "2":
+                case "3":
+                $("#Team1Score").val(0);
+                $("#Team2Score").val(0);
+                $("#Team1Score").prop('disabled', true);
+                $("#Team2Score").prop('disabled', true);
+                break;
+            }
+        });
+    </script>
 }

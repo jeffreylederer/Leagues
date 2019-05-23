@@ -29,6 +29,7 @@
           <Property Name="Team2" Type="int" />
           <Property Name="Team1Score" Type="int" Nullable="false" />
           <Property Name="Team2Score" Type="int" Nullable="false" />
+          <Property Name="Forfeit" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TuesdaySchedule">
           <Key>
@@ -66,6 +67,7 @@
           <Property Name="Team2" Type="int" />
           <Property Name="Team1Score" Type="int" Nullable="false" />
           <Property Name="Team2Score" Type="int" Nullable="false" />
+          <Property Name="Forfeit" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="WednesdaySchedule">
           <Key>
@@ -306,6 +308,7 @@
           <NavigationProperty Name="TuesdaySchedule" Relationship="Self.FK_TuesdaySchedule_TuesdaySchedule" FromRole="TuesdayMatch" ToRole="TuesdaySchedule" />
           <NavigationProperty Name="TuesdayTeam" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam" FromRole="TuesdayMatch" ToRole="TuesdayTeam" />
           <NavigationProperty Name="TuesdayTeam1" Relationship="Self.FK_TuesdaySchedule_TuesdayTeam1" FromRole="TuesdayMatch" ToRole="TuesdayTeam" />
+          <Property Name="Forfeit" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TuesdaySchedule">
           <Key>
@@ -342,6 +345,7 @@
           <NavigationProperty Name="WednesdaySchedule" Relationship="Self.FK_WednesdayMatch_WednesdaySchedule" FromRole="WednesdayMatch" ToRole="WednesdaySchedule" />
           <NavigationProperty Name="WednesdayTeam" Relationship="Self.FK_WednesdayMatch_WednesdayTeam" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
           <NavigationProperty Name="WednesdayTeam1" Relationship="Self.FK_WednesdayMatch_WednesdayTeam1" FromRole="WednesdayMatch" ToRole="WednesdayTeam" />
+          <Property Name="Forfeit" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="WednesdaySchedule">
           <Key>
@@ -584,6 +588,7 @@
           <EntitySetMapping Name="TuesdayMatches">
             <EntityTypeMapping TypeName="LeaguesModel.TuesdayMatch">
               <MappingFragment StoreEntitySet="TuesdayMatch">
+                <ScalarProperty Name="Forfeit" ColumnName="Forfeit" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="GameDate" ColumnName="GameDate" />
                 <ScalarProperty Name="Rink" ColumnName="Rink" />
@@ -615,6 +620,7 @@
           <EntitySetMapping Name="WednesdayMatches">
             <EntityTypeMapping TypeName="LeaguesModel.WednesdayMatch">
               <MappingFragment StoreEntitySet="WednesdayMatch">
+                <ScalarProperty Name="Forfeit" ColumnName="Forfeit" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="GameDate" ColumnName="GameDate" />
                 <ScalarProperty Name="Rink" ColumnName="Rink" />

@@ -282,6 +282,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ELMAH_Error.cs" />
+    <Compile Include="Models\ForfeitViewModel.cs" />
     <Compile Include="Models\LeagueModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

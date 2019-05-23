@@ -133,6 +133,13 @@ namespace Leagues.Controllers
             {
                 return HttpNotFound();
             }
+            var list = new List<ForfeitViewModel>(3)
+            {
+                new ForfeitViewModel() {value = 1, text = "no forfeit"},
+                new ForfeitViewModel() {value = 2, text = $"{tuesdayMatch.Team1.ToString()} - ({tuesdayMatch.TuesdayTeam.Player.NickName}, {tuesdayMatch.TuesdayTeam.Player1.NickName})"},
+                new ForfeitViewModel() {value = 3, text = $"{tuesdayMatch.Team2.ToString()} - ({tuesdayMatch.TuesdayTeam1.Player.NickName}, {tuesdayMatch.TuesdayTeam1.Player1.NickName})"}
+            };
+            ViewBag.Forfeit = new SelectList(list, "value", "text", tuesdayMatch.Forfeit);
             return View(tuesdayMatch);
         }
 
@@ -141,7 +148,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Scoring([Bind(Include = "id,GameDate,Rink,Team1,Team2,Team1Score,Team2Score")] TuesdayMatch tuesdayMatch)
+        public ActionResult Scoring([Bind(Include = "id,GameDate,Rink,Team1,Team2,Team1Score,Team2Score,Forfeit")] TuesdayMatch tuesdayMatch)
         {
             if (ModelState.IsValid)
             {
@@ -165,6 +172,13 @@ namespace Leagues.Controllers
                     ModelState.AddModelError(string.Empty, "Edit failed");
                 }
             }
+            var list = new List<ForfeitViewModel>(3)
+            {
+                new ForfeitViewModel() {value = 1, text = "no forfeit"},
+                new ForfeitViewModel() {value = 2, text = $"{tuesdayMatch.Team1.ToString()} - ({tuesdayMatch.TuesdayTeam.Player.NickName}, {tuesdayMatch.TuesdayTeam.Player1.NickName})"},
+                new ForfeitViewModel() {value = 3, text = $"{tuesdayMatch.Team2.ToString()} - ({tuesdayMatch.TuesdayTeam1.Player.NickName}, {tuesdayMatch.TuesdayTeam1.Player1.NickName})"}
+            };
+            ViewBag.Forfeit = new SelectList(list, "value", "text", tuesdayMatch.Forfeit);
             return View(tuesdayMatch);
         }
 

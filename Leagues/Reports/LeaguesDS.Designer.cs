@@ -1990,6 +1990,8 @@ namespace Leagues.Reports {
             
             private global::System.Data.DataColumn columnRink;
             
+            private global::System.Data.DataColumn columnForfeit;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public GameDataTable() {
@@ -2081,6 +2083,14 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ForfeitColumn {
+                get {
+                    return this.columnForfeit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2116,7 +2126,7 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GameRow AddGameRow(int Team1, string Players1, int Team2, string Players2, int Team1Score, int Team2Score, int Rink) {
+            public GameRow AddGameRow(int Team1, string Players1, int Team2, string Players2, int Team1Score, int Team2Score, int Rink, string Forfeit) {
                 GameRow rowGameRow = ((GameRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Team1,
@@ -2125,7 +2135,8 @@ namespace Leagues.Reports {
                         Players2,
                         Team1Score,
                         Team2Score,
-                        Rink};
+                        Rink,
+                        Forfeit};
                 rowGameRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGameRow);
                 return rowGameRow;
@@ -2155,6 +2166,7 @@ namespace Leagues.Reports {
                 this.columnTeam1Score = base.Columns["Team1Score"];
                 this.columnTeam2Score = base.Columns["Team2Score"];
                 this.columnRink = base.Columns["Rink"];
+                this.columnForfeit = base.Columns["Forfeit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2174,6 +2186,8 @@ namespace Leagues.Reports {
                 base.Columns.Add(this.columnTeam2Score);
                 this.columnRink = new global::System.Data.DataColumn("Rink", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRink);
+                this.columnForfeit = new global::System.Data.DataColumn("Forfeit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnForfeit);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3975,6 +3989,22 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Forfeit {
+                get {
+                    try {
+                        return ((string)(this[this.tableGame.ForfeitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Forfeit\' in table \'Game\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGame.ForfeitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTeam1Null() {
                 return this.IsNull(this.tableGame.Team1Column);
             }
@@ -4055,6 +4085,18 @@ namespace Leagues.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetRinkNull() {
                 this[this.tableGame.RinkColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsForfeitNull() {
+                return this.IsNull(this.tableGame.ForfeitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetForfeitNull() {
+                this[this.tableGame.ForfeitColumn] = global::System.Convert.DBNull;
             }
         }
         

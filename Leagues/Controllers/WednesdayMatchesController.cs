@@ -130,6 +130,13 @@ namespace Leagues.Controllers
             {
                 return HttpNotFound();
             }
+            var list = new List<ForfeitViewModel>(3)
+            {
+                new ForfeitViewModel() {value = 1, text = "no forfeit"},
+                new ForfeitViewModel() {value = 2, text = $"{WednesdayMatch.Team1.ToString()} - ({WednesdayMatch.WednesdayTeam.Player.NickName}, {WednesdayMatch.WednesdayTeam.Player1.NickName}, {WednesdayMatch.WednesdayTeam.Player2.NickName})"},
+                new ForfeitViewModel() {value = 3, text = $"{WednesdayMatch.Team2.ToString()} - ({WednesdayMatch.WednesdayTeam1.Player.NickName}, {WednesdayMatch.WednesdayTeam1.Player1.NickName}, {WednesdayMatch.WednesdayTeam1.Player2.NickName})"}
+            };
+            ViewBag.Forfeit = new SelectList(list, "value","text", WednesdayMatch.Forfeit);
             return View(WednesdayMatch);
         }
 
@@ -138,7 +145,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Scoring([Bind(Include = "id,GameDate,Rink,Team1,Team2,Team1Score,Team2Score")] WednesdayMatch WednesdayMatch)
+        public ActionResult Scoring([Bind(Include = "id,GameDate,Rink,Team1,Team2,Team1Score,Team2Score, Forfeit")] WednesdayMatch WednesdayMatch)
         {
             if (ModelState.IsValid)
             {
@@ -162,6 +169,13 @@ namespace Leagues.Controllers
                     ModelState.AddModelError(string.Empty, "Edit failed");
                 }
             }
+            var list = new List<ForfeitViewModel>(3)
+            {
+                new ForfeitViewModel() {value = 1, text = "no forfeit"},
+                new ForfeitViewModel() {value = 2, text = $"{WednesdayMatch.Team1.ToString()} - ({WednesdayMatch.WednesdayTeam.Player.NickName}, {WednesdayMatch.WednesdayTeam.Player1.NickName}, {WednesdayMatch.WednesdayTeam.Player2.NickName})"},
+                new ForfeitViewModel() {value = 3, text = $"{WednesdayMatch.Team2.ToString()} - ({WednesdayMatch.WednesdayTeam1.Player.NickName}, {WednesdayMatch.WednesdayTeam1.Player1.NickName}, {WednesdayMatch.WednesdayTeam1.Player2.NickName})"}
+            };
+            ViewBag.Forfeit = new SelectList(list, "value", "text", WednesdayMatch.Forfeit);
             return View(WednesdayMatch);
         }
 

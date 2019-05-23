@@ -26,12 +26,22 @@ namespace Leagues.Reports
                 {
                     foreach (var item in db.WednesdayMatches.Where(x=>x.GameDate==weekid && x.Rink!=-1).OrderBy(x => x.Rink))
                     {
+                        var forfeit = "";
+                        switch (item.Forfeit)
+                        {
+                            case 2:
+                                forfeit = item.Team1.ToString();
+                                break;
+                            case 3:
+                                forfeit = item.Team2.ToString();
+                                break;
+                        }
                         ds.Game.AddGameRow(item.Team1, 
                             item.WednesdayTeam.Player.NickName + ", " + item.WednesdayTeam.Player1.NickName + ", " + item.WednesdayTeam.Player2.NickName,
                             item.Team2.Value,
                             item.WednesdayTeam1.Player.NickName + ", " + item.WednesdayTeam1.Player1.NickName + ", " + item.WednesdayTeam1.Player2.NickName,
                             item.Team1Score,
-                            item.Team2Score, item.Rink);
+                            item.Team2Score, item.Rink, forfeit);
                     }
                     WeekDate = db.WednesdaySchedules.Find(weekid).GameDateFormatted;
                     var matches = db.WednesdayMatches.Where(x => x.Rink == -1 && x.GameDate == weekid);

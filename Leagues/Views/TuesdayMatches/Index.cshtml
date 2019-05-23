@@ -45,6 +45,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Team2Score)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Forfeit)
+        </th>
+
         <th></th>
     </tr>
     @{ var id = 0;}
@@ -78,7 +82,26 @@
             @Html.DisplayFor(modelItem => item.Team2Score)
         </td>
         <td>
-           @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
+            @{
+                switch (item.Forfeit.ToString())
+                {
+                    case "1":
+                        @Html.Raw("")
+                        ;
+                        break;
+                    case "2":
+                        @Html.DisplayFor(modelItem => item.TuesdayTeam.id)
+                        ;
+                        break;
+                    case "3":
+                        @Html.DisplayFor(modelItem => item.TuesdayTeam1.id)
+                        ;
+                        break;
+                }
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Scoring", "Scoring", new { id = item.id })
         </td>
     </tr>
         id++;
