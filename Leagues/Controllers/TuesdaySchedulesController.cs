@@ -26,7 +26,11 @@ namespace Leagues.Controllers
         // GET: TuesdaySchedules/Create
         public ActionResult Create()
         {
-            return View();
+            var item = new TuesdaySchedule()
+            {
+                IsCancelled = false
+            };
+            return View(true);
         }
 
         
@@ -35,7 +39,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,GameDate")] TuesdaySchedule tuesdaySchedule)
+        public ActionResult Create([Bind(Include = "id,GameDate,IsCancelled")] TuesdaySchedule tuesdaySchedule)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +87,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,GameDate")] TuesdaySchedule tuesdaySchedule)
+        public ActionResult Edit([Bind(Include = "id,GameDate,IsCancelled")] TuesdaySchedule tuesdaySchedule)
         {
             if (ModelState.IsValid)
             {

@@ -24,7 +24,6 @@ namespace Leagues.Reports
                 var weekid = int.Parse(Request.QueryString["weekid"]);
                
                 var ds = new LeaguesDS();
-                string date;
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
                     foreach (var item in db.Tuesday_GetMatchAll(weekid))

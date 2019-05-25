@@ -23,6 +23,7 @@ namespace Leagues.Models
         public int id { get; set; }
         public System.DateTime GameDate { get; set; }
         public string GameDateFormatted { get; set; }
+        public bool IsCancelled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TuesdayMatch> TuesdayMatches { get; set; }

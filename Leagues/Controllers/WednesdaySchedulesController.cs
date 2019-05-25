@@ -25,7 +25,11 @@ namespace Leagues.Controllers
         // GET: WednesdaySchedules/Create
         public ActionResult Create()
         {
-            return View();
+            var item = new WednesdaySchedule()
+            {
+                IsCancelled = false
+            };
+            return View(item);
         }
 
         // POST: WednesdaySchedules/Create
@@ -33,7 +37,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,GameDate")] WednesdaySchedule WednesdaySchedule)
+        public ActionResult Create([Bind(Include = "id,GameDate,IsCancelled")] WednesdaySchedule WednesdaySchedule)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +85,7 @@ namespace Leagues.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,GameDate")] WednesdaySchedule WednesdaySchedule)
+        public ActionResult Edit([Bind(Include = "id,GameDate,IsCancelled")] WednesdaySchedule WednesdaySchedule)
         {
             if (ModelState.IsValid)
             {

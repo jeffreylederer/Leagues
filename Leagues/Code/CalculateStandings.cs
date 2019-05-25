@@ -28,13 +28,14 @@ namespace Leagues.Code
                 }
                 foreach (var week in db.TuesdaySchedules.Where(x => x.id <= weekid))
                 {
+                    if (week.IsCancelled)
+                        continue;
                     var total = 0;
                     var numMatches = 0;
                     var bye = false;
                     int forfeit = 0;
                     foreach (var match in db.TuesdayMatches.Where(x => x.GameDate == week.id))
                     {
-
                         if (match.Team1Score > match.Team2Score && match.Rink != -1 && match.Forfeit == 1)
                         {
                             var winner = list.Find(x => x.TeamNumber == match.Team1);
@@ -134,6 +135,8 @@ namespace Leagues.Code
                 }
                 foreach (var week in db.WednesdaySchedules.Where(x => x.id <= weekid))
                 {
+                    if (week.IsCancelled)
+                        continue;
                     var total = 0;
                     var numMatches = 0;
                     var bye = false;

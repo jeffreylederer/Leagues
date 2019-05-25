@@ -36,7 +36,6 @@
                         <li><a href="/TuesdayMatches?ScheduleID=1">Matches</a></li>
                         <li><a href="/Reports/Byes.aspx?league=Tuesday">Byes</a></li>
                         <li><asp:HyperLink runat="server" NavigateUrl="/Reports/Schedule.aspx?league=Tuesday" ID="hyTSchedule" Text="View Schedule" /></li>
-                        <li><a href="/TuesdayMatches/DownloadFile">Download Label Template</a></li>
                         <li><asp:Label runat="server" ID="lblDashT">-----------------------------------------</asp:Label></li>
                         <li><asp:HyperLink runat="server" NavigateUrl="/TuesdayMatches/ClearSchedule" ID="hyTClear" Text="Clear Schedule" /></li>
                         <li><asp:HyperLink runat="server" NavigateUrl="/TuesdayMatches/CreateMatches" ID="hyTCreate" Text="Create Matches" /></li>  
@@ -50,7 +49,6 @@
                         <li><a href="/WednesdayMatches?ScheduleID=1">Matches</a></li>
                         <li><a href="/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
                         <li><asp:HyperLink runat="server" NavigateUrl="/Reports/Schedule.aspx?league=Wednesday" ID="hyWSchedule" Text="View Schedule" /></li>
-                        <li><a href="/WednesdayMatches/DownloadFile">Download Label Template</a></li>
                         <li><asp:Label runat="server" ID="lblDashW">-----------------------------------------</asp:Label></li>
                         <li><asp:HyperLink runat="server" NavigateUrl="/WednesdayMatches/ClearSchedule" ID="hyWClear" Text="Clear Schedule" /></li>
                         <li><asp:HyperLink runat="server" NavigateUrl="/WednesdayMatches/CreateMatches" ID="hyWCreate" Text="Create Matches" /></li>

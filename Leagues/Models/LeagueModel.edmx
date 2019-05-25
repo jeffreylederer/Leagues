@@ -38,6 +38,7 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="GameDate" Type="date" Nullable="false" />
           <Property Name="GameDateFormatted" Type="varchar" MaxLength="30" StoreGeneratedPattern="Computed" />
+          <Property Name="IsCancelled" Type="bit"  Nullable="false"/>
         </EntityType>
         <EntityType Name="TuesdayTeam">
           <Key>
@@ -76,6 +77,7 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="GameDate" Type="date" Nullable="false" />
           <Property Name="GameDateFormatted" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" />
+          <Property Name="IsCancelled" Type="bit"  Nullable="false"/>
         </EntityType>
         <EntityType Name="WednesdayTeam">
           <Key>
@@ -86,10 +88,6 @@
           <Property Name="ViceSkip" Type="int" />
           <Property Name="Lead" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Leagues.dbo.TuesdayMatchView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <Association Name="FK_Tuesday_Players">
           <End Role="Player" Type="Self.Player" Multiplicity="1" />
           <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="*" />
@@ -328,6 +326,7 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
           <Property Name="GameDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="GameDateFormatted" Type="String" MaxLength="30" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="TuesdayMatches" Relationship="Self.FK_TuesdaySchedule_TuesdaySchedule" FromRole="TuesdaySchedule" ToRole="TuesdayMatch" />
+          <Property Name="IsCancelled" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TuesdayTeam">
           <Key>
@@ -365,6 +364,7 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
           <Property Name="GameDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="GameDateFormatted" Type="String" MaxLength="12" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="WednesdayMatches" Relationship="Self.FK_WednesdayMatch_WednesdaySchedule" FromRole="WednesdaySchedule" ToRole="WednesdayMatch" />
+          <Property Name="IsCancelled" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="WednesdayTeam">
           <Key>
@@ -642,6 +642,7 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
           <EntitySetMapping Name="TuesdaySchedules">
             <EntityTypeMapping TypeName="LeaguesModel.TuesdaySchedule">
               <MappingFragment StoreEntitySet="TuesdaySchedule">
+                <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="GameDate" ColumnName="GameDate" />
                 <ScalarProperty Name="GameDateFormatted" ColumnName="GameDateFormatted" />
@@ -674,6 +675,7 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
           <EntitySetMapping Name="WednesdaySchedules">
             <EntityTypeMapping TypeName="LeaguesModel.WednesdaySchedule">
               <MappingFragment StoreEntitySet="WednesdaySchedule">
+                <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="GameDate" ColumnName="GameDate" />
                 <ScalarProperty Name="GameDateFormatted" ColumnName="GameDateFormatted" />

@@ -98,6 +98,9 @@ namespace Leagues.Models
         [Display(Name = "Match Date")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public System.DateTime GameDate { get; set; }
+
+        [Display(Name = "Game Cancelled")]
+        public bool IsCancelled { get; set; }
     }
 
     [MetadataType(typeof(TuesdayScheduleMetaData))]
@@ -113,6 +116,9 @@ namespace Leagues.Models
         [Display(Name = "Match Date")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public System.DateTime GameDate { get; set; }
+
+        [Display(Name = "Game Cancelled")]
+        public bool IsCancelled { get; set; }
     }
 
     [MetadataType(typeof(TuesdayTeamMetaData))]
