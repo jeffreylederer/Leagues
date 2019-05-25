@@ -59,8 +59,8 @@ namespace Leagues.Controllers
         public ActionResult DownloadFile()
         {
             string path = Server.MapPath("/App_Data/");
-            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "Wednesdayabels.docx");
-            string fileName = "Wednesdayabels.docx";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "WednesdayLabels.docx");
+            string fileName = "WednesdayLabels.docx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 

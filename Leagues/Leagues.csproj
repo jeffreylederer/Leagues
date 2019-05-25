@@ -577,8 +577,6 @@
     <Content Include="Views\WednesdayMatches\ClearSchedule.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="TuesdayLabelBlankDone.docx" />
-    <Content Include="WednesdayLabelBlankDone.docx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Elmah\" />
