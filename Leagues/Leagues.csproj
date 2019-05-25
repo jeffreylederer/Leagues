@@ -306,9 +306,6 @@
     <Compile Include="Models\TuesdayMatch.cs">
       <DependentUpon>LeagueModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TuesdayMatchView.cs">
-      <DependentUpon>LeagueModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TuesdaySchedule.cs">
       <DependentUpon>LeagueModel.tt</DependentUpon>
     </Compile>
@@ -322,9 +319,6 @@
       <DependentUpon>LeagueModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WednesdayMatch.cs">
-      <DependentUpon>LeagueModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WednesdayMatchView.cs">
       <DependentUpon>LeagueModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WednesdaySchedule.cs">

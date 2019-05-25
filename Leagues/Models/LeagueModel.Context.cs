@@ -35,8 +35,6 @@ namespace Leagues.Models
         public virtual DbSet<WednesdaySchedule> WednesdaySchedules { get; set; }
         public virtual DbSet<WednesdayTeam> WednesdayTeams { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<TuesdayMatchView> TuesdayMatchViews { get; set; }
-        public virtual DbSet<WednesdayMatchView> WednesdayMatchViews { get; set; }
     
         public virtual ObjectResult<Tuesday_GetMatchAll_Result> Tuesday_GetMatchAll(Nullable<int> weekid)
         {

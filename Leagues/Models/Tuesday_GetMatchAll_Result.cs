@@ -21,7 +21,6 @@ namespace Leagues.Models
         public int Team1 { get; set; }
         public int Team2 { get; set; }
         public string Date { get; set; }
-        public int Id { get; set; }
         public int Rink { get; set; }
     }
 }

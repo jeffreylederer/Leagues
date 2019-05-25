@@ -88,40 +88,8 @@
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Leagues.dbo.TuesdayMatchView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="TuesdayMatchView">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="Rink" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="Date" Type="varchar" MaxLength="30" />
-          <Property Name="Rink" Type="int" Nullable="false" />
-          <Property Name="Team1" Type="int" />
-          <Property Name="Team2" Type="int" />
-          <Property Name="Skip1" Type="varchar" MaxLength="50" />
-          <Property Name="Lead1" Type="varchar" MaxLength="50" />
-          <Property Name="Skip2" Type="varchar" MaxLength="50" />
-          <Property Name="Lead2" Type="varchar" MaxLength="50" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="WednesdayMatchView">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="Rink" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="Date" Type="varchar" MaxLength="12" />
-          <Property Name="Rink" Type="int" Nullable="false" />
-          <Property Name="Team1" Type="int" />
-          <Property Name="Team2" Type="int" />
-          <Property Name="Skip1" Type="varchar" MaxLength="50" />
-          <Property Name="ViceSkip1" Type="varchar" MaxLength="50" />
-          <Property Name="Lead1" Type="varchar" MaxLength="50" />
-          <Property Name="Skip2" Type="varchar" MaxLength="50" />
-          <Property Name="ViceSkip2" Type="varchar" MaxLength="50" />
-          <Property Name="Lead2" Type="varchar" MaxLength="50" />
-        </EntityType>
         <Association Name="FK_Tuesday_Players">
           <End Role="Player" Type="Self.Player" Multiplicity="1" />
           <End Role="TuesdayTeam" Type="Self.TuesdayTeam" Multiplicity="*" />
@@ -269,34 +237,6 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
           <EntitySet Name="WednesdayMatch" EntityType="Self.WednesdayMatch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WednesdaySchedule" EntityType="Self.WednesdaySchedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WednesdayTeam" EntityType="Self.WednesdayTeam" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TuesdayMatchView" EntityType="Self.TuesdayMatchView" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TuesdayMatchView].[id] AS [id], 
-    [TuesdayMatchView].[Date] AS [Date], 
-    [TuesdayMatchView].[Rink] AS [Rink], 
-    [TuesdayMatchView].[Team1] AS [Team1], 
-    [TuesdayMatchView].[Team2] AS [Team2], 
-    [TuesdayMatchView].[Skip1] AS [Skip1], 
-    [TuesdayMatchView].[Lead1] AS [Lead1], 
-    [TuesdayMatchView].[Skip2] AS [Skip2], 
-    [TuesdayMatchView].[Lead2] AS [Lead2]
-    FROM [dbo].[TuesdayMatchView] AS [TuesdayMatchView]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="WednesdayMatchView" EntityType="Self.WednesdayMatchView" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [WednesdayMatchView].[id] AS [id], 
-    [WednesdayMatchView].[Date] AS [Date], 
-    [WednesdayMatchView].[Rink] AS [Rink], 
-    [WednesdayMatchView].[Team1] AS [Team1], 
-    [WednesdayMatchView].[Team2] AS [Team2], 
-    [WednesdayMatchView].[Skip1] AS [Skip1], 
-    [WednesdayMatchView].[ViceSkip1] AS [ViceSkip1], 
-    [WednesdayMatchView].[Lead1] AS [Lead1], 
-    [WednesdayMatchView].[Skip2] AS [Skip2], 
-    [WednesdayMatchView].[ViceSkip2] AS [ViceSkip2], 
-    [WednesdayMatchView].[Lead2] AS [Lead2]
-    FROM [dbo].[WednesdayMatchView] AS [WednesdayMatchView]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Tuesday_Players" Association="Self.FK_Tuesday_Players">
             <End Role="Player" EntitySet="Player" />
             <End Role="TuesdayTeam" EntitySet="TuesdayTeam" />
@@ -625,8 +565,6 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
             <End Role="WednesdayMatch" EntitySet="WednesdayMatches" />
           </AssociationSet>
           <EntitySet Name="Users" EntityType="LeaguesModel.User" />
-          <EntitySet Name="TuesdayMatchViews" EntityType="LeaguesModel.TuesdayMatchView" />
-          <EntitySet Name="WednesdayMatchViews" EntityType="LeaguesModel.WednesdayMatchView" />
           <FunctionImport Name="Tuesday_GetMatchAll" ReturnType="Collection(LeaguesModel.Tuesday_GetMatchAll_Result)">
           <Parameter Name="weekid" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -642,38 +580,6 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
           <Property Name="username" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="TuesdayMatchView">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="Rink" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Rink" Type="Int32" Nullable="false" />
-          <Property Name="Team1" Type="Int32" />
-          <Property Name="Team2" Type="Int32" />
-          <Property Name="Skip1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Lead1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Skip2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Lead2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="WednesdayMatchView">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="Rink" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="Rink" Type="Int32" Nullable="false" />
-          <Property Name="Team1" Type="Int32" />
-          <Property Name="Team2" Type="Int32" />
-          <Property Name="Skip1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ViceSkip1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Lead1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Skip2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ViceSkip2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Lead2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <ComplexType Name="Tuesday_GetMatchAll_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -790,38 +696,6 @@ warning 6002: The table/view 'Leagues.dbo.WednesdayMatchView' does not have a pr
                 <ScalarProperty Name="Roles" ColumnName="Roles" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TuesdayMatchViews">
-            <EntityTypeMapping TypeName="LeaguesModel.TuesdayMatchView">
-              <MappingFragment StoreEntitySet="TuesdayMatchView">
-                <ScalarProperty Name="Lead2" ColumnName="Lead2" />
-                <ScalarProperty Name="Skip2" ColumnName="Skip2" />
-                <ScalarProperty Name="Lead1" ColumnName="Lead1" />
-                <ScalarProperty Name="Skip1" ColumnName="Skip1" />
-                <ScalarProperty Name="Team2" ColumnName="Team2" />
-                <ScalarProperty Name="Team1" ColumnName="Team1" />
-                <ScalarProperty Name="Rink" ColumnName="Rink" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WednesdayMatchViews">
-            <EntityTypeMapping TypeName="LeaguesModel.WednesdayMatchView">
-              <MappingFragment StoreEntitySet="WednesdayMatchView">
-                <ScalarProperty Name="Lead2" ColumnName="Lead2" />
-                <ScalarProperty Name="ViceSkip2" ColumnName="ViceSkip2" />
-                <ScalarProperty Name="Skip2" ColumnName="Skip2" />
-                <ScalarProperty Name="Lead1" ColumnName="Lead1" />
-                <ScalarProperty Name="ViceSkip1" ColumnName="ViceSkip1" />
-                <ScalarProperty Name="Skip1" ColumnName="Skip1" />
-                <ScalarProperty Name="Team2" ColumnName="Team2" />
-                <ScalarProperty Name="Team1" ColumnName="Team1" />
-                <ScalarProperty Name="Rink" ColumnName="Rink" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
