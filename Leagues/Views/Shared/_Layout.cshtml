@@ -30,6 +30,7 @@
                             <li>@Html.ActionLink("Matches", "Index", "TuesdayMatches", new { ScheduleID = 1 }, null)</li>
                             <li><a href="/Reports/Byes.aspx?league=Tuesday">Byes</a></li>
                             <li><a href="/Reports/Schedule.aspx?league=Tuesday">View Schedule</a></li>
+                            <li>@Html.ActionLink("Download Label Template", "DownloadFile", "TuesdayMatches")</li>
                             @{
                                 if (HttpContext.Current.User.IsInRole("Admin"))
                                 {
@@ -50,6 +51,7 @@
                             <li>@Html.ActionLink("Matches", "Index", "WednesdayMatches", new { ScheduleID = 1 }, null)</li>
                             <li><a href="~/Reports/Byes.aspx?league=Wednesday">Byes</a></li>
                             <li><a href="/Reports/Schedule.aspx?league=Wednesday">View Schedule</a></li>
+                            <li>@Html.ActionLink("Download Label Template", "DownloadFile", "WednesdayMatches")</li>
                             @{
                                 if (HttpContext.Current.User.IsInRole("Admin"))
                                 {

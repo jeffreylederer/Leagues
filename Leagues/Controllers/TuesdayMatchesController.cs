@@ -56,6 +56,14 @@ namespace Leagues.Controllers
             return View();
         }
 
+        public ActionResult DownloadFile()
+        {
+            string path = Server.MapPath("/App_Data/");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "TuesdayLabels.docx");
+            string fileName = "TuesdayLabels.docx";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateMatches(string DeleteIT)

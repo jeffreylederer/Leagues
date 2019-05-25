@@ -30,10 +30,6 @@ namespace Leagues.Reports {
         
         private TuesdayScoreCardsDataTable tableTuesdayScoreCards;
         
-        private ScoreWeekDataTable tableScoreWeek;
-        
-        private MatchesDataTable tableMatches;
-        
         private GameDataTable tableGame;
         
         private StandingDataTable tableStanding;
@@ -78,12 +74,6 @@ namespace Leagues.Reports {
                 }
                 if ((ds.Tables["TuesdayScoreCards"] != null)) {
                     base.Tables.Add(new TuesdayScoreCardsDataTable(ds.Tables["TuesdayScoreCards"]));
-                }
-                if ((ds.Tables["ScoreWeek"] != null)) {
-                    base.Tables.Add(new ScoreWeekDataTable(ds.Tables["ScoreWeek"]));
-                }
-                if ((ds.Tables["Matches"] != null)) {
-                    base.Tables.Add(new MatchesDataTable(ds.Tables["Matches"]));
                 }
                 if ((ds.Tables["Game"] != null)) {
                     base.Tables.Add(new GameDataTable(ds.Tables["Game"]));
@@ -142,26 +132,6 @@ namespace Leagues.Reports {
         public TuesdayScoreCardsDataTable TuesdayScoreCards {
             get {
                 return this.tableTuesdayScoreCards;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ScoreWeekDataTable ScoreWeek {
-            get {
-                return this.tableScoreWeek;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MatchesDataTable Matches {
-            get {
-                return this.tableMatches;
             }
         }
         
@@ -281,12 +251,6 @@ namespace Leagues.Reports {
                 if ((ds.Tables["TuesdayScoreCards"] != null)) {
                     base.Tables.Add(new TuesdayScoreCardsDataTable(ds.Tables["TuesdayScoreCards"]));
                 }
-                if ((ds.Tables["ScoreWeek"] != null)) {
-                    base.Tables.Add(new ScoreWeekDataTable(ds.Tables["ScoreWeek"]));
-                }
-                if ((ds.Tables["Matches"] != null)) {
-                    base.Tables.Add(new MatchesDataTable(ds.Tables["Matches"]));
-                }
                 if ((ds.Tables["Game"] != null)) {
                     base.Tables.Add(new GameDataTable(ds.Tables["Game"]));
                 }
@@ -350,18 +314,6 @@ namespace Leagues.Reports {
                     this.tableTuesdayScoreCards.InitVars();
                 }
             }
-            this.tableScoreWeek = ((ScoreWeekDataTable)(base.Tables["ScoreWeek"]));
-            if ((initTable == true)) {
-                if ((this.tableScoreWeek != null)) {
-                    this.tableScoreWeek.InitVars();
-                }
-            }
-            this.tableMatches = ((MatchesDataTable)(base.Tables["Matches"]));
-            if ((initTable == true)) {
-                if ((this.tableMatches != null)) {
-                    this.tableMatches.InitVars();
-                }
-            }
             this.tableGame = ((GameDataTable)(base.Tables["Game"]));
             if ((initTable == true)) {
                 if ((this.tableGame != null)) {
@@ -402,10 +354,6 @@ namespace Leagues.Reports {
             base.Tables.Add(this.tableWednesdayTeam);
             this.tableTuesdayScoreCards = new TuesdayScoreCardsDataTable();
             base.Tables.Add(this.tableTuesdayScoreCards);
-            this.tableScoreWeek = new ScoreWeekDataTable();
-            base.Tables.Add(this.tableScoreWeek);
-            this.tableMatches = new MatchesDataTable();
-            base.Tables.Add(this.tableMatches);
             this.tableGame = new GameDataTable();
             base.Tables.Add(this.tableGame);
             this.tableStanding = new StandingDataTable();
@@ -431,18 +379,6 @@ namespace Leagues.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeTuesdayScoreCards() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeScoreWeek() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeMatches() {
             return false;
         }
         
@@ -533,12 +469,6 @@ namespace Leagues.Reports {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TuesdayScoreCardsRowChangeEventHandler(object sender, TuesdayScoreCardsRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void ScoreWeekRowChangeEventHandler(object sender, ScoreWeekRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void MatchesRowChangeEventHandler(object sender, MatchesRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void GameRowChangeEventHandler(object sender, GameRowChangeEvent e);
@@ -1125,15 +1055,15 @@ namespace Leagues.Reports {
             
             private global::System.Data.DataColumn columnRink;
             
-            private global::System.Data.DataColumn columnTeam1Skip;
+            private global::System.Data.DataColumn columnSkip1;
             
-            private global::System.Data.DataColumn columnWeek;
+            private global::System.Data.DataColumn columnDate;
             
-            private global::System.Data.DataColumn columnTeam1Lead;
+            private global::System.Data.DataColumn columnLead1;
             
-            private global::System.Data.DataColumn columnTeam2Skip;
+            private global::System.Data.DataColumn columnSkip2;
             
-            private global::System.Data.DataColumn columnTeam2Lead;
+            private global::System.Data.DataColumn columnLead2;
             
             private global::System.Data.DataColumn columnTeam1;
             
@@ -1182,41 +1112,41 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team1SkipColumn {
+            public global::System.Data.DataColumn Skip1Column {
                 get {
-                    return this.columnTeam1Skip;
+                    return this.columnSkip1;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn WeekColumn {
+            public global::System.Data.DataColumn DateColumn {
                 get {
-                    return this.columnWeek;
+                    return this.columnDate;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team1LeadColumn {
+            public global::System.Data.DataColumn Lead1Column {
                 get {
-                    return this.columnTeam1Lead;
+                    return this.columnLead1;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team2SkipColumn {
+            public global::System.Data.DataColumn Skip2Column {
                 get {
-                    return this.columnTeam2Skip;
+                    return this.columnSkip2;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team2LeadColumn {
+            public global::System.Data.DataColumn Lead2Column {
                 get {
-                    return this.columnTeam2Lead;
+                    return this.columnLead2;
                 }
             }
             
@@ -1273,15 +1203,15 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TuesdayScoreCardsRow AddTuesdayScoreCardsRow(string Rink, string Team1Skip, string Week, string Team1Lead, string Team2Skip, string Team2Lead, string Team1, string Team2) {
+            public TuesdayScoreCardsRow AddTuesdayScoreCardsRow(string Rink, string Skip1, string Date, string Lead1, string Skip2, string Lead2, string Team1, string Team2) {
                 TuesdayScoreCardsRow rowTuesdayScoreCardsRow = ((TuesdayScoreCardsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Rink,
-                        Team1Skip,
-                        Week,
-                        Team1Lead,
-                        Team2Skip,
-                        Team2Lead,
+                        Skip1,
+                        Date,
+                        Lead1,
+                        Skip2,
+                        Lead2,
                         Team1,
                         Team2};
                 rowTuesdayScoreCardsRow.ItemArray = columnValuesArray;
@@ -1307,11 +1237,11 @@ namespace Leagues.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnRink = base.Columns["Rink"];
-                this.columnTeam1Skip = base.Columns["Team1Skip"];
-                this.columnWeek = base.Columns["Week"];
-                this.columnTeam1Lead = base.Columns["Team1Lead"];
-                this.columnTeam2Skip = base.Columns["Team2Skip"];
-                this.columnTeam2Lead = base.Columns["Team2Lead"];
+                this.columnSkip1 = base.Columns["Skip1"];
+                this.columnDate = base.Columns["Date"];
+                this.columnLead1 = base.Columns["Lead1"];
+                this.columnSkip2 = base.Columns["Skip2"];
+                this.columnLead2 = base.Columns["Lead2"];
                 this.columnTeam1 = base.Columns["Team1"];
                 this.columnTeam2 = base.Columns["Team2"];
             }
@@ -1321,16 +1251,16 @@ namespace Leagues.Reports {
             private void InitClass() {
                 this.columnRink = new global::System.Data.DataColumn("Rink", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRink);
-                this.columnTeam1Skip = new global::System.Data.DataColumn("Team1Skip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam1Skip);
-                this.columnWeek = new global::System.Data.DataColumn("Week", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWeek);
-                this.columnTeam1Lead = new global::System.Data.DataColumn("Team1Lead", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam1Lead);
-                this.columnTeam2Skip = new global::System.Data.DataColumn("Team2Skip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam2Skip);
-                this.columnTeam2Lead = new global::System.Data.DataColumn("Team2Lead", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam2Lead);
+                this.columnSkip1 = new global::System.Data.DataColumn("Skip1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkip1);
+                this.columnDate = new global::System.Data.DataColumn("Date", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDate);
+                this.columnLead1 = new global::System.Data.DataColumn("Lead1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLead1);
+                this.columnSkip2 = new global::System.Data.DataColumn("Skip2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkip2);
+                this.columnLead2 = new global::System.Data.DataColumn("Lead2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLead2);
                 this.columnTeam1 = new global::System.Data.DataColumn("Team1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeam1);
                 this.columnTeam2 = new global::System.Data.DataColumn("Team2", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1421,514 +1351,6 @@ namespace Leagues.Reports {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TuesdayScoreCardsDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ScoreWeekDataTable : global::System.Data.TypedTableBase<ScoreWeekRow> {
-            
-            private global::System.Data.DataColumn columnmatchid;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ScoreWeekDataTable() {
-                this.TableName = "ScoreWeek";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ScoreWeekDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected ScoreWeekDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn matchidColumn {
-                get {
-                    return this.columnmatchid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ScoreWeekRow this[int index] {
-                get {
-                    return ((ScoreWeekRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ScoreWeekRowChangeEventHandler ScoreWeekRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ScoreWeekRowChangeEventHandler ScoreWeekRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ScoreWeekRowChangeEventHandler ScoreWeekRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ScoreWeekRowChangeEventHandler ScoreWeekRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddScoreWeekRow(ScoreWeekRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ScoreWeekRow AddScoreWeekRow(int matchid) {
-                ScoreWeekRow rowScoreWeekRow = ((ScoreWeekRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        matchid};
-                rowScoreWeekRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowScoreWeekRow);
-                return rowScoreWeekRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                ScoreWeekDataTable cln = ((ScoreWeekDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new ScoreWeekDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnmatchid = base.Columns["matchid"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnmatchid = new global::System.Data.DataColumn("matchid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmatchid);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ScoreWeekRow NewScoreWeekRow() {
-                return ((ScoreWeekRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ScoreWeekRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(ScoreWeekRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.ScoreWeekRowChanged != null)) {
-                    this.ScoreWeekRowChanged(this, new ScoreWeekRowChangeEvent(((ScoreWeekRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.ScoreWeekRowChanging != null)) {
-                    this.ScoreWeekRowChanging(this, new ScoreWeekRowChangeEvent(((ScoreWeekRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.ScoreWeekRowDeleted != null)) {
-                    this.ScoreWeekRowDeleted(this, new ScoreWeekRowChangeEvent(((ScoreWeekRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.ScoreWeekRowDeleting != null)) {
-                    this.ScoreWeekRowDeleting(this, new ScoreWeekRowChangeEvent(((ScoreWeekRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveScoreWeekRow(ScoreWeekRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                LeaguesDS ds = new LeaguesDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ScoreWeekDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MatchesDataTable : global::System.Data.TypedTableBase<MatchesRow> {
-            
-            private global::System.Data.DataColumn columnweekid;
-            
-            private global::System.Data.DataColumn columnWeekDate;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MatchesDataTable() {
-                this.TableName = "Matches";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal MatchesDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected MatchesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn weekidColumn {
-                get {
-                    return this.columnweekid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn WeekDateColumn {
-                get {
-                    return this.columnWeekDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MatchesRow this[int index] {
-                get {
-                    return ((MatchesRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event MatchesRowChangeEventHandler MatchesRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event MatchesRowChangeEventHandler MatchesRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event MatchesRowChangeEventHandler MatchesRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event MatchesRowChangeEventHandler MatchesRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddMatchesRow(MatchesRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MatchesRow AddMatchesRow(int weekid, string WeekDate) {
-                MatchesRow rowMatchesRow = ((MatchesRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        weekid,
-                        WeekDate};
-                rowMatchesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMatchesRow);
-                return rowMatchesRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                MatchesDataTable cln = ((MatchesDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new MatchesDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnweekid = base.Columns["weekid"];
-                this.columnWeekDate = base.Columns["WeekDate"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnweekid = new global::System.Data.DataColumn("weekid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnweekid);
-                this.columnWeekDate = new global::System.Data.DataColumn("WeekDate", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWeekDate);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MatchesRow NewMatchesRow() {
-                return ((MatchesRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MatchesRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(MatchesRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.MatchesRowChanged != null)) {
-                    this.MatchesRowChanged(this, new MatchesRowChangeEvent(((MatchesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.MatchesRowChanging != null)) {
-                    this.MatchesRowChanging(this, new MatchesRowChangeEvent(((MatchesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.MatchesRowDeleted != null)) {
-                    this.MatchesRowDeleted(this, new MatchesRowChangeEvent(((MatchesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.MatchesRowDeleting != null)) {
-                    this.MatchesRowDeleting(this, new MatchesRowChangeEvent(((MatchesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveMatchesRow(MatchesRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                LeaguesDS ds = new LeaguesDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MatchesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2918,23 +2340,23 @@ namespace Leagues.Reports {
             
             private global::System.Data.DataColumn columnRink;
             
-            private global::System.Data.DataColumn columnTeam1Skip;
+            private global::System.Data.DataColumn columnSkip1;
             
-            private global::System.Data.DataColumn columnWeek;
+            private global::System.Data.DataColumn columnDate;
             
-            private global::System.Data.DataColumn columnTeam1Lead;
+            private global::System.Data.DataColumn columnLead1;
             
-            private global::System.Data.DataColumn columnTeam2Skip;
+            private global::System.Data.DataColumn columnSkip2;
             
-            private global::System.Data.DataColumn columnTeam2Lead;
+            private global::System.Data.DataColumn columnLead2;
             
             private global::System.Data.DataColumn columnTeam1;
             
             private global::System.Data.DataColumn columnTeam2;
             
-            private global::System.Data.DataColumn columnTeam1ViceSkip;
+            private global::System.Data.DataColumn columnVice1;
             
-            private global::System.Data.DataColumn columnTeam2ViceSkip;
+            private global::System.Data.DataColumn columnVice2;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -2979,41 +2401,41 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team1SkipColumn {
+            public global::System.Data.DataColumn Skip1Column {
                 get {
-                    return this.columnTeam1Skip;
+                    return this.columnSkip1;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn WeekColumn {
+            public global::System.Data.DataColumn DateColumn {
                 get {
-                    return this.columnWeek;
+                    return this.columnDate;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team1LeadColumn {
+            public global::System.Data.DataColumn Lead1Column {
                 get {
-                    return this.columnTeam1Lead;
+                    return this.columnLead1;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team2SkipColumn {
+            public global::System.Data.DataColumn Skip2Column {
                 get {
-                    return this.columnTeam2Skip;
+                    return this.columnSkip2;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team2LeadColumn {
+            public global::System.Data.DataColumn Lead2Column {
                 get {
-                    return this.columnTeam2Lead;
+                    return this.columnLead2;
                 }
             }
             
@@ -3035,17 +2457,17 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team1ViceSkipColumn {
+            public global::System.Data.DataColumn Vice1Column {
                 get {
-                    return this.columnTeam1ViceSkip;
+                    return this.columnVice1;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Team2ViceSkipColumn {
+            public global::System.Data.DataColumn Vice2Column {
                 get {
-                    return this.columnTeam2ViceSkip;
+                    return this.columnVice2;
                 }
             }
             
@@ -3086,19 +2508,19 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public WednesdayScoreCardsRow AddWednesdayScoreCardsRow(string Rink, string Team1Skip, string Week, string Team1Lead, string Team2Skip, string Team2Lead, string Team1, string Team2, string Team1ViceSkip, string Team2ViceSkip) {
+            public WednesdayScoreCardsRow AddWednesdayScoreCardsRow(string Rink, string Skip1, string Date, string Lead1, string Skip2, string Lead2, string Team1, string Team2, string Vice1, string Vice2) {
                 WednesdayScoreCardsRow rowWednesdayScoreCardsRow = ((WednesdayScoreCardsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Rink,
-                        Team1Skip,
-                        Week,
-                        Team1Lead,
-                        Team2Skip,
-                        Team2Lead,
+                        Skip1,
+                        Date,
+                        Lead1,
+                        Skip2,
+                        Lead2,
                         Team1,
                         Team2,
-                        Team1ViceSkip,
-                        Team2ViceSkip};
+                        Vice1,
+                        Vice2};
                 rowWednesdayScoreCardsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowWednesdayScoreCardsRow);
                 return rowWednesdayScoreCardsRow;
@@ -3122,15 +2544,15 @@ namespace Leagues.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnRink = base.Columns["Rink"];
-                this.columnTeam1Skip = base.Columns["Team1Skip"];
-                this.columnWeek = base.Columns["Week"];
-                this.columnTeam1Lead = base.Columns["Team1Lead"];
-                this.columnTeam2Skip = base.Columns["Team2Skip"];
-                this.columnTeam2Lead = base.Columns["Team2Lead"];
+                this.columnSkip1 = base.Columns["Skip1"];
+                this.columnDate = base.Columns["Date"];
+                this.columnLead1 = base.Columns["Lead1"];
+                this.columnSkip2 = base.Columns["Skip2"];
+                this.columnLead2 = base.Columns["Lead2"];
                 this.columnTeam1 = base.Columns["Team1"];
                 this.columnTeam2 = base.Columns["Team2"];
-                this.columnTeam1ViceSkip = base.Columns["Team1ViceSkip"];
-                this.columnTeam2ViceSkip = base.Columns["Team2ViceSkip"];
+                this.columnVice1 = base.Columns["Vice1"];
+                this.columnVice2 = base.Columns["Vice2"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3138,24 +2560,24 @@ namespace Leagues.Reports {
             private void InitClass() {
                 this.columnRink = new global::System.Data.DataColumn("Rink", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRink);
-                this.columnTeam1Skip = new global::System.Data.DataColumn("Team1Skip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam1Skip);
-                this.columnWeek = new global::System.Data.DataColumn("Week", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWeek);
-                this.columnTeam1Lead = new global::System.Data.DataColumn("Team1Lead", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam1Lead);
-                this.columnTeam2Skip = new global::System.Data.DataColumn("Team2Skip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam2Skip);
-                this.columnTeam2Lead = new global::System.Data.DataColumn("Team2Lead", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam2Lead);
+                this.columnSkip1 = new global::System.Data.DataColumn("Skip1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkip1);
+                this.columnDate = new global::System.Data.DataColumn("Date", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDate);
+                this.columnLead1 = new global::System.Data.DataColumn("Lead1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLead1);
+                this.columnSkip2 = new global::System.Data.DataColumn("Skip2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkip2);
+                this.columnLead2 = new global::System.Data.DataColumn("Lead2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLead2);
                 this.columnTeam1 = new global::System.Data.DataColumn("Team1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeam1);
                 this.columnTeam2 = new global::System.Data.DataColumn("Team2", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeam2);
-                this.columnTeam1ViceSkip = new global::System.Data.DataColumn("Team1ViceSkip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam1ViceSkip);
-                this.columnTeam2ViceSkip = new global::System.Data.DataColumn("Team2ViceSkip", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTeam2ViceSkip);
+                this.columnVice1 = new global::System.Data.DataColumn("Vice1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVice1);
+                this.columnVice2 = new global::System.Data.DataColumn("Vice2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVice2);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3540,81 +2962,81 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team1Skip {
+            public string Skip1 {
                 get {
                     try {
-                        return ((string)(this[this.tableTuesdayScoreCards.Team1SkipColumn]));
+                        return ((string)(this[this.tableTuesdayScoreCards.Skip1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team1Skip\' in table \'TuesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Skip1\' in table \'TuesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTuesdayScoreCards.Team1SkipColumn] = value;
+                    this[this.tableTuesdayScoreCards.Skip1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Week {
+            public string Date {
                 get {
                     try {
-                        return ((string)(this[this.tableTuesdayScoreCards.WeekColumn]));
+                        return ((string)(this[this.tableTuesdayScoreCards.DateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Week\' in table \'TuesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Date\' in table \'TuesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTuesdayScoreCards.WeekColumn] = value;
+                    this[this.tableTuesdayScoreCards.DateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team1Lead {
+            public string Lead1 {
                 get {
                     try {
-                        return ((string)(this[this.tableTuesdayScoreCards.Team1LeadColumn]));
+                        return ((string)(this[this.tableTuesdayScoreCards.Lead1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team1Lead\' in table \'TuesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Lead1\' in table \'TuesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTuesdayScoreCards.Team1LeadColumn] = value;
+                    this[this.tableTuesdayScoreCards.Lead1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team2Skip {
+            public string Skip2 {
                 get {
                     try {
-                        return ((string)(this[this.tableTuesdayScoreCards.Team2SkipColumn]));
+                        return ((string)(this[this.tableTuesdayScoreCards.Skip2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team2Skip\' in table \'TuesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Skip2\' in table \'TuesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTuesdayScoreCards.Team2SkipColumn] = value;
+                    this[this.tableTuesdayScoreCards.Skip2Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team2Lead {
+            public string Lead2 {
                 get {
                     try {
-                        return ((string)(this[this.tableTuesdayScoreCards.Team2LeadColumn]));
+                        return ((string)(this[this.tableTuesdayScoreCards.Lead2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team2Lead\' in table \'TuesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Lead2\' in table \'TuesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTuesdayScoreCards.Team2LeadColumn] = value;
+                    this[this.tableTuesdayScoreCards.Lead2Column] = value;
                 }
             }
             
@@ -3664,62 +3086,62 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam1SkipNull() {
-                return this.IsNull(this.tableTuesdayScoreCards.Team1SkipColumn);
+            public bool IsSkip1Null() {
+                return this.IsNull(this.tableTuesdayScoreCards.Skip1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam1SkipNull() {
-                this[this.tableTuesdayScoreCards.Team1SkipColumn] = global::System.Convert.DBNull;
+            public void SetSkip1Null() {
+                this[this.tableTuesdayScoreCards.Skip1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsWeekNull() {
-                return this.IsNull(this.tableTuesdayScoreCards.WeekColumn);
+            public bool IsDateNull() {
+                return this.IsNull(this.tableTuesdayScoreCards.DateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetWeekNull() {
-                this[this.tableTuesdayScoreCards.WeekColumn] = global::System.Convert.DBNull;
+            public void SetDateNull() {
+                this[this.tableTuesdayScoreCards.DateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam1LeadNull() {
-                return this.IsNull(this.tableTuesdayScoreCards.Team1LeadColumn);
+            public bool IsLead1Null() {
+                return this.IsNull(this.tableTuesdayScoreCards.Lead1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam1LeadNull() {
-                this[this.tableTuesdayScoreCards.Team1LeadColumn] = global::System.Convert.DBNull;
+            public void SetLead1Null() {
+                this[this.tableTuesdayScoreCards.Lead1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam2SkipNull() {
-                return this.IsNull(this.tableTuesdayScoreCards.Team2SkipColumn);
+            public bool IsSkip2Null() {
+                return this.IsNull(this.tableTuesdayScoreCards.Skip2Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam2SkipNull() {
-                this[this.tableTuesdayScoreCards.Team2SkipColumn] = global::System.Convert.DBNull;
+            public void SetSkip2Null() {
+                this[this.tableTuesdayScoreCards.Skip2Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam2LeadNull() {
-                return this.IsNull(this.tableTuesdayScoreCards.Team2LeadColumn);
+            public bool IsLead2Null() {
+                return this.IsNull(this.tableTuesdayScoreCards.Lead2Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam2LeadNull() {
-                this[this.tableTuesdayScoreCards.Team2LeadColumn] = global::System.Convert.DBNull;
+            public void SetLead2Null() {
+                this[this.tableTuesdayScoreCards.Lead2Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3744,120 +3166,6 @@ namespace Leagues.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTeam2Null() {
                 this[this.tableTuesdayScoreCards.Team2Column] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class ScoreWeekRow : global::System.Data.DataRow {
-            
-            private ScoreWeekDataTable tableScoreWeek;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ScoreWeekRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableScoreWeek = ((ScoreWeekDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int matchid {
-                get {
-                    try {
-                        return ((int)(this[this.tableScoreWeek.matchidColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'matchid\' in table \'ScoreWeek\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableScoreWeek.matchidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmatchidNull() {
-                return this.IsNull(this.tableScoreWeek.matchidColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmatchidNull() {
-                this[this.tableScoreWeek.matchidColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class MatchesRow : global::System.Data.DataRow {
-            
-            private MatchesDataTable tableMatches;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal MatchesRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableMatches = ((MatchesDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int weekid {
-                get {
-                    try {
-                        return ((int)(this[this.tableMatches.weekidColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'weekid\' in table \'Matches\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMatches.weekidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string WeekDate {
-                get {
-                    try {
-                        return ((string)(this[this.tableMatches.WeekDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'WeekDate\' in table \'Matches\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMatches.WeekDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsweekidNull() {
-                return this.IsNull(this.tableMatches.weekidColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetweekidNull() {
-                this[this.tableMatches.weekidColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsWeekDateNull() {
-                return this.IsNull(this.tableMatches.WeekDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetWeekDateNull() {
-                this[this.tableMatches.WeekDateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4414,81 +3722,81 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team1Skip {
+            public string Skip1 {
                 get {
                     try {
-                        return ((string)(this[this.tableWednesdayScoreCards.Team1SkipColumn]));
+                        return ((string)(this[this.tableWednesdayScoreCards.Skip1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team1Skip\' in table \'WednesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Skip1\' in table \'WednesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWednesdayScoreCards.Team1SkipColumn] = value;
+                    this[this.tableWednesdayScoreCards.Skip1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Week {
+            public string Date {
                 get {
                     try {
-                        return ((string)(this[this.tableWednesdayScoreCards.WeekColumn]));
+                        return ((string)(this[this.tableWednesdayScoreCards.DateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Week\' in table \'WednesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Date\' in table \'WednesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWednesdayScoreCards.WeekColumn] = value;
+                    this[this.tableWednesdayScoreCards.DateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team1Lead {
+            public string Lead1 {
                 get {
                     try {
-                        return ((string)(this[this.tableWednesdayScoreCards.Team1LeadColumn]));
+                        return ((string)(this[this.tableWednesdayScoreCards.Lead1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team1Lead\' in table \'WednesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Lead1\' in table \'WednesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWednesdayScoreCards.Team1LeadColumn] = value;
+                    this[this.tableWednesdayScoreCards.Lead1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team2Skip {
+            public string Skip2 {
                 get {
                     try {
-                        return ((string)(this[this.tableWednesdayScoreCards.Team2SkipColumn]));
+                        return ((string)(this[this.tableWednesdayScoreCards.Skip2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team2Skip\' in table \'WednesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Skip2\' in table \'WednesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWednesdayScoreCards.Team2SkipColumn] = value;
+                    this[this.tableWednesdayScoreCards.Skip2Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team2Lead {
+            public string Lead2 {
                 get {
                     try {
-                        return ((string)(this[this.tableWednesdayScoreCards.Team2LeadColumn]));
+                        return ((string)(this[this.tableWednesdayScoreCards.Lead2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team2Lead\' in table \'WednesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Lead2\' in table \'WednesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWednesdayScoreCards.Team2LeadColumn] = value;
+                    this[this.tableWednesdayScoreCards.Lead2Column] = value;
                 }
             }
             
@@ -4526,33 +3834,33 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team1ViceSkip {
+            public string Vice1 {
                 get {
                     try {
-                        return ((string)(this[this.tableWednesdayScoreCards.Team1ViceSkipColumn]));
+                        return ((string)(this[this.tableWednesdayScoreCards.Vice1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team1ViceSkip\' in table \'WednesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Vice1\' in table \'WednesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWednesdayScoreCards.Team1ViceSkipColumn] = value;
+                    this[this.tableWednesdayScoreCards.Vice1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Team2ViceSkip {
+            public string Vice2 {
                 get {
                     try {
-                        return ((string)(this[this.tableWednesdayScoreCards.Team2ViceSkipColumn]));
+                        return ((string)(this[this.tableWednesdayScoreCards.Vice2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Team2ViceSkip\' in table \'WednesdayScoreCards\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Vice2\' in table \'WednesdayScoreCards\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWednesdayScoreCards.Team2ViceSkipColumn] = value;
+                    this[this.tableWednesdayScoreCards.Vice2Column] = value;
                 }
             }
             
@@ -4570,62 +3878,62 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam1SkipNull() {
-                return this.IsNull(this.tableWednesdayScoreCards.Team1SkipColumn);
+            public bool IsSkip1Null() {
+                return this.IsNull(this.tableWednesdayScoreCards.Skip1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam1SkipNull() {
-                this[this.tableWednesdayScoreCards.Team1SkipColumn] = global::System.Convert.DBNull;
+            public void SetSkip1Null() {
+                this[this.tableWednesdayScoreCards.Skip1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsWeekNull() {
-                return this.IsNull(this.tableWednesdayScoreCards.WeekColumn);
+            public bool IsDateNull() {
+                return this.IsNull(this.tableWednesdayScoreCards.DateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetWeekNull() {
-                this[this.tableWednesdayScoreCards.WeekColumn] = global::System.Convert.DBNull;
+            public void SetDateNull() {
+                this[this.tableWednesdayScoreCards.DateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam1LeadNull() {
-                return this.IsNull(this.tableWednesdayScoreCards.Team1LeadColumn);
+            public bool IsLead1Null() {
+                return this.IsNull(this.tableWednesdayScoreCards.Lead1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam1LeadNull() {
-                this[this.tableWednesdayScoreCards.Team1LeadColumn] = global::System.Convert.DBNull;
+            public void SetLead1Null() {
+                this[this.tableWednesdayScoreCards.Lead1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam2SkipNull() {
-                return this.IsNull(this.tableWednesdayScoreCards.Team2SkipColumn);
+            public bool IsSkip2Null() {
+                return this.IsNull(this.tableWednesdayScoreCards.Skip2Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam2SkipNull() {
-                this[this.tableWednesdayScoreCards.Team2SkipColumn] = global::System.Convert.DBNull;
+            public void SetSkip2Null() {
+                this[this.tableWednesdayScoreCards.Skip2Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam2LeadNull() {
-                return this.IsNull(this.tableWednesdayScoreCards.Team2LeadColumn);
+            public bool IsLead2Null() {
+                return this.IsNull(this.tableWednesdayScoreCards.Lead2Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam2LeadNull() {
-                this[this.tableWednesdayScoreCards.Team2LeadColumn] = global::System.Convert.DBNull;
+            public void SetLead2Null() {
+                this[this.tableWednesdayScoreCards.Lead2Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4654,26 +3962,26 @@ namespace Leagues.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam1ViceSkipNull() {
-                return this.IsNull(this.tableWednesdayScoreCards.Team1ViceSkipColumn);
+            public bool IsVice1Null() {
+                return this.IsNull(this.tableWednesdayScoreCards.Vice1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam1ViceSkipNull() {
-                this[this.tableWednesdayScoreCards.Team1ViceSkipColumn] = global::System.Convert.DBNull;
+            public void SetVice1Null() {
+                this[this.tableWednesdayScoreCards.Vice1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTeam2ViceSkipNull() {
-                return this.IsNull(this.tableWednesdayScoreCards.Team2ViceSkipColumn);
+            public bool IsVice2Null() {
+                return this.IsNull(this.tableWednesdayScoreCards.Vice2Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTeam2ViceSkipNull() {
-                this[this.tableWednesdayScoreCards.Team2ViceSkipColumn] = global::System.Convert.DBNull;
+            public void SetVice2Null() {
+                this[this.tableWednesdayScoreCards.Vice2Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -4765,74 +4073,6 @@ namespace Leagues.Reports {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TuesdayScoreCardsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class ScoreWeekRowChangeEvent : global::System.EventArgs {
-            
-            private ScoreWeekRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ScoreWeekRowChangeEvent(ScoreWeekRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ScoreWeekRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class MatchesRowChangeEvent : global::System.EventArgs {
-            
-            private MatchesRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MatchesRowChangeEvent(MatchesRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MatchesRow Row {
                 get {
                     return this.eventRow;
                 }

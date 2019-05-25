@@ -24,57 +24,29 @@ namespace Leagues.Reports
                 var weekid = int.Parse(Request.QueryString["weekid"]);
                
                 var ds = new LeaguesDS();
-                string date;
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.WednesdayMatches.Where(x => x.GameDate == weekid && x.Rink !=-1).SortBy("Rink")) 
-                    {
-                        ds.ScoreWeek.AddScoreWeekRow(item.id);
-                    }
-                    date = db.WednesdaySchedules.Find(weekid).GameDateFormatted;
+                    foreach (var item in db.Wednesday_GetMatchAll(weekid))
+                        ds.WednesdayScoreCards.AddWednesdayScoreCardsRow(
+                            item.Rink.ToString(),
+                            item.Skip1,
+                            item.Date,
+                            item.Lead1,
+                            item.Skip2,
+                            item.Lead2,
+                            item.Team1.ToString(),
+                            item.Team2.ToString(),
+                            item.Vice1,
+                            item.Vice2);
                 }
-                rv1.LocalReport.ReportPath = "./Reports/ReportFiles/WednesdayWeekScoreCards.rdlc";
-                rv1.LocalReport.DataSources.Add(new ReportDataSource("Week", ds.ScoreWeek.Rows));
-
-                var p1 = new ReportParameter("WeekDate", date);
-                rv1.LocalReport.SetParameters(new ReportParameter[] {p1});
+                rv1.LocalReport.ReportPath = "./Reports/ReportFiles/WednesdayScoreCard.rdlc";
+                rv1.LocalReport.DataSources.Add(new ReportDataSource("Match", ds.WednesdayScoreCards.Rows));
                 
                // Refresh the ReportViewer.
                rv1.LocalReport.Refresh();
             }
         }
-
-
-
-        public void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
-        {
-            using (LeaguesEntities db = new LeaguesEntities())
-            { 
-                using (var ds = new LeaguesDS())
-                {
-                    switch (e.ReportPath)
-                    {
-                        case "WednesdayScoreCard":
-                            var id = int.Parse(e.Parameters["matchid"].Values[0]);
-                            var match = db.WednesdayMatches.Find(id);
-                            ds.WednesdayScoreCards.AddWednesdayScoreCardsRow(
-                                match.Rink.ToString(),
-                                match.WednesdayTeam.Player.NickName,
-                                match.WednesdaySchedule.GameDateFormatted,
-                                match.WednesdayTeam.Player2.NickName,
-                                match.WednesdayTeam1.Player.NickName,
-                                match.WednesdayTeam1.Player2.NickName,
-                                match.Team1.ToString(),
-                                match.Team2.ToString(),
-                                match.WednesdayTeam.Player1.NickName,
-                                match.WednesdayTeam1.Player1.NickName);
-                            e.DataSources.Add(new ReportDataSource("Match", ds.WednesdayScoreCards.Rows));
-                            break;
-                    }
-                }
-            }
-        }
-
+        
         protected void Page_PreRender(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -27,17 +27,22 @@ namespace Leagues.Reports
                 string date;
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.TuesdayMatches.Where(x => x.GameDate == weekid && x.Rink !=-1).SortBy("Rink")) 
+                    foreach (var item in db.Tuesday_GetMatchAll(weekid))
                     {
-                        ds.ScoreWeek.AddScoreWeekRow(item.id);
+                        ds.TuesdayScoreCards.AddTuesdayScoreCardsRow(
+                            item.Rink.ToString(),
+                            item.Skip1,
+                            item.Date,
+                            item.Lead1,
+                            item.Skip2,
+                            item.Lead2,
+                            item.Team1.ToString(),
+                            item.Team2.ToString());
                     }
-                    date = db.TuesdaySchedules.Find(weekid).GameDateFormatted;
                 }
-                rv1.LocalReport.ReportPath = "./Reports/ReportFiles/TuesdayWeekScoreCards.rdlc";
-                rv1.LocalReport.DataSources.Add(new ReportDataSource("Week", ds.ScoreWeek.Rows));
+                rv1.LocalReport.ReportPath = "./Reports/ReportFiles/TuesdayScoreCard.rdlc";
+                rv1.LocalReport.DataSources.Add(new ReportDataSource("Match", ds.TuesdayScoreCards.Rows));
 
-                var p1 = new ReportParameter("WeekDate", date);
-                rv1.LocalReport.SetParameters(new ReportParameter[] {p1});
                 
                // Refresh the ReportViewer.
                rv1.LocalReport.Refresh();
@@ -46,33 +51,7 @@ namespace Leagues.Reports
 
 
 
-        public void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
-        {
-            using (LeaguesEntities db = new LeaguesEntities())
-            { 
-                using (var ds = new LeaguesDS())
-                {
-                    switch (e.ReportPath)
-                    {
-                        case "TuesdayScoreCard":
-                            var id = int.Parse(e.Parameters["matchid"].Values[0]);
-                            var match = db.TuesdayMatches.Find(id);
-                            ds.TuesdayScoreCards.AddTuesdayScoreCardsRow(
-                                match.Rink.ToString(),
-                                match.TuesdayTeam.Player.NickName,
-                                match.TuesdaySchedule.GameDateFormatted,
-                                match.TuesdayTeam.Player1.NickName,
-                                match.TuesdayTeam1.Player.NickName,
-                                match.TuesdayTeam1.Player1.NickName,
-                                match.Team1.ToString(),
-                                match.Team2.ToString());
-                            e.DataSources.Add(new ReportDataSource("Match", ds.TuesdayScoreCards.Rows));
-                            break;
-                    }
-                }
-            }
-        }
-
+        
         protected void Page_PreRender(object sender, EventArgs e)
         {
             if (!IsPostBack)
