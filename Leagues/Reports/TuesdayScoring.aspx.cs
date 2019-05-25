@@ -22,6 +22,7 @@ namespace Leagues.Reports
                 var ds = new LeaguesDS();
                 var WeekDate = "";
                 bool IsBye = false;
+                bool isCancelled = false;
 
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
@@ -46,9 +47,11 @@ namespace Leagues.Reports
                             item.Team2Score, item.Rink, forfeit);
 
                     }
-                    WeekDate = db.TuesdaySchedules.Find(weekid).GameDateFormatted;
+                    var week = db.TuesdaySchedules.Find(weekid);
+                    WeekDate = week.GameDateFormatted;
+                    isCancelled = week.IsCancelled;
                     var matches = db.TuesdayMatches.Where(x => x.Rink == -1 && x.GameDate == weekid);
-                    if (matches.Count() > 0)
+                    if (matches.Any())
                     {
                         var match = matches.First();
 
@@ -59,22 +62,23 @@ namespace Leagues.Reports
                     }
                     else
                     {
-                        rv1.LocalReport.DataSources.Add(new ReportDataSource("Bye", new System.Data.DataTable()));
+                        rv1.LocalReport.DataSources.Add(new ReportDataSource("Bye", new LeaguesDS.ByesDataTable().Rows));
                     }
 
                 }
 
 
-            rv1.LocalReport.DataSources.Add(new ReportDataSource("Game", ds.Game.Rows));
-            rv1.LocalReport.DataSources.Add(new ReportDataSource("Stand",CalculateStandings.Tuesday(weekid).Rows));
+                rv1.LocalReport.DataSources.Add(new ReportDataSource("Game", ds.Game.Rows));
+                rv1.LocalReport.DataSources.Add(new ReportDataSource("Stand",CalculateStandings.Tuesday(weekid).Rows));
 
-            var p1 = new ReportParameter("WeekDate", WeekDate);
-            var p2 = new ReportParameter("League", "Tuesday");
-            var p3 = new ReportParameter("IsBye", IsBye ? "1" : "0");
-            rv1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3 });
+                var p1 = new ReportParameter("WeekDate", WeekDate);
+                var p2 = new ReportParameter("League", "Tuesday");
+                var p3 = new ReportParameter("IsBye", IsBye ? "1" : "0");
+                var p4= new ReportParameter("Cancelled",isCancelled?"1":"0");
+                rv1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3, p4 });
 
-            //parameters
-            rv1.ShowToolBar = true;
+                //parameters
+                rv1.ShowToolBar = true;
 
                 // Refresh the ReportViewer.
                 rv1.LocalReport.Refresh();

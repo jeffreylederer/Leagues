@@ -725,6 +725,9 @@ Forfeiting</Value>
             <Left>0.01958in</Left>
             <Height>0.67708in</Height>
             <Width>7.36459in</Width>
+            <Visibility>
+              <Hidden>=Parameters!Cancelled.Value="1"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1200,6 +1203,9 @@ Forfeiting</Value>
             <Height>0.25in</Height>
             <Width>7.33459in</Width>
             <ZIndex>2</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!Cancelled.Value="1"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1491,7 +1497,7 @@ Forfeiting</Value>
             <Width>3.05083in</Width>
             <ZIndex>5</ZIndex>
             <Visibility>
-              <Hidden>=Parameters!IsBye.Value="0"</Hidden>
+              <Hidden>=Parameters!IsBye.Value="0" Or Parameters!Cancelled.Value="1"</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -1499,6 +1505,41 @@ Forfeiting</Value>
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox17">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Matches cancelled this week</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox17</rd:DefaultName>
+            <Top>0.07167in</Top>
+            <Left>2.83208in</Left>
+            <Height>0.25in</Height>
+            <Width>2.21875in</Width>
+            <ZIndex>6</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!Cancelled.Value="0"</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>2.98833in</Height>
         <Style />
@@ -1606,6 +1647,10 @@ Forfeiting</Value>
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="Cancelled">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1626,6 +1671,11 @@ Forfeiting</Value>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>IsBye</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>Cancelled</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

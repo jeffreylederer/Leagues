@@ -130,7 +130,7 @@ namespace Leagues.Code
                         Wins = 0,
                         Loses = 0,
                         TotalScore = 0,
-                        Players = team.Player.NickName + ", " + team.Player1.NickName + team.Player2.NickName
+                        Players = team.Player.NickName + ", " + team.Player1.NickName + ", " + team.Player2.NickName
                     });
                 }
                 foreach (var week in db.WednesdaySchedules.Where(x => x.id <= weekid))

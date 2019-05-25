@@ -22,52 +22,71 @@ namespace Leagues.Reports
                 var ds = new LeaguesDS();
                 var WeekDate = "";
                 bool IsBye = false;
+                bool isCancelled = false;
+
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.WednesdayMatches.Where(x=>x.GameDate==weekid && x.Rink!=-1).OrderBy(x => x.Rink))
+                    var week = db.WednesdaySchedules.Find(weekid);
+                    WeekDate = week.GameDateFormatted;
+                    if (!week.IsCancelled)
                     {
-                        var forfeit = "";
-                        switch (item.Forfeit)
+                        foreach (var item in db.WednesdayMatches.Where(x => x.GameDate == weekid && x.Rink != -1)
+                            .OrderBy(x => x.Rink))
                         {
-                            case 2:
-                                forfeit = item.Team1.ToString();
-                                break;
-                            case 3:
-                                forfeit = item.Team2.ToString();
-                                break;
+                            var forfeit = "";
+                            switch (item.Forfeit)
+                            {
+                                case 2:
+                                    forfeit = item.Team1.ToString();
+                                    break;
+                                case 3:
+                                    forfeit = item.Team2.ToString();
+                                    break;
+                            }
+                            ds.Game.AddGameRow(item.Team1,
+                                item.WednesdayTeam.Player.NickName + ", " + item.WednesdayTeam.Player1.NickName + ", " +
+                                item.WednesdayTeam.Player2.NickName,
+                                item.Team2.Value,
+                                item.WednesdayTeam1.Player.NickName + ", " + item.WednesdayTeam1.Player1.NickName +
+                                ", " + item.WednesdayTeam1.Player2.NickName,
+                                item.Team1Score,
+                                item.Team2Score, item.Rink, forfeit);
                         }
-                        ds.Game.AddGameRow(item.Team1, 
-                            item.WednesdayTeam.Player.NickName + ", " + item.WednesdayTeam.Player1.NickName + ", " + item.WednesdayTeam.Player2.NickName,
-                            item.Team2.Value,
-                            item.WednesdayTeam1.Player.NickName + ", " + item.WednesdayTeam1.Player1.NickName + ", " + item.WednesdayTeam1.Player2.NickName,
-                            item.Team1Score,
-                            item.Team2Score, item.Rink, forfeit);
-                    }
-                    WeekDate = db.WednesdaySchedules.Find(weekid).GameDateFormatted;
-                    var matches = db.WednesdayMatches.Where(x => x.Rink == -1 && x.GameDate == weekid);
-                    if (matches.Count() > 0)
-                    {
-                        var match = matches.First();
-                        
-                        ds.Byes.AddByesRow(match.WednesdaySchedule.GameDateFormatted, match.Team1,
-                            match.WednesdayTeam.Player.NickName + ", " + match.WednesdayTeam.Player1.NickName + ", " + match.WednesdayTeam.Player2.NickName);
-                        rv1.LocalReport.DataSources.Add(new ReportDataSource("Bye", ds.Byes.Rows));
-                        IsBye = true;
+
+                        var matches = db.WednesdayMatches.Where(x => x.Rink == -1 && x.GameDate == weekid);
+                        if (matches.Any())
+                        {
+                            var match = matches.First();
+
+                            ds.Byes.AddByesRow(match.WednesdaySchedule.GameDateFormatted, match.Team1,
+                                match.WednesdayTeam.Player.NickName + ", " + match.WednesdayTeam.Player1.NickName +
+                                ", " + match.WednesdayTeam.Player2.NickName);
+                            rv1.LocalReport.DataSources.Add(new ReportDataSource("Bye", ds.Byes.Rows));
+                            IsBye = true;
+                        }
+                        else
+                        {
+                            rv1.LocalReport.DataSources.Add(new ReportDataSource("Bye", new System.Data.DataTable()));
+                        }
+                        rv1.LocalReport.DataSources.Add(new ReportDataSource("Game", ds.Game.Rows));
                     }
                     else
                     {
+                        isCancelled = true;
+                        rv1.LocalReport.DataSources.Add(new ReportDataSource("Game", new System.Data.DataTable()));
                         rv1.LocalReport.DataSources.Add(new ReportDataSource("Bye", new System.Data.DataTable()));
                     }
-                    
+
                 }
 
-                rv1.LocalReport.DataSources.Add(new ReportDataSource("Game", ds.Game.Rows));
+                
                 rv1.LocalReport.DataSources.Add(new ReportDataSource("Stand", CalculateStandings.Wednesday(weekid).Rows));
 
                 var p1 = new ReportParameter("WeekDate", WeekDate);
                 var p2 = new ReportParameter("League", "Wednesday");
                 var p3 = new ReportParameter("IsBye", IsBye?"1":"0");
-                rv1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3});
+                var p4 = new ReportParameter("Cancelled", isCancelled ? "1" : "0");
+                rv1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3, p4 });
 
                 //parameters
                 rv1.ShowToolBar = true;
