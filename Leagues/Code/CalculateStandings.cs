@@ -12,9 +12,10 @@ namespace Leagues.Code
         public static LeaguesDS.StandingDataTable Tuesday(int weekid)
         {
             var ds = new LeaguesDS();
+            var list = new List<Standing>();
             using (var db = new LeaguesEntities())
             {
-                var list = new List<Standing>();
+                
                 foreach (var team in db.TuesdayTeams)
                 {
                     list.Add(new Standing()
@@ -104,14 +105,16 @@ namespace Leagues.Code
                             }
                         }
                     }
-                    list.Sort((a, b) => (b.Wins * 1000 + b.TotalScore).CompareTo(a.Wins * 1000 + a.TotalScore));
+                    
 
-                    int place = 1;
-                    foreach (var item in list)
-                    {
-                        ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, place++,item.Wins, item.Loses);
-                    }
+                    
                 }
+            }
+            int place = 1;
+            list.Sort((a, b) => (b.Wins * 1000 + b.TotalScore).CompareTo(a.Wins * 1000 + a.TotalScore));
+            foreach (var item in list)
+            {
+                ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, place++, item.Wins, item.Loses);
             }
             return ds.Standing;
         }
@@ -119,9 +122,10 @@ namespace Leagues.Code
         public static LeaguesDS.StandingDataTable Wednesday(int weekid)
         {
             var ds = new LeaguesDS();
+            var list = new List<Standing>();
             using (var db = new LeaguesEntities())
             {
-                var list = new List<Standing>();
+                
                 foreach (var team in db.WednesdayTeams)
                 {
                     list.Add(new Standing()
@@ -212,14 +216,15 @@ namespace Leagues.Code
                             }
                         }
                     }
-                    list.Sort((a, b) => (b.Wins * 1000 + b.TotalScore).CompareTo(a.Wins * 1000 + a.TotalScore));
-
-                    int place = 1;
-                    foreach (var item in list)
-                    {
-                        ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, place++, item.Wins, item.Loses);
-                    }
+                    
                 }
+            }
+            list.Sort((a, b) => (b.Wins * 1000 + b.TotalScore).CompareTo(a.Wins * 1000 + a.TotalScore));
+
+            int place = 1;
+            foreach (var item in list)
+            {
+                ds.Standing.AddStandingRow(item.TeamNumber, item.Players, item.TotalScore, place++, item.Wins, item.Loses);
             }
             return ds.Standing;
         }
