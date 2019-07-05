@@ -25,9 +25,19 @@ namespace Leagues.Controllers
         // GET: WednesdaySchedules/Create
         public ActionResult Create()
         {
+            var id = 1;
+            DateTime date = DateTime.Now;
+            var items = db.WednesdaySchedules.OrderByDescending(x => x.id);
+            if (items.Count() > 0)
+            {
+                date = items.First().GameDate.AddDays(7);
+                id = items.First().id + 1;
+            }
             var item = new WednesdaySchedule()
             {
-                IsCancelled = false
+                IsCancelled = false,
+                id = id,
+                GameDate = date
             };
             return View(item);
         }

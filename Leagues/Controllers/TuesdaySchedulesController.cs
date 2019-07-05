@@ -26,11 +26,21 @@ namespace Leagues.Controllers
         // GET: TuesdaySchedules/Create
         public ActionResult Create()
         {
+            var id = 1;
+            DateTime date = DateTime.Now;
+            var items = db.TuesdaySchedules.OrderByDescending(x => x.id);
+            if (items.Count() > 0)
+            {
+                date = items.First().GameDate.AddDays(7);
+                id = items.First().id + 1;
+            }
             var item = new TuesdaySchedule()
             {
-                IsCancelled = false
+                IsCancelled = false,
+                id = id,
+                GameDate = date
             };
-            return View(true);
+            return View(item);
         }
 
         
