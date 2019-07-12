@@ -492,9 +492,8 @@
     </Content>
     <Content Include="App_Data\TuesdayLabels.docx" />
     <Content Include="App_Data\WednesdayLabels.docx" />
-    <None Include="Properties\PublishProfiles\firsthalf - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
-    <None Include="Properties\PublishProfiles\secondhalf - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SmartASP-secondhalf.pubxml" />
     <None Include="Reports\LeaguesDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>LeaguesDS.Designer.cs</LastGenOutput>
