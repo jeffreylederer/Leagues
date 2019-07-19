@@ -44,7 +44,7 @@ namespace Leagues.Code
                     matches.Add(new Match()
                     {
                         Week = w,
-                        Rink = (r + w*2) % numberOfRinks,
+                        Rink = ((r + w*2) % numberOfRinks)+1,
                         Team1 = left < right? left: right,
                         Team2 = left < right ? right : left
                     });
@@ -113,7 +113,7 @@ namespace Leagues.Code
                     }
                     else
                     {
-                        match.Rink = (match.Rink + 2 * w) % (numberOfRinks - 1);
+                        match.Rink = ((match.Rink + 2 * w) % (numberOfRinks - 1))+1;
                         rink++;
                     }
                     

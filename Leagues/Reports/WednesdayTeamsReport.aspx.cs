@@ -31,7 +31,8 @@ namespace Leagues.Reports
                 var ds = new LeaguesDS();
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.WednesdayTeams.OrderBy(x=>x.id))
+                    var list = db.WednesdayTeams.OrderBy(x => x.id).ToList();
+                    foreach (var item in list)
                     {
                         ds.WednesdayTeam.AddWednesdayTeamRow(item.id, item.Player.FullName, item.ViceSkip.HasValue ? item.Player1.FullName : "",
                             item.Lead.HasValue ? item.Player2.FullName : "");

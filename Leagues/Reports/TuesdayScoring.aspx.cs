@@ -26,7 +26,9 @@ namespace Leagues.Reports
 
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.TuesdayMatches.Where(x=>x.GameDate==weekid && x.Rink!=-1).OrderBy(x => x.Rink))
+                    var list = db.TuesdayMatches.Where(x => x.GameDate == weekid && x.Rink != -1).OrderBy(x => x.Rink)
+                        .ToList();
+                    foreach (var item in list )
                     {
                         var forfeit = "";
                         switch (item.Forfeit)

@@ -16,7 +16,8 @@ namespace Leagues.Reports
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-
+            Label Label1 = (Label)FindControl("seasons");
+            Label1.Text = System.Configuration.ConfigurationManager.AppSettings["season"];
             if (!HttpContext.Current.User.IsInRole("Admin"))
             {
                 hyError.Visible = false;

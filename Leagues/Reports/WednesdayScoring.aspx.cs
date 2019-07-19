@@ -30,8 +30,9 @@ namespace Leagues.Reports
                     WeekDate = week.GameDateFormatted;
                     if (!week.IsCancelled)
                     {
-                        foreach (var item in db.WednesdayMatches.Where(x => x.GameDate == weekid && x.Rink != -1)
-                            .OrderBy(x => x.Rink))
+                        var list = db.WednesdayMatches.Where(x => x.GameDate == weekid && x.Rink != -1)
+                            .OrderBy(x => x.Rink).ToList();
+                        foreach (var item in list)
                         {
                             var forfeit = "";
                             switch (item.Forfeit)

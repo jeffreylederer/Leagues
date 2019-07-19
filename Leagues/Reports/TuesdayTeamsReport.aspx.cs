@@ -21,7 +21,8 @@ namespace Leagues.Reports
                 var ds = new LeaguesDS();
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.TuesdayTeams.OrderBy(x => x.id))
+                    var list = db.TuesdayTeams.OrderBy(x => x.id).ToList();
+                    foreach (var item in list)
                     {
                         ds.TuesdayTeam.AddTuesdayTeamRow(item.id, item.Player.FullName, item.Lead.HasValue ? item.Player1.FullName : "");
                     }

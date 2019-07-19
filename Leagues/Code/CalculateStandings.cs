@@ -15,8 +15,8 @@ namespace Leagues.Code
             var list = new List<Standing>();
             using (var db = new LeaguesEntities())
             {
-                
-                foreach (var team in db.TuesdayTeams)
+                var list1 = db.TuesdayTeams.ToList();
+                foreach (var team in list1)
                 {
                     list.Add(new Standing()
                     {
@@ -24,10 +24,11 @@ namespace Leagues.Code
                         Wins = 0,
                         Loses = 0,
                         TotalScore = 0,
-                        Players = team.Player.NickName + ", "+ team.Player1.NickName
+                        Players = team.Player.NickName + ", " + team.Player1.NickName
                     });
                 }
-                foreach (var week in db.TuesdaySchedules.Where(x => x.id <= weekid))
+                var list4 =  db.TuesdaySchedules.Where(x => x.id <= weekid).ToList();
+                foreach (var week in list4)
                 {
                     if (week.IsCancelled)
                         continue;
@@ -35,7 +36,9 @@ namespace Leagues.Code
                     var numMatches = 0;
                     var bye = false;
                     int forfeit = 0;
-                    foreach (var match in db.TuesdayMatches.Where(x => x.GameDate == week.id))
+
+                    var list2 = db.TuesdayMatches.Where(x => x.GameDate == week.id).ToList();
+                    foreach (var match in list2)
                     {
                         if (match.Team1Score > match.Team2Score && match.Rink != -1 && match.Forfeit == 1)
                         {
@@ -85,8 +88,8 @@ namespace Leagues.Code
                     }
                     if (bye || forfeit > 0)
                     {
-
-                        foreach (var match in db.TuesdayMatches.Where(x => x.GameDate == week.id))
+                        var list3 = db.TuesdayMatches.Where(x => x.GameDate == week.id).ToList();
+                        foreach (var match in list3)
                         {
                             if (match.Rink != -1 && match.Forfeit == 3)
                             {
@@ -125,8 +128,8 @@ namespace Leagues.Code
             var list = new List<Standing>();
             using (var db = new LeaguesEntities())
             {
-                
-                foreach (var team in db.WednesdayTeams)
+                var list1 = db.WednesdayTeams.ToList();
+                foreach (var team in list1)
                 {
                     list.Add(new Standing()
                     {
@@ -137,7 +140,8 @@ namespace Leagues.Code
                         Players = team.Player.NickName + ", " + team.Player1.NickName + ", " + team.Player2.NickName
                     });
                 }
-                foreach (var week in db.WednesdaySchedules.Where(x => x.id <= weekid))
+                var list2 = db.WednesdaySchedules.Where(x => x.id <= weekid).ToList();
+                foreach (var week in list2)
                 {
                     if (week.IsCancelled)
                         continue;
@@ -145,7 +149,8 @@ namespace Leagues.Code
                     var numMatches = 0;
                     var bye = false;
                     int forfeit = 0;
-                    foreach (var match in db.WednesdayMatches.Where(x => x.GameDate == week.id))
+                    var list4 = db.WednesdayMatches.Where(x => x.GameDate == week.id).ToList();
+                    foreach (var match in list4)
                     {
                         
                         if (match.Team1Score > match.Team2Score && match.Rink != -1 && match.Forfeit == 1)
@@ -196,8 +201,8 @@ namespace Leagues.Code
                     }
                     if (bye || forfeit > 0)
                     {
-
-                        foreach (var match in db.WednesdayMatches.Where(x => x.GameDate == week.id))
+                        var list3 = db.WednesdayMatches.Where(x => x.GameDate == week.id).ToList();
+                        foreach (var match in list3)
                         {
                              if (match.Rink != -1 && match.Forfeit == 3)
                             {
