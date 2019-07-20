@@ -10,7 +10,7 @@ namespace Leagues.Reports
 {
 	public partial class Schedule : System.Web.UI.Page
 	{
-		protected void PreRender(object sender, EventArgs e)
+		protected void Page_PreRender(object sender, EventArgs e)
 		{
 		    var league = Request.QueryString["League"];
 		    lblLeague.Text = league;
