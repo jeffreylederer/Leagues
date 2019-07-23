@@ -84,12 +84,12 @@ namespace Leagues.Code
                             bound = "Yellow";
                             break;
                     }
-                    var date = $"{week.GameDate.Month}/{week.GameDate.Day}";
+                    var date = $"'{week.GameDate.Month}/{week.GameDate.Day}'";
                     weekLine.Append($"{week.id},{date},{grn},{dir},{bound},");
                     foreach (var match in matches)
                     {
                         if(match.Rink != -1)
-                            weekLine.Append($"{match.Team1}-{match.Team2},");
+                            weekLine.Append($"'{match.Team1}-{match.Team2}',");
                     }
                     var wline = weekLine.ToString();
                     
@@ -175,12 +175,12 @@ namespace Leagues.Code
                             bound = "Yellow";
                             break;
                     }
-                    var date = $"{week.GameDate.Month}/{week.GameDate.Day}";
+                    var date = $"'{week.GameDate.Month}/{week.GameDate.Day}'";
                     weekLine.Append($"{week.id},{date},{grn},{dir},{bound},");
                     foreach (var match in matches)
                     {
                         if (match.Rink != -1)
-                            weekLine.Append($"{match.Team1}-{match.Team2},");
+                            weekLine.Append($"'{match.Team1}-{match.Team2}',");
                     }
                     var wline = weekLine.ToString();
                     
