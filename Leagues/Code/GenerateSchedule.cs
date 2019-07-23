@@ -22,7 +22,7 @@ namespace Leagues.Code
                 tline.Append("WK,Date,GRN,DIR,Bound,");
                 for (var rink =0;rink<rinks;rink++)
                 {
-                    tline.Append($"{rink},");
+                    tline.Append($"{rink+1},");
                 }
 
                 var tline1= tline.ToString();
@@ -112,7 +112,7 @@ namespace Leagues.Code
                 tline.Append("WK,Date,GRN,DIR,Bound,");
                 for (var rink = 0; rink < rinks; rink++)
                 {
-                    tline.Append($"{rink},");
+                    tline.Append($"{rink+1},");
                 }
 
                 var tline1 = tline.ToString();
