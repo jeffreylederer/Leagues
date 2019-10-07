@@ -25,7 +25,8 @@ namespace Leagues.Reports
                 {
                     if (league == "Tuesday")
                     {
-                        foreach (var item in db.TuesdayMatches.Where(x=>x.Rink == -1))
+                        var list1 = db.TuesdayMatches.Where(x => x.Rink == -1).ToList();
+                        foreach (var item in list1)
                         {
                             ds.Byes.AddByesRow(item.TuesdaySchedule.GameDate.ToShortDateString(), item.Team1,
                                 item.TuesdayTeam.Player.NickName + ", " + item.TuesdayTeam.Player1.NickName);

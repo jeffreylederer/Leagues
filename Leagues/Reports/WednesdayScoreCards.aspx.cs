@@ -26,7 +26,8 @@ namespace Leagues.Reports
                 var ds = new LeaguesDS();
                 using (LeaguesEntities db = new LeaguesEntities())
                 {
-                    foreach (var item in db.Wednesday_GetMatchAll(weekid))
+                    var list = db.Wednesday_GetMatchAll(weekid).ToList();
+                    foreach (var item in list)
                         ds.WednesdayScoreCards.AddWednesdayScoreCardsRow(
                             item.Rink.ToString(),
                             item.Skip1,

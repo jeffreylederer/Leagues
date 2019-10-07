@@ -89,7 +89,8 @@ namespace Leagues.Controllers
             };
             var teams = db.WednesdayTeams.OrderBy(x => x.id);
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            var list1 = db.Players.Where(x => x.WednesdayLeague).ToList();
+            foreach (var player in list1)
             {
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
                     list.Add(player);
@@ -135,7 +136,9 @@ namespace Leagues.Controllers
 
             var teams = db.WednesdayTeams.OrderBy(x => x.id);
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            var list1 = db.Players.Where(x => x.WednesdayLeague).ToList();
+            foreach (var player in list1)
+
             {
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
                     list.Add(player);
@@ -161,9 +164,11 @@ namespace Leagues.Controllers
             }
             var teams = db.WednesdayTeams.OrderBy(x => x.id);
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            var list1 = db.Players.Where(x => x.WednesdayLeague).ToList();
+            foreach (var player in list1)
+
             {
-                if(!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
+                if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
                     list.Add(player);
             }
             if (WednesdayTeam.ViceSkip != null)
@@ -209,7 +214,8 @@ namespace Leagues.Controllers
             var teams = db.WednesdayTeams.OrderBy(x => x.id);
 
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.WednesdayLeague))
+            var list1 = db.Players.Where(x => x.WednesdayLeague).ToList();
+            foreach (var player in list1)
             {
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id || x.ViceSkip == player.id))
                     list.Add(player);

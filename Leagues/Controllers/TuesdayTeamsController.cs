@@ -58,7 +58,8 @@ namespace Leagues.Controllers
             };
             var teams = db.TuesdayTeams.OrderBy(x => x.id);
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.TuesdayLeague))
+            var list1 = db.Players.Where(x => x.TuesdayLeague).ToList();
+            foreach (var player in list1)
             {
                 if(!teams.Any(x=>x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);
@@ -103,7 +104,8 @@ namespace Leagues.Controllers
 
             var teams = db.TuesdayTeams.OrderBy(x => x.id);
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.TuesdayLeague))
+            var list1 = db.Players.Where(x => x.TuesdayLeague).ToList();
+            foreach (var player in list1)
             {
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);
@@ -128,7 +130,8 @@ namespace Leagues.Controllers
             }
             var teams = db.TuesdayTeams.OrderBy(x => x.id);
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.TuesdayLeague))
+            var list1 = db.Players.Where(x => x.TuesdayLeague).ToList();
+            foreach (var player in list1)
             {
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);
@@ -173,7 +176,8 @@ namespace Leagues.Controllers
             var teams = db.TuesdayTeams.OrderBy(x => x.id);
 
             var list = new List<Player>();
-            foreach (var player in db.Players.Where(x => x.TuesdayLeague))
+            var list1 = db.Players.Where(x => x.TuesdayLeague).ToList();
+            foreach (var player in list1)
             {
                 if (!teams.Any(x => x.Skip == player.id || x.Lead == player.id))
                     list.Add(player);

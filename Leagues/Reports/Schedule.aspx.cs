@@ -19,21 +19,21 @@ namespace Leagues.Reports
         protected void btnExport_Click(object sender, EventArgs e)
         {
             var league = Request.QueryString["League"];
-            string schedue = string.Empty;
+            string schedule = string.Empty;
             if (league == "Tuesday")
             {
-                schedue = GenerateSchedule.Tuesday();
+                schedule = GenerateSchedule.Tuesday();
             }
             else
             {
-                schedue = GenerateSchedule.Wednesday();
+                schedule = GenerateSchedule.Wednesday();
             }
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition", $"inline;filename={league}.csv");
             Response.Charset = "";
             Response.ContentType = "application/csv";
-            Response.Output.Write(schedue);
+            Response.Output.Write(schedule);
             Response.Flush();
             Response.End();
         }
